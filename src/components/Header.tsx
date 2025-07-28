@@ -28,7 +28,7 @@ export default function Header() {
   return (
     <header className="w-full px-4 py-4 bg-highlight text-white font-bold text-2xl font-[Montserrat]">
       {/* Mobile header */}
-      <div className="relative grid grid-cols-3 items-center sm:hidden w-full px-2">
+      <div className="relative grid grid-cols-3 items-center lg:hidden w-full px-2">
         {/* Icon left */}
         <div className="flex justify-start">
           <Image
@@ -59,8 +59,14 @@ export default function Header() {
         </div>
         {/* Mobile menu overlay */}
         {menuOpen && (
-          <div ref={menuRef} className="mobile-header absolute left-0 right-0 top-full z-50 sm:hidden">
-            <nav className="bg-highlight text-black rounded-b-lg shadow-lg p-6 w-full">
+          <div
+            ref={menuRef}
+            className="mobile-header absolute left-0 right-0 top-full z-50 sm:hidden mt-3 transition-all duration-300 ease-out transform animate-dropdown"
+            style={{
+              animation: 'dropdown 0.25s cubic-bezier(0.4,0,0.2,1)'
+            }}
+          >
+            <nav className="bg-highlight text-[#2c2c2c] rounded-b-lg shadow-lg p-6 w-full">
               <ul className="flex flex-col gap-4 text-lg">
                 <li><Link href="/" onClick={() => setMenuOpen(false)} className="uppercase">Home</Link></li>
                 <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase">Instruments</Link></li>
@@ -72,17 +78,17 @@ export default function Header() {
         )}
       </div>
       {/* Desktop header: 2 links left, logo/text center, 2 links right */}
-      <div className="hidden sm:flex flex-row items-center justify-between w-full max-w-7xl mx-auto px-8">
+      <div className="hidden lg:flex flex-row items-center justify-between w-full max-w-7xl mx-auto px-8 flex-nowrap min-w-0">
         {/* Left links */}
-        <nav>
-          <ul className="flex flex-row gap-12">
+        <nav className="min-w-0 flex-shrink">
+          <ul className="flex flex-row gap-20 whitespace-nowrap">
             <li><Link href="/" className="uppercase font-light">Home</Link></li>
             <li><Link href="/about" className="uppercase font-light">Instruments</Link></li>
           </ul>
         </nav>
         
         {/* Logo and text center */}
-        <div className="flex flex-row items-center gap-2">
+        <div className="flex flex-row items-center gap-2 flex-shrink-0">
           <span className="uppercase">TEMPO</span>
           <Image
             src="/logo.svg"
@@ -94,8 +100,8 @@ export default function Header() {
         </div>
         
         {/* Right links */}
-        <nav>
-          <ul className="flex flex-row gap-12">
+        <nav className="min-w-0 flex-shrink">
+          <ul className="flex flex-row gap-20 whitespace-nowrap">
             <li><Link href="/about" className="uppercase font-light">Jobs</Link></li>
             <li><Link href="/contact" className="uppercase font-light">Contact</Link></li>
           </ul>
