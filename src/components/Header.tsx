@@ -61,17 +61,14 @@ export default function Header() {
         {menuOpen && (
           <div
             ref={menuRef}
-            className="mobile-header absolute left-0 right-0 top-full z-50 sm:hidden mt-3 transition-all duration-300 ease-out transform animate-dropdown"
-            style={{
-              animation: 'dropdown 0.25s cubic-bezier(0.4,0,0.2,1)'
-            }}
+            className="mobile-header absolute left-0 right-0 top-full z-50 lg:hidden mt-3 animate-dropdown"
           >
             <nav className="bg-highlight text-[#2c2c2c] rounded-b-lg shadow-lg p-6 w-full">
               <ul className="flex flex-col gap-4 text-lg">
-                <li><Link href="/" onClick={() => setMenuOpen(false)} className="uppercase">Home</Link></li>
-                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase">Instruments</Link></li>
-                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase">Jobs</Link></li>
-                <li><Link href="/contact" onClick={() => setMenuOpen(false)} className="uppercase">Contact</Link></li>
+                <li><Link href="/" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Home</Link></li>
+                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Instruments</Link></li>
+                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Jobs</Link></li>
+                <li><Link href="/contact" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Contact</Link></li>
               </ul>
             </nav>
           </div>
@@ -82,8 +79,8 @@ export default function Header() {
         {/* Left links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li><Link href="/" className="uppercase font-light">Home</Link></li>
-            <li><Link href="/about" className="uppercase font-light">Instruments</Link></li>
+            <li><Link href="/" className="uppercase font-light nav-link">Home</Link></li>
+            <li><Link href="/about" className="uppercase font-light nav-link">Instruments</Link></li>
           </ul>
         </nav>
         
@@ -102,8 +99,8 @@ export default function Header() {
         {/* Right links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li><Link href="/about" className="uppercase font-light">Jobs</Link></li>
-            <li><Link href="/contact" className="uppercase font-light">Contact</Link></li>
+            <li><Link href="/about" className="uppercase font-light nav-link">Jobs</Link></li>
+            <li><Link href="/contact" className="uppercase font-light nav-link">Contact</Link></li>
           </ul>
         </nav>
       </div>
