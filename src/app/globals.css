@@ -95,4 +95,11 @@ background: rgb(255, 230, 0) !important;
   .text-highlight {
     color: var(--highlight);
   }
+@layer utilities {
+  .border-image {
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--highlight);
+  }
+}
 }

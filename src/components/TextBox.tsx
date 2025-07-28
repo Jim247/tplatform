@@ -28,7 +28,7 @@ export default function TextBox() {
           alt="Music lessons"
           width={320}
           height={320}
-          className="rounded-lg object-cover w-full h-auto"
+          className="rounded-lg object-cover w-full h-auto border-image"
           priority={false}
         />
       </div>

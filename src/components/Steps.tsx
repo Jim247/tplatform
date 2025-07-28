@@ -78,7 +78,7 @@ const Steps = ({ title, items = [], image, width = 900, height = 400 }: Props) =
               alt={title || 'Step image'}
               width={width}
               height={height}
-              className="rounded-lg object-contain lg:w-2/3 h-auto"
+              className="rounded-lg object-contain lg:w-2/3 h-auto border-image"
               loading="lazy"
             />
           </div>
