@@ -1,7 +1,11 @@
 import Instruments from "@/components/Instruments";
+import Reviews from "@/components/Reviews";
 import Steps from "@/components/Steps";
 import Hero from "@components/Hero"
 import { IconUserPlus, IconId, IconSearch, IconCheck } from "@tabler/icons-react"; // Adjust the import path as needed
+import {reviews } from '@components/reviews'
+import TextBox from "@/components/TextBox";
+import WidgetWrapper from "@/components/WidgetWrapper";
 
 export default function Home() {
   return (
@@ -10,6 +14,7 @@ export default function Home() {
       image={{ src: "/Hero.jpeg", alt: "hero" }}
       mobileImage={{ src: "/heromob.png", alt: "Mobile hero" }}
     />
+<WidgetWrapper>
     <Steps
           title="Find your perfect music tutor"
           items={[
@@ -40,7 +45,16 @@ export default function Home() {
           ]}
           image="/assets/images/steps-image.jpg"
         />
+        </WidgetWrapper>
+        <WidgetWrapper>
+        <TextBox />
+        </WidgetWrapper>
+        <WidgetWrapper>
         <Instruments />
+        </WidgetWrapper>
+        <WidgetWrapper>
+        <Reviews reviews={reviews}/>
+        </WidgetWrapper>
         </>
   );
 }

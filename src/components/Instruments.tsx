@@ -7,14 +7,15 @@ import {
 } from "@mdi/js";
 
 export default function Instruments() {
+    const iconSize = 4
   return (
-    <div className='container mx-auto py-8 mt-8'>
-      <h1 className='text-center text-5xl mb-8 text-white font-[Montserrat] uppercase'>Learn with us..</h1>
+    <div className='container mx-auto'>
+      <h1 className='text-center text-5xl mb-8 pt-10 pb-5 text-white font-[Montserrat] uppercase'>Learn with us..</h1>
       <div className="flex flex-wrap justify-center gap-12 uppercase font-[Montserrat]">
         <div className="flex flex-col items-center group cursor-pointer">
           <Icon 
             path={mdiGuitarAcoustic} 
-            size={2.5} 
+            size={iconSize} 
             color="var(--highlight)" 
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
@@ -23,7 +24,7 @@ export default function Instruments() {
         <div className="flex flex-col items-center group cursor-pointer">
           <Icon 
             path={mdiGuitarElectric} 
-            size={2.5} 
+            size={iconSize} 
             color="var(--highlight)" 
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
@@ -32,7 +33,7 @@ export default function Instruments() {
         <div className="flex flex-col items-center group cursor-pointer">
           <Icon 
             path={mdiMusicClefBass} 
-            size={2.5} 
+            size={iconSize} 
             color="var(--highlight)" 
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
@@ -41,7 +42,7 @@ export default function Instruments() {
         <div className="flex flex-col text-white items-center group cursor-pointer">
           <Icon 
             path={mdiMicrophoneVariant} 
-            size={2.5} 
+            size={iconSize} 
             color="var(--highlight)" 
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
