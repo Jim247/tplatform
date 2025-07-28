@@ -7,7 +7,10 @@ export default function Nav({ onNavigate }: { onNavigate?: () => void }) {
         <Link href="/" onClick={onNavigate}>Home</Link>
       </li>
       <li>
-        <Link href="/about" onClick={onNavigate}>About</Link>
+        <Link href="/about" onClick={onNavigate}>Instruments</Link>
+      </li>
+       <li>
+        <Link href="/about" onClick={onNavigate}>Jobs</Link>
       </li>
       <li>
         <Link href="/contact" onClick={onNavigate}>Contact</Link>

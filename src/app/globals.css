@@ -3,7 +3,7 @@
 :root {
   --background: #2c2c2c;
   --foreground: #171717;
-  --highlight: #ffe600;
+  --highlight: 255 230 0;
 }
 
 
@@ -11,7 +11,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --highlight: #ffe600;
+    --highlight: 255 230 0;
   }
 }
 
@@ -22,7 +22,7 @@ body {
 }
 
 .mobile-header {
-  background: var(--highlight);
+  background: rgb(255 230 0);
   color: #2c2c2c;
 }
 

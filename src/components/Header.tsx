@@ -1,16 +1,30 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import Nav from './Nav';
+import Link from 'next/link';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/contact', label: 'Contact' },
-  ];
+  const menuRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node) &&
+          buttonRef.current && !buttonRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+
+    if (menuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [menuOpen]);
   return (
     <header className="w-full px-4 py-4 bg-highlight text-white font-bold text-2xl font-[Montserrat]">
       {/* Mobile header */}
@@ -26,48 +40,66 @@ export default function Header() {
         </div>
         {/* Text center */}
         <div className="flex flex-row justify-center items-center">
-          <span className="text-center whitespace-nowrap">TEMPO TUITION</span>
+          <span className="text-center whitespace-nowrap uppercase">TEMPO TUITION</span>
         </div>
         {/* Hamburger right */}
         <div className="flex justify-end">
           <button
+            ref={buttonRef}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             className="p-2 text-highlight"
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="6" x2="18" y2="18" /><line x1="6" y1="18" x2="18" y2="6" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFE600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="6" y1="6" x2="18" y2="18" /><line x1="6" y1="18" x2="18" y2="6" /></svg>
             ) : (
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFE600" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
             )}
           </button>
         </div>
         {/* Mobile menu overlay */}
         {menuOpen && (
-          <div className="mobile-header absolute left-0 right-0 top-full z-50 sm:hidden">
-            <nav className="bg-highlight text-highlight rounded-b-lg shadow-lg p-6 w-full">
+          <div ref={menuRef} className="mobile-header absolute left-0 right-0 top-full z-50 sm:hidden">
+            <nav className="bg-highlight text-black rounded-b-lg shadow-lg p-6 w-full">
               <ul className="flex flex-col gap-4 text-lg">
-                {navLinks.map(link => (
-                  <li key={link.href}>
-                    <a href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</a>
-                  </li>
-                ))}
+                <li><Link href="/" onClick={() => setMenuOpen(false)} className="uppercase">Home</Link></li>
+                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase">Instruments</Link></li>
+                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase">Jobs</Link></li>
+                <li><Link href="/contact" onClick={() => setMenuOpen(false)} className="uppercase">Contact</Link></li>
               </ul>
             </nav>
           </div>
         )}
       </div>
-      {/* Desktop header */}
-      <div className="hidden sm:flex flex-row items-center justify-center gap-4">
-        <span>TEMPO</span>
-        <Image
-          src="/logo.svg"
-          alt="Tempo Tuition Logo"
-          width={48}
-          height={48}
-        />
-        <span>TUITION</span>
-        <Nav />
+      {/* Desktop header: 2 links left, logo/text center, 2 links right */}
+      <div className="hidden sm:flex flex-row items-center justify-between w-full max-w-7xl mx-auto px-8">
+        {/* Left links */}
+        <nav>
+          <ul className="flex flex-row gap-12">
+            <li><Link href="/" className="uppercase font-light">Home</Link></li>
+            <li><Link href="/about" className="uppercase font-light">Instruments</Link></li>
+          </ul>
+        </nav>
+        
+        {/* Logo and text center */}
+        <div className="flex flex-row items-center gap-2">
+          <span className="uppercase">TEMPO</span>
+          <Image
+            src="/logo.svg"
+            alt="Tempo Tuition Logo"
+            width={48}
+            height={48}
+          />
+          <span className="uppercase">TUITION</span>
+        </div>
+        
+        {/* Right links */}
+        <nav>
+          <ul className="flex flex-row gap-12">
+            <li><Link href="/about" className="uppercase font-light">Jobs</Link></li>
+            <li><Link href="/contact" className="uppercase font-light">Contact</Link></li>
+          </ul>
+        </nav>
       </div>
     </header>
   );
