@@ -14,9 +14,12 @@ export default function Home() {
       image={{ src: "/Hero.jpeg", alt: "hero" }}
       mobileImage={{ src: "/heromob.png", alt: "Mobile hero" }}
     />
+      <WidgetWrapper>
+        <Instruments />
+        </WidgetWrapper>
 <WidgetWrapper>
     <Steps
-          title="Find your perfect music tutor"
+          title="HOW WE WORK"
           items={[
             {
               title: 'Step 1: Sign Up',
@@ -43,15 +46,15 @@ export default function Home() {
               icon: IconCheck,
             },
           ]}
-          image="/assets/images/steps-image.jpg"
+          image="/piano.jpg"
+          width={500}
+          height={500}
         />
         </WidgetWrapper>
         <WidgetWrapper>
         <TextBox />
         </WidgetWrapper>
-        <WidgetWrapper>
-        <Instruments />
-        </WidgetWrapper>
+
         <WidgetWrapper>
         <Reviews reviews={reviews}/>
         </WidgetWrapper>

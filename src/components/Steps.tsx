@@ -11,17 +11,19 @@ export interface Props {
   items?: Array<Item>;
   title?: string;
   image?: string;
+  width?: number;
+  height?: number;
 }
 
-const Steps = ({ title, items = [], image }: Props) => {
+const Steps = ({ title, items = [], image, width = 900, height = 400 }: Props) => {
   if (!items.length) return null;
 
   return (
     <div className="container mx-auto px-4 py-4">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16 items-center">
         {/* Left column: Steps */}
         <div className="relative flex flex-col gap-6 align-middle">
-          {title && <h2 className="text-3xl text-white font-bold mb-4">{title}</h2>}
+          {title && <h2 className="text-3xl text-white font-bold mb-4 uppercase">{title}</h2>}
           {items.map(({ title, description, icon: Icon }, index) => (
             <div key={index} className="flex flex-row items-center gap-6 relative z-10">
               <div className="flex-shrink-0 flex flex-col items-center pt-0 group cursor-pointer">
@@ -59,13 +61,24 @@ const Steps = ({ title, items = [], image }: Props) => {
         </div>
         {/* Right column: Image */}
         {image && (
-          <div className="flex justify-center items-center">
+          <div
+            className="
+              flex justify-center items-center
+              w-full
+              md:w-auto md:h-full
+            "
+            style={
+              width && height
+                ? { width: "100%", height: "auto", minWidth: 0, minHeight: 0 }
+                : undefined
+            }
+          >
             <Image
               src={image}
               alt={title || 'Step image'}
-              width={900}
-              height={400}
-              className="rounded-lg w-full h-auto object-contain"
+              width={width}
+              height={height}
+              className="rounded-lg object-contain lg:w-2/3 h-auto"
               loading="lazy"
             />
           </div>

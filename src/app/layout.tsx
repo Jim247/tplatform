@@ -36,8 +36,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
         <Header />
-        <div className="w-full max-w-7xl border-4 border-white rounded-lg m-4 p-6 mx-auto">
+        <div className="p-2">
+        <div className="w-full max-w-7xl border-1 border-white rounded-lg p-6 mx-auto">
           {children}
+        </div>
         </div>
         <Footer />
       </body>

@@ -7,46 +7,51 @@ import {
 } from "@mdi/js";
 
 export default function Instruments() {
-    const iconSize = 4
+  // Smaller icon and text for mobile, larger for md+
+  const iconSize = 4
+
   return (
     <div className='container mx-auto'>
-      <h1 className='text-center text-5xl mb-8 pt-10 pb-5 text-white font-[Montserrat] uppercase'>Learn with us..</h1>
-      <div className="flex flex-wrap justify-center gap-12 uppercase font-[Montserrat]">
-        <div className="flex flex-col items-center group cursor-pointer">
+      <div className="text-white text-xl text-center">
+        Welcome to Tempo Tuition, Bristol's leading provider of musical instrument tuition
+      </div>
+      <h1 className='text-center text-5xl mb-8 pt-10 pb-5 text-white font-[Montserrat] uppercase'>We Teach</h1>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-xs mx-auto sm:max-w-none uppercase font-[Montserrat]">
+        <div className="flex flex-col items-center group cursor-pointer p-2">
           <Icon 
             path={mdiGuitarAcoustic} 
             size={iconSize} 
-            color="var(--highlight)" 
+            color="var(--highlight)"
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
-          <span className="mt-2 text-xl text-white font-semibold">Acoustic Guitar</span>
+          <span className="mt-2 text-sm md:text-xl text-white font-semibold text-center">Acoustic Guitar</span>
         </div>
-        <div className="flex flex-col items-center group cursor-pointer">
+        <div className="flex flex-col items-center group cursor-pointer p-2">
           <Icon 
             path={mdiGuitarElectric} 
             size={iconSize} 
-            color="var(--highlight)" 
+            color="var(--highlight)"
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
-          <span className="mt-2 text-xl text-white font-semibold">Electric Guitar</span>
+          <span className="mt-2 text-sm md:text-xl text-white font-semibold text-center">Electric Guitar</span>
         </div>
-        <div className="flex flex-col items-center group cursor-pointer">
+        <div className="flex flex-col items-center group cursor-pointer p-2">
           <Icon 
             path={mdiMusicClefBass} 
             size={iconSize} 
-            color="var(--highlight)" 
+            color="var(--highlight)"
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
-          <span className="mt-2 text-xl text-white font-semibold">Bass Guitar</span>
+          <span className="mt-2 text-sm md:text-xl text-white font-semibold text-center">Bass Guitar</span>
         </div>
-        <div className="flex flex-col text-white items-center group cursor-pointer">
+        <div className="flex flex-col items-center group cursor-pointer p-2">
           <Icon 
             path={mdiMicrophoneVariant} 
             size={iconSize} 
-            color="var(--highlight)" 
+            color="var(--highlight)"
             className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
           />
-          <span className="mt-2 text-xl font-semibold">Singing</span>
+          <span className="mt-2 text-sm md:text-xl text-white font-semibold text-center">Singing</span>
         </div>
       </div>
     </div>
