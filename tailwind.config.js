@@ -8,10 +8,8 @@ module.exports = {
       fontFamily: {
         'heading': ['var(--font-montserrat)', 'sans-serif'],
       },
-      colors: {
-        highlight: {
-          DEFAULT: 'rgb(var(--highlight) / <alpha-value>)',
-        },
+       colors: {
+      highlight: 'var(--highlight)',
       },
     },
   },
