@@ -10,22 +10,23 @@ export interface Item {
 export interface Props {
   items?: Array<Item>;
   title?: string;
-  image?: string; // Updated to accept a string for the image URL
+  image?: string;
 }
 
 const Steps = ({ title, items = [], image }: Props) => {
   if (!items.length) return null;
 
   return (
-    <div className="steps-component container mx-auto px-4 py-4">
+    <div className="container mx-auto px-4 py-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-16 items-start">
         {/* Left column: Steps */}
         <div className="relative flex flex-col gap-6 align-middle">
           {title && <h2 className="text-3xl text-white font-bold mb-4">{title}</h2>}
           {items.map(({ title, description, icon: Icon }, index) => (
             <div key={index} className="flex flex-row items-center gap-6 relative z-10">
-              <div className="flex-shrink-0 flex flex-col items-center pt-0">
+              <div className="flex-shrink-0 flex flex-col items-center pt-0 group cursor-pointer">
                 <div
+                  className="transition-transform duration-200 group-hover:scale-110 group-hover:-translate-y-1"
                   style={{
                     width: 62,
                     height: 62,
@@ -44,10 +45,10 @@ const Steps = ({ title, items = [], image }: Props) => {
               <div className="flex-1 flex flex-col justify-center">
                 <div className="space-y-1">
                   {title && (
-                    <div className='text-white' style={{ fontWeight: 700, fontSize: 22, marginBottom: 6 }}>{title}</div>
+                    <div className='text-white'>{title}</div>
                   )}
                   {description && (
-                    <div className='text-white' style={{ fontSize: 17, lineHeight: 1.5 }}>
+                    <div className='text-white'>
                       {description}
                     </div>
                   )}

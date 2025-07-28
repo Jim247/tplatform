@@ -6,10 +6,11 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'heading': ['var(--font-montserrat)', 'sans-serif'],
+        sans: ['var(--font-montserrat)', 'Montserrat', 'sans-serif'],
+        heading: ['var(--font-montserrat)', 'Montserrat', 'sans-serif'],
       },
-       colors: {
-      highlight: 'var(--highlight)',
+      colors: {
+        highlight: 'var(--highlight)',
       },
     },
   },

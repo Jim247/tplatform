@@ -12,7 +12,7 @@ interface HeroProps {
     alt?: string;
   };
 }
-// ...existing code...
+
 export default function Hero({ image, mobileImage }: HeroProps) {
   const handleClick = () => {
     alert('Book Now clicked!');
@@ -29,7 +29,7 @@ export default function Hero({ image, mobileImage }: HeroProps) {
 
   return (
     <div className="w-full flex items-center justify-center">
-      <div className="w-7xl m-10 p-8 flex items-center justify-center">
+      <div className="w-7xl p-8 flex items-center justify-center">
         {/* Desktop Hero */}
         <div 
           className="relative w-full h-[800px] bg-center bg-no-repeat items-center justify-center hidden md:flex"

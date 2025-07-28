@@ -1,3 +1,4 @@
+import Instruments from "@/components/Instruments";
 import Steps from "@/components/Steps";
 import Hero from "@components/Hero"
 import { IconUserPlus, IconId, IconSearch, IconCheck } from "@tabler/icons-react"; // Adjust the import path as needed
@@ -39,6 +40,7 @@ export default function Home() {
           ]}
           image="/assets/images/steps-image.jpg"
         />
+        <Instruments />
         </>
   );
 }
