@@ -31,6 +31,8 @@ export default function Reviews({
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+  // const CHAR_LIMIT = 180; // Removed duplicate declaration
 
   // Update activeIdx on scroll
   useEffect(() => {
@@ -56,6 +58,8 @@ export default function Reviews({
     };
   }, []);
 
+  const CHAR_LIMIT = 180;
+
   return (
     <div className="max-w-6xl mx-auto px-5" id={id}>
       {/* Header */}
@@ -79,6 +83,9 @@ export default function Reviews({
         {reviews.map((review, idx) => {
           const { title: reviewTitle, review: reviewText, reviewerName, icon, reviewLink } = review;
           const IconComponent = iconMap[icon as keyof typeof iconMap];
+          const isExpanded = expandedIdx === idx;
+          const isLong = reviewText.length > CHAR_LIMIT;
+          const displayText = isExpanded || !isLong ? reviewText : reviewText.slice(0, CHAR_LIMIT) + "...";
           return (
             <div
               key={idx}
@@ -113,7 +120,23 @@ export default function Reviews({
                 {/* Review Quote */}
                 {reviewText && (
                   <blockquote className="flex-auto mb-4">
-                    <p className="text italic">"{reviewText}"</p>
+                    <p className="text italic">"{displayText}"</p>
+                    {isLong && !isExpanded && (
+                      <button
+                        className="text-xs text-yellow-700 underline mt-2 focus:outline-none"
+                        onClick={() => setExpandedIdx(idx)}
+                      >
+                        Read more
+                      </button>
+                    )}
+                    {isExpanded && (
+                      <button
+                        className="text-xs text-yellow-700 underline mt-2 focus:outline-none"
+                        onClick={() => setExpandedIdx(null)}
+                      >
+                        Show less
+                      </button>
+                    )}
                   </blockquote>
                 )}
 
@@ -155,4 +178,3 @@ export default function Reviews({
     </div>
   );
 }
-
