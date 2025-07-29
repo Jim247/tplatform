@@ -60,11 +60,11 @@ const Features: React.FC<FeaturesProps> = ({
         {items.map((item, index) => (
           <div
             key={index}
-            className="w-full flex flex-col justify-center rounded-2xl bg-grey border border-white shadow-lg p-6 min-h-[180px] transition-transform duration-200 hover:scale-105"
+            className="w-full flex flex-col justify-center rounded-2xl bg-grey border border-white shadow-lg p-6 min-h-[180px]  duration-200 hover:scale-105"
           >
             <div className="flex items-center gap-4">
               {/* Icon column */}
-              <div className="flex items-center justify-center w-14 h-14 bg-grey rounded-xl shadow-sm">
+              <div className="flex items-center justify-center w-14 h-14 rounded-xl shadow-sm">
                 {(item.icon || defaultIcon) && (
                   <span className="text-yellow-300 w-12 h-12 flex items-center justify-center">
                     {item.icon || defaultIcon}

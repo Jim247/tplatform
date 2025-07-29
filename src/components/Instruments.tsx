@@ -5,9 +5,6 @@ import {
   mdiMusicClefBass,
   mdiMicrophoneVariant, 
   mdiPiano,
-  mdiHeadDotsHorizontal,
-  mdiMore,
-  mdiDotsHorizontal,
   mdiDotsHorizontalCircleOutline
 } from "@mdi/js";
 
@@ -19,7 +16,7 @@ export default function Instruments() {
       <div className="text-white text-xl text-center">
         Welcome to Tempo Tuition, Bristol's leading provider of musical instrument tuition
       </div>
-      <h1 className='text-center text-5xl mb-8 pt-10 pb-5 text-white font-[Montserrat] uppercase'>We Teach</h1>
+      <h1 className='text-center text-5xl pt-10 pb-5 text-white font-[Montserrat] uppercase'>We Teach</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-xs mx-auto sm:max-w-none uppercase font-[Montserrat]">
         {/* Top row icons */}
         <div className="flex flex-col items-center group cursor-pointer p-2">
