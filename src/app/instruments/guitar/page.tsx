@@ -9,15 +9,9 @@ export default function Home() {
   return (
     <>
     <Hero 
-      image={{ src: "/Hero.jpeg", alt: "hero" }}
+      image={{ src: "/.jpeg", alt: "hero" }}
       mobileImage={{ src: "/heromob.png", alt: "Mobile hero" }}
     />
-      <WidgetWrapper>
-        <Instruments />
-        </WidgetWrapper>
-                <WidgetWrapper>
-        <TextBox />
-        </WidgetWrapper>
         <WidgetWrapper>
         <Reviews reviews={reviewText}/>
         </WidgetWrapper>
