@@ -1,3 +1,5 @@
+"use client"
+import { useRef, useState, useEffect } from "react";
 import { FaGoogle } from "react-icons/fa";
 
 export interface ReviewProps {
@@ -27,6 +29,33 @@ export default function Reviews({
   reviews = [],
   id = "reviews",
 }: Props) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  // Update activeIdx on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!scrollRef.current) return;
+      const children = Array.from(scrollRef.current.children) as HTMLElement[];
+      const scrollLeft = scrollRef.current.scrollLeft;
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      children.forEach((child, idx) => {
+        const diff = Math.abs(child.offsetLeft - scrollLeft);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+      setActiveIdx(closestIdx);
+    };
+    const node = scrollRef.current;
+    if (node) node.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      if (node) node.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="max-w-6xl mx-auto px-5" id={id}>
       {/* Header */}
@@ -39,6 +68,7 @@ export default function Reviews({
 
       {/* Reviews Grid */}
       <div
+        ref={scrollRef}
         className="
           flex gap-6 overflow-x-auto pb-4 hide-scrollbar
           sm:grid sm:grid-cols-2 sm:overflow-x-visible sm:pb-0
@@ -58,7 +88,7 @@ export default function Reviews({
               `}
               style={{ scrollSnapAlign: "start" }}
             >
-              <div className="aspect-square flex flex-col p-6 rounded-xl bg-white text-gray-800 transition-transform duration-300 hover:scale-105 hover:shadow-lg w-full relative">
+              <div className="aspect-square flex flex-col p-6 rounded-xl review-cards text-black transition-transform duration-300 hover:scale-105 hover:shadow-lg w-full relative">
                 {/* Review Title */}
                 {reviewTitle && (
                   <h3 className="text-lg font-medium leading-6 pb-4">{reviewTitle}</h3>
@@ -75,14 +105,14 @@ export default function Reviews({
                 <div className="flex justify-between items-center">
                   <div>
                     {reviewerName && <p className="font-semibold">{reviewerName}</p>}
-                    <span className="text-sm text-gray-500">via Google My Business</span>
+                    <span className="text-sm text-black">via Google My Business</span>
                   </div>
                   {IconComponent && reviewLink && (
                     <a
                       href={reviewLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-4 flex items-center justify-center"
+                      className="lg-absolute right-2 :bottom-3 "
                     >
                       <IconComponent size={28} />
                     </a>
@@ -93,6 +123,19 @@ export default function Reviews({
           );
         })}
       </div>
+      {/* Dots below reviews (show only if more than 1 review) */}
+      {reviews.length > 1 && (
+        <div className="md:hidden flex justify-center mt-4 gap-2">
+          {reviews.map((_, idx) => (
+            <span
+              key={idx}
+              className={`inline-block w-3 h-3 rounded-full transition-all duration-200
+                ${activeIdx === idx ? "bg-yellow-300 scale-125" : "bg-gray-400 opacity-50"}
+              `}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
