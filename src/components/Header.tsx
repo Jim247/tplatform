@@ -123,20 +123,20 @@ export default function Header() {
         {/* Left links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li className="hover:bg-yellow-200 focus:bg-yellow-200">
+            <li className=" focus:bg-yellow-200">
               <Link href="/" className="uppercase font-light nav-link">Home</Link>
             </li>
             <li
-              className="relative hover:bg-yellow-200 focus:bg-yellow-200"
+              className="relative"
               onMouseEnter={() => setDesktopDropdownOpen(true)}
               onMouseLeave={() => setDesktopDropdownOpen(false)}
             >
-              <span className="uppercase nav-link hover:bg-yellow-200 focus:bg-yellow-200 cursor-pointer">Instruments</span>
+              <span className="uppercase font-light nav-link focus:text-yellow-300 cursor-pointer">Instruments</span>
               <ul
                 className={`absolute left-0 top-full pt-2 bg-[#ffe600] text-[#2c2c2c] rounded-lg shadow-lg py-2 min-w-[160px] transition-opacity p-4 z-50 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
                 {instrumentLinks.map(link => (
-                  <li key={link.href} className="hover:bg-yellow-200 focus:bg-yellow-200">
+                  <li key={link.href} className=" focus:bg-yellow-200">
                     <Link
                       href={link.href}
                       className="block px-6 py-2 uppercase"
@@ -165,8 +165,8 @@ export default function Header() {
         {/* Right links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li className="hover:bg-yellow-200 focus:bg-yellow-200"><Link href="/about" className="uppercase font-light nav-link">Jobs</Link></li>
-            <li className="hover:bg-yellow-200 focus:bg-yellow-200"><Link href="/contact" className="uppercase font-light nav-link">Contact</Link></li>
+            <li className=""><Link href="/about" className="uppercase font-light nav-link">Jobs</Link></li>
+            <li className=""><Link href="/contact" className="uppercase font-light nav-link">Contact</Link></li>
           </ul>
         </nav>
       </div>

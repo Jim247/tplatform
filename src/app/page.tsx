@@ -1,11 +1,11 @@
 import Instruments from "@/components/Instruments";
-import Reviews from "@/components/Reviews";
 import Steps from "@/components/Steps";
 import Hero from "@components/Hero"
 import { IconUserPlus, IconId, IconSearch, IconCheck } from "@tabler/icons-react"; // Adjust the import path as needed
-import {reviews } from '@components/reviews'
+import Reviews from '@/components/Reviews'
 import TextBox from "@/components/TextBox";
 import WidgetWrapper from "@/components/WidgetWrapper";
+import { reviewText } from '@components/review-text'
 
 export default function Home() {
   return (
@@ -16,6 +16,9 @@ export default function Home() {
     />
       <WidgetWrapper>
         <Instruments />
+        </WidgetWrapper>
+                <WidgetWrapper>
+        <TextBox />
         </WidgetWrapper>
 <WidgetWrapper>
     <Steps
@@ -52,11 +55,7 @@ export default function Home() {
         />
         </WidgetWrapper>
         <WidgetWrapper>
-        <TextBox />
-        </WidgetWrapper>
-
-        <WidgetWrapper>
-        <Reviews reviews={reviews}/>
+        <Reviews reviews={reviewText}/>
         </WidgetWrapper>
         </>
   );
