@@ -124,14 +124,14 @@ export default function Header() {
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
             <li className=" focus:bg-yellow-200">
-              <Link href="/" className="uppercase font-light nav-link">Home</Link>
+              <Link href="/" className="uppercase font-medium nav-link">Home</Link>
             </li>
             <li
               className="relative"
               onMouseEnter={() => setDesktopDropdownOpen(true)}
               onMouseLeave={() => setDesktopDropdownOpen(false)}
             >
-              <span className="uppercase font-light nav-link focus:text-yellow-300 cursor-pointer">Instruments</span>
+              <span className="uppercase font-medium nav-link focus:text-yellow-300 cursor-pointer">Instruments</span>
               <ul
                 className={`absolute left-0 top-full pt-2 bg-[#ffe600] text-[#2c2c2c] rounded-lg shadow-lg py-2 min-w-[160px] transition-opacity p-4 z-50 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
@@ -165,8 +165,8 @@ export default function Header() {
         {/* Right links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li className=""><Link href="/about" className="uppercase font-light nav-link">Jobs</Link></li>
-            <li className=""><Link href="/contact" className="uppercase font-light nav-link">Contact</Link></li>
+            <li className=""><Link href="/about" className="uppercase font-medium nav-link">Jobs</Link></li>
+            <li className=""><Link href="/contact" className="uppercase font-medium nav-link">Contact</Link></li>
           </ul>
         </nav>
       </div>
