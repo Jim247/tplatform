@@ -58,10 +58,10 @@ export default function Reviews({
     };
   }, []);
 
-  const CHAR_LIMIT = 180;
+  const CHAR_LIMIT = 130;
 
   return (
-    <div className="max-w-6xl mx-auto px-5" id={id}>
+    <div className="max-w-6xl mx-auto" id={id}>
       {/* Header */}
       {title && (
         <div className="text-center mb-12 text-white uppercase">
@@ -90,12 +90,11 @@ export default function Reviews({
             <div
               key={idx}
               className={`
-                flex-shrink-0 w-80
-                sm:w-auto sm:flex-1
+                flex-shrink-0 w-full sm:w-auto sm:flex-1
               `}
               style={{ scrollSnapAlign: "start" }}
             >
-              <div className="aspect-square flex flex-col p-6 rounded-xl review-cards text-black transition-transform duration-300 hover:scale-105 hover:shadow-lg w-full relative">
+              <div className="flex flex-col p-6 rounded-xl review-cards text-black transition-transform duration-300 sm:hover:scale-105 hover:shadow-lg w-full min-h-[340px] sm:min-h-[340px] md:min-h-[340px] relative overflow-hidden mb-8 lg:aspect-square">
 
                 {/* Review Title */}
                 {reviewTitle && (
@@ -123,7 +122,7 @@ export default function Reviews({
                     <p className="text italic">"{displayText}"</p>
                     {isLong && !isExpanded && (
                       <button
-                        className="text-xs text-yellow-700 underline mt-2 focus:outline-none"
+                        className="text-xs text-red-800 underline mt-2 focus:outline-none"
                         onClick={() => setExpandedIdx(idx)}
                       >
                         Read more
