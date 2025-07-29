@@ -1,14 +1,18 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import { instrumentLinks } from "@/components/Nav";
 
 export default function Header() {
+  const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileInstrumentsOpen, setMobileInstrumentsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node) &&
@@ -63,10 +67,49 @@ export default function Header() {
             ref={menuRef}
             className="mobile-header absolute left-0 right-0 top-full z-50 lg:hidden mt-3 animate-dropdown"
           >
-            <nav className="bg-highlight text-[#2c2c2c] rounded-b-lg shadow-lg p-6 w-full">
+            <nav className="bg-yellow-300 text-[#2c2c2c] rounded-b-lg shadow-lg p-6 w-full">
               <ul className="flex flex-col gap-4 text-lg">
                 <li><Link href="/" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Home</Link></li>
-                <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Instruments</Link></li>
+                <li className="flex flex-col">
+                    <button
+                    type="button"
+                    className="uppercase mobile-nav-link flex items-center justify-between w-full focus:outline-none text-left"
+                    onClick={() => setMobileInstrumentsOpen((open) => !open)}
+                    aria-expanded={mobileInstrumentsOpen}
+                    aria-controls="mobile-instruments-submenu"
+                    >
+                    <div className="flex flex-row items-center gap-2 w-full justify-start">
+                      <span>Instruments</span>
+                      <svg 
+                      width="16" 
+                      height="16" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      className={`transition-transform ${mobileInstrumentsOpen ? 'rotate-90' : ''}`}
+                      >
+                      <polyline points="9 6 15 12 9 18"></polyline>
+                      </svg>
+                    </div>
+                    </button>
+                  {mobileInstrumentsOpen && (
+                    <div className="ml-4 mt-2 flex flex-col gap-2">
+                      {instrumentLinks.map(link => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => { setMenuOpen(false); setMobileInstrumentsOpen(false); }}
+                          className="uppercase mobile-nav-link"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </li>
                 <li><Link href="/about" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Jobs</Link></li>
                 <li><Link href="/contact" onClick={() => setMenuOpen(false)} className="uppercase mobile-nav-link">Contact</Link></li>
               </ul>
@@ -80,7 +123,29 @@ export default function Header() {
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
             <li><Link href="/" className="uppercase font-light nav-link">Home</Link></li>
-            <li><Link href="/about" className="uppercase font-light nav-link">Instruments</Link></li>
+            <li
+              className="relative"
+              onMouseEnter={() => setDesktopDropdownOpen(true)}
+              onMouseLeave={() => setDesktopDropdownOpen(false)}
+            >
+              <div>
+                <span className="uppercase font-light nav-link cursor-pointer">Instruments</span>
+                <ul
+                  className={`absolute left-0 top-full pt-2 bg-[#ffe600] text-[#2c2c2c] rounded-lg shadow-lg py-2 min-w-[160px] transition-opacity p-4 z-50 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                >
+                  {instrumentLinks.map(link => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="block px-6 py-2 hover:bg-yellow-200 uppercase"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </li>
           </ul>
         </nav>
         

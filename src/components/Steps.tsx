@@ -38,7 +38,7 @@ const Steps = ({ title, items = [], image, width = 900, height = 400 }: Props) =
                     alignItems: 'center',
                     justifyContent: 'center',
                     color: 'var(--aw-color-primary)',
-                    background: '#2c2c2c',
+                    background: '#444444',
                   }}
                 >
                   {Icon ? <Icon size={36} color="var(--highlight)" /> : index + 1}
