@@ -11,14 +11,13 @@ import {
   mdiMicrophone,
   mdiPencil,
   mdiPiano,
-  mdiPianoOff
 } from '@mdi/js';
 import FAQs from "@/components/FAQs";
 import ImageBoxes from "@/components/ImageBoxes";
 import VideoHero from "@/components/VideoHero";
 import LogoText from "@/components/LogoText";
 import InstrumentNarrative from "@/components/InstrumentNarrative";
-import { mdiGuitarPick, mdiAccountMusic, mdiSchool, mdiGuitarAcoustic } from '@mdi/js';
+import {  mdiAccountMusic, mdiSchool } from '@mdi/js';
 import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
