@@ -1,9 +1,9 @@
-import Reviews from '@/components/Reviews'
-import WidgetWrapper from "@/components/WidgetWrapper";
-import { reviewText } from '@components/review-text'
-import Features from "@/components/Features";
+import Reviews from '@/components/Reviews';
+import WidgetWrapper from '@/components/WidgetWrapper';
+import { reviewText } from '@components/review-text';
+import Features from '@/components/Features';
 import Icon from '@mdi/react';
-import { 
+import {
   mdiHandPointingUp,
   mdiMusic,
   mdiPlaylistMusic,
@@ -12,13 +12,13 @@ import {
   mdiPencil,
   mdiPiano,
 } from '@mdi/js';
-import FAQs from "@/components/FAQs";
-import ImageBoxes from "@/components/ImageBoxes";
-import VideoHero from "@/components/VideoHero";
-import LogoText from "@/components/LogoText";
-import InstrumentNarrative from "@/components/InstrumentNarrative";
-import {  mdiAccountMusic, mdiSchool } from '@mdi/js';
-import SectionDivider from "@/components/SectionDivider";
+import FAQs from '@/components/FAQs';
+import ImageBoxes from '@/components/ImageBoxes';
+import VideoHero from '@/components/VideoHero';
+import LogoText from '@/components/LogoText';
+import InstrumentNarrative from '@/components/InstrumentNarrative';
+import { mdiAccountMusic, mdiSchool } from '@mdi/js';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function Home() {
   return (
@@ -31,7 +31,7 @@ export default function Home() {
           </button>
         </div>
       </VideoHero>
-      <SectionDivider icon={mdiPiano}/>
+      <SectionDivider icon={mdiPiano} />
       <WidgetWrapper>
         <InstrumentNarrative
           headline1="Professional 1:1 Piano Tuition in Bristol"
@@ -49,23 +49,27 @@ export default function Home() {
       </WidgetWrapper>
       <SectionDivider icon={mdiPiano} />
       <WidgetWrapper>
-        <ImageBoxes boxes={[
-          {
-            src: '/electric-piano.jpg',
-            title: 'Digital & Electric Piano',
-            description: 'Learn to play modern pop, rock, and jazz on digital and electric pianos. Explore synth sounds, contemporary techniques, and accompaniment styles.'
-          },
-          {
-            src: '/acoustic-piano.jpg',
-            title: 'Acoustic Piano',
-            description: 'Master classical and contemporary piano styles. Build skills in sight-reading, technique, and interpretation, performing works from Bach to modern composers.'
-          },
-          {
-            src: '/keyboard.jpg',
-            title: 'Keyboard',
-            description: 'Explore keyboard skills for pop, rock, and electronic music. Learn chords, improvisation, and how to play in a band or solo.'
-          }
-        ]}
+        <ImageBoxes
+          boxes={[
+            {
+              src: '/electric-piano.jpg',
+              title: 'Digital & Electric Piano',
+              description:
+                'Learn to play modern pop, rock, and jazz on digital and electric pianos. Explore synth sounds, contemporary techniques, and accompaniment styles.',
+            },
+            {
+              src: '/acoustic-piano.jpg',
+              title: 'Acoustic Piano',
+              description:
+                'Master classical and contemporary piano styles. Build skills in sight-reading, technique, and interpretation, performing works from Bach to modern composers.',
+            },
+            {
+              src: '/keyboard.jpg',
+              title: 'Keyboard',
+              description:
+                'Explore keyboard skills for pop, rock, and electronic music. Learn chords, improvisation, and how to play in a band or solo.',
+            },
+          ]}
         />
       </WidgetWrapper>
 
@@ -80,12 +84,14 @@ export default function Home() {
           },
           {
             title: 'Music Theory',
-            description: 'Understand chords, scales, and harmony to deepen your knowledge and enhance your piano playing.',
+            description:
+              'Understand chords, scales, and harmony to deepen your knowledge and enhance your piano playing.',
             icon: <Icon path={mdiMusic} size={2} className="text-yellow-300" />,
           },
           {
             title: 'Repertoire Development',
-            description: 'Learn to play your favourite pieces while exploring classical, jazz, and popular piano styles.',
+            description:
+              'Learn to play your favourite pieces while exploring classical, jazz, and popular piano styles.',
             icon: <Icon path={mdiPlaylistMusic} size={2} className="text-yellow-300" />,
           },
           {
@@ -96,7 +102,8 @@ export default function Home() {
           },
           {
             title: 'Performance Skills',
-            description: 'Enhance your confidence and stage presence, preparing for recitals, exams, or casual performances.',
+            description:
+              'Enhance your confidence and stage presence, preparing for recitals, exams, or casual performances.',
             icon: <Icon path={mdiMicrophone} size={2} className="text-yellow-300" />,
           },
           {
@@ -109,13 +116,14 @@ export default function Home() {
       />
       <SectionDivider icon={mdiPiano} />
       <WidgetWrapper>
-        <Reviews reviews={reviewText}/>
+        <Reviews reviews={reviewText} />
       </WidgetWrapper>
       <WidgetWrapper>
         <FAQs
           title="Frequently Asked Questions"
           tagline="Piano Lessons in Bristol"
           classes={{ container: 'max-w-6xl' }}
+          icon={mdiPiano}
           items={[
             {
               question: 'I’ve never played piano before. Can I still learn?',

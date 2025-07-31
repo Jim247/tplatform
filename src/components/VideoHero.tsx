@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface VideoHeroProps {
   videoSrc: string;
@@ -7,13 +7,10 @@ interface VideoHeroProps {
   className?: string;
 }
 
-const VideoHero: React.FC<VideoHeroProps> = ({
-  videoSrc,
-  poster,
-  children,
-  className = "",
-}) => (
-  <section className={`relative w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden ${className}`}>
+const VideoHero: React.FC<VideoHeroProps> = ({ videoSrc, poster, children, className = '' }) => (
+  <section
+    className={`relative w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden ${className}`}
+  >
     <video
       className="absolute inset-0 w-full h-full object-cover"
       src={videoSrc}

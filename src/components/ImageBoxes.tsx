@@ -13,7 +13,9 @@ export interface ImageBoxesProps {
 
 const ImageBoxes: React.FC<ImageBoxesProps> = ({ boxes, className = '' }) => {
   return (
-    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-center ${className}`}>
+    <div
+      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-center ${className}`}
+    >
       {boxes.map((box, index) => (
         <div
           key={index}

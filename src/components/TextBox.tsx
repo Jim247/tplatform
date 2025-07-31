@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 export interface TextBoxProps {
   heading: string;
@@ -18,14 +18,18 @@ export default function TextBox({
   subheading,
   subtext,
   imageSrc,
-  imageAlt = "Music lessons",
-  className = "",
+  imageAlt = 'Music lessons',
+  className = '',
 }: TextBoxProps) {
   return (
-    <div className={`max-w-7xl mx-auto my-10 px-4 flex flex-col md:flex-row items-center md:items-center bg-grey p-7 rounded-lg border border-gray-200 gap-8 ${className}`}>
+    <div
+      className={`max-w-7xl mx-auto my-10 px-4 flex flex-col md:flex-row items-center md:items-center bg-grey p-7 rounded-lg border border-gray-200 gap-8 ${className}`}
+    >
       {/* Text content */}
       <div className="flex-1 text-white text-left px-3 space-y-6">
-        <h2 className="text-4xl font-bold mb-2 uppercase pb-4 tracking-tight text-white drop-shadow-sm font-[Montserrat]">{heading}</h2>
+        <h2 className="text-4xl font-bold mb-2 uppercase pb-4 tracking-tight text-white drop-shadow-sm font-[Montserrat]">
+          {heading}
+        </h2>
         <p className="text-lg leading-relaxed text-gray-100">{intro}</p>
         <ul className="list-disc list-outside pl-6 text-lg font-medium space-y-1">
           {bulletPoints.map((point, i) => (
@@ -33,7 +37,9 @@ export default function TextBox({
           ))}
         </ul>
         <div>
-          <h3 className="text-3xl uppercase font-bold mt-4 mb-2 text-white tracking-wide font-[Montserrat]">{subheading}</h3>
+          <h3 className="text-3xl uppercase font-bold mt-4 mb-2 text-white tracking-wide font-[Montserrat]">
+            {subheading}
+          </h3>
           <p className=" text-gray-200 text-lg leading-relaxed">{subtext}</p>
         </div>
       </div>

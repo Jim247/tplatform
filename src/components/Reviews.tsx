@@ -1,6 +1,6 @@
-"use client"
-import { useRef, useState, useEffect } from "react";
-import { FaGoogle } from "react-icons/fa";
+'use client';
+import { useRef, useState, useEffect } from 'react';
+import { FaGoogle } from 'react-icons/fa';
 
 export interface ReviewProps {
   title?: string;
@@ -24,10 +24,10 @@ interface Props {
 }
 
 export default function Reviews({
-  title = "Reviews",
-  subtitle = "",
+  title = 'Reviews',
+  subtitle = '',
   reviews = [],
-  id = "reviews",
+  id = 'reviews',
 }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
@@ -52,9 +52,9 @@ export default function Reviews({
       setActiveIdx(closestIdx);
     };
     const node = scrollRef.current;
-    if (node) node.addEventListener("scroll", handleScroll, { passive: true });
+    if (node) node.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      if (node) node.removeEventListener("scroll", handleScroll);
+      if (node) node.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -78,24 +78,24 @@ export default function Reviews({
           sm:grid sm:grid-cols-2 sm:overflow-x-visible sm:pb-0
           lg:grid-cols-4
         "
-        style={{ scrollSnapType: "x mandatory" }}
+        style={{ scrollSnapType: 'x mandatory' }}
       >
         {reviews.map((review, idx) => {
           const { title: reviewTitle, review: reviewText, reviewerName, icon, reviewLink } = review;
           const IconComponent = iconMap[icon as keyof typeof iconMap];
           const isExpanded = expandedIdx === idx;
           const isLong = reviewText.length > CHAR_LIMIT;
-          const displayText = isExpanded || !isLong ? reviewText : reviewText.slice(0, CHAR_LIMIT) + "...";
+          const displayText =
+            isExpanded || !isLong ? reviewText : reviewText.slice(0, CHAR_LIMIT) + '...';
           return (
             <div
               key={idx}
               className={`
                 flex-shrink-0 w-full sm:w-auto sm:flex-1
               `}
-              style={{ scrollSnapAlign: "start" }}
+              style={{ scrollSnapAlign: 'start' }}
             >
               <div className="flex flex-col p-6 rounded-xl review-cards text-black transition-transform duration-300 sm:hover:scale-105 hover:shadow-lg w-full min-h-[340px] sm:min-h-[340px] md:min-h-[340px] relative overflow-hidden mb-8 lg:aspect-square">
-
                 {/* Review Title */}
                 {reviewTitle && (
                   <h3 className="text-lg font-medium leading-6 pb-4">{reviewTitle}</h3>
@@ -168,7 +168,7 @@ export default function Reviews({
             <span
               key={idx}
               className={`inline-block w-3 h-3 rounded-full transition-all duration-200
-                ${activeIdx === idx ? "bg-yellow-300 scale-125" : "bg-gray-400 opacity-50"}
+                ${activeIdx === idx ? 'bg-yellow-300 scale-125' : 'bg-gray-400 opacity-50'}
               `}
             />
           ))}

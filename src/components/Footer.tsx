@@ -8,22 +8,23 @@ export default function Footer() {
   return (
     <footer className="border-t border-gray-100 mt-12 relative z-10 w-full">
       {/* Mobile: stacked, centered */}
-      <div className="md:hidden max-w-7xl mx-auto px-3 md:px-6 py-6 flex flex-col items-center">
+      <div className="md:hidden max-w-7xl mx-auto px-3 md:px-6 py-6 flex flex-col items-center relative">
         <div className="pb-6">
           <SocialLinks size={50} />
         </div>
         <Link className="flex items-center mb-4" href="/">
-          <Logo width={50} height={50}/>
+          <Logo width={50} height={50} />
           <span className="pl-4 text-xl font-bold text-white">Tempo Tuition</span>
         </Link>
-        <nav>
-          <ul className="flex flex-row gap-6 text-base font-medium justify-center">
+        {/* Absolutely centered nav */}
+        <nav className="w-full relative h-12">
+          <ul className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row gap-6 text-base font-medium justify-center">
             <li>
               <Link
                 href="/terms"
                 className="hover:text-link text-white px-4 py-3 flex items-center whitespace-nowrap"
               >
-               TERMS
+                TERMS
               </Link>
             </li>
           </ul>

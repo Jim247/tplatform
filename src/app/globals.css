@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Yellow 300 is #FFF176*/
 
@@ -9,85 +9,80 @@
   --highlight: ##ffe120;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --highlight: #ffe600
+    --highlight: #ffe600;
   }
 }
 
 @layer utilities {
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-montserrat), Montserrat, Arial, Helvetica, sans-serif;
-}
-
-.mobile-header {
-  background: rgb(255 230 0);
-  color: #2c2c2c;
-}
-
-@keyframes dropdown {
-  0% {
-    opacity: 0;
-    transform: translateY(-40px) scaleY(0.95);
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-montserrat), Montserrat, Arial, Helvetica, sans-serif;
   }
-  60% {
-    opacity: 1;
-    transform: translateY(8px) scaleY(1.03);
+
+  .mobile-header {
+    background: rgb(255 230 0);
+    color: #2c2c2c;
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scaleY(1);
+
+  @keyframes dropdown {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px) scaleY(0.95);
+    }
+    60% {
+      opacity: 1;
+      transform: translateY(8px) scaleY(1.03);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
   }
-}
 
-.bg-grey {
-  background: #2c2c2c;
-}
-.animate-dropdown {
-  animation: dropdown 0.25s cubic-bezier(0.4,0,0.2,1);
-}
+  .bg-grey {
+    background: #2c2c2c;
+  }
+  .animate-dropdown {
+    animation: dropdown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
 
-.nav-link {
-  transition: color 0.2s ease;
-  color: inherit;
-}
+  .nav-link {
+    transition: color 0.2s ease;
+    color: inherit;
+  }
 
-.nav-link:hover {
-  color: rgb(255, 230, 0) !important;
-}
+  .nav-link:hover {
+    color: rgb(255, 230, 0) !important;
+  }
 
-.btn-primary {
-background: rgb(255, 230, 0) !important;
+  .btn-primary {
+    background: rgb(255, 230, 0) !important;
+  }
 
-}
+  .review-cards {
+    background: rgb(255, 230, 0) !important;
+  }
 
-.review-cards {
-background: rgb(255, 230, 0) !important;
+  .mobile-nav-link {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    margin: -12px -16px;
+    transition: background-color 0å2s ease;
+    border-radius: 8px;
+    color: inherit;
+  }
 
-}
-
-
-.mobile-nav-link {
-  display: block;
-  width: 100%;
-  padding: 12px 16px;
-  margin: -12px -16px;
-  transition: background-color 0.å2s ease;
-  border-radius: 8px;
-  color: inherit;
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link:active,
-.mobile-nav-link:focus {
-  background-color: rgba(255, 230, 0, 0.2) !important;
-}
-
+  .mobile-nav-link:hover,
+  .mobile-nav-link:active,
+  .mobile-nav-link:focus {
+    background-color: rgba(255, 230, 0, 0.2) !important;
+  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -96,13 +91,12 @@ background: rgb(255, 230, 0) !important;
 }
 /* Hide scrollbar for IE, Edge and Firefox */
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @layer utilities {
   .text-highlight {
     color: var(--highlight);
   }
-
 }

@@ -9,12 +9,9 @@ interface WidgetWrapperProps {
 /**
  * WidgetWrapper provides a consistent, attractive container for widgets like Hero, Steps, etc.
  */
-const WidgetWrapper: React.FC<WidgetWrapperProps> = ({ children, className = '', style }) => {
+const WidgetWrapper: React.FC<WidgetWrapperProps> = ({ children = '', style }) => {
   return (
-    <section
-      className={`w-full mx-auto my-8 px-6 py-10`}
-      style={style}
-    >
+    <section className={`w-full mx-auto my-8 px-6 py-10`} style={style}>
       {children}
     </section>
   );

@@ -1,24 +1,23 @@
-import Reviews from '@/components/Reviews'
-import WidgetWrapper from "@/components/WidgetWrapper";
-import { reviewText } from '@components/review-text'
-import Features from "@/components/Features";
+import Reviews from '@/components/Reviews';
+import WidgetWrapper from '@/components/WidgetWrapper';
+import { reviewText } from '@components/review-text';
+import Features from '@/components/Features';
 import Icon from '@mdi/react';
-import { 
+import {
   mdiHandPointingUp,
   mdiMusic,
   mdiPlaylistMusic,
   mdiBrush,
   mdiMicrophone,
   mdiPencil,
-
 } from '@mdi/js';
-import FAQs from "@/components/FAQs";
-import ImageBoxes from "@/components/ImageBoxes";
-import VideoHero from "@/components/VideoHero";
-import LogoText from "@/components/LogoText";
-import InstrumentNarrative from "@/components/InstrumentNarrative";
-import { mdiSchool, } from '@mdi/js';
-import SectionDivider from "@/components/SectionDivider";
+import FAQs from '@/components/FAQs';
+import ImageBoxes from '@/components/ImageBoxes';
+import VideoHero from '@/components/VideoHero';
+import LogoText from '@/components/LogoText';
+import InstrumentNarrative from '@/components/InstrumentNarrative';
+import { mdiSchool } from '@mdi/js';
+import SectionDivider from '@/components/SectionDivider';
 
 export default function Home() {
   return (
@@ -31,7 +30,7 @@ export default function Home() {
           </button>
         </div>
       </VideoHero>
-      <SectionDivider icon={mdiMicrophone}/>
+      <SectionDivider icon={mdiMicrophone} />
       <WidgetWrapper>
         <InstrumentNarrative
           headline1="Professional 1:1 Singing Tuition in Bristol"
@@ -49,23 +48,27 @@ export default function Home() {
       </WidgetWrapper>
       <SectionDivider icon={mdiMicrophone} />
       <WidgetWrapper>
-        <ImageBoxes boxes={[
-          {
-            src: '/pop-singing.jpg',
-            title: 'Pop & Contemporary Singing',
-            description: 'Learn to sing your favourite pop, rock, and contemporary songs. Develop vocal technique, style, and performance skills for modern music.'
-          },
-          {
-            src: '/classical-singing.jpg',
-            title: 'Classical & Choral Singing',
-            description: 'Master classical and choral repertoire, focusing on breath control, tone, and musical expression. Suitable for all levels.'
-          },
-          {
-            src: '/musical-theatre.jpg',
-            title: 'Musical Theatre',
-            description: 'Explore the world of musical theatre. Learn to sing, act, and perform songs from Broadway and West End shows.'
-          }
-        ]}
+        <ImageBoxes
+          boxes={[
+            {
+              src: '/pop-singing.jpg',
+              title: 'Pop & Contemporary Singing',
+              description:
+                'Learn to sing your favourite pop, rock, and contemporary songs. Develop vocal technique, style, and performance skills for modern music.',
+            },
+            {
+              src: '/classical-singing.jpg',
+              title: 'Classical & Choral Singing',
+              description:
+                'Master classical and choral repertoire, focusing on breath control, tone, and musical expression. Suitable for all levels.',
+            },
+            {
+              src: '/musical-theatre.jpg',
+              title: 'Musical Theatre',
+              description:
+                'Explore the world of musical theatre. Learn to sing, act, and perform songs from Broadway and West End shows.',
+            },
+          ]}
         />
       </WidgetWrapper>
 
@@ -80,12 +83,14 @@ export default function Home() {
           },
           {
             title: 'Music Theory',
-            description: 'Understand melody, harmony, and rhythm to deepen your knowledge and enhance your singing.',
+            description:
+              'Understand melody, harmony, and rhythm to deepen your knowledge and enhance your singing.',
             icon: <Icon path={mdiMusic} size={2} className="text-yellow-300" />,
           },
           {
             title: 'Repertoire Development',
-            description: 'Learn to sing your favourite songs while exploring classical, pop, jazz, and musical theatre styles.',
+            description:
+              'Learn to sing your favourite songs while exploring classical, pop, jazz, and musical theatre styles.',
             icon: <Icon path={mdiPlaylistMusic} size={2} className="text-yellow-300" />,
           },
           {
@@ -96,7 +101,8 @@ export default function Home() {
           },
           {
             title: 'Performance Skills',
-            description: 'Enhance your confidence and stage presence, preparing for auditions, gigs, or recitals.',
+            description:
+              'Enhance your confidence and stage presence, preparing for auditions, gigs, or recitals.',
             icon: <Icon path={mdiMicrophone} size={2} className="text-yellow-300" />,
           },
           {
@@ -109,13 +115,14 @@ export default function Home() {
       />
       <SectionDivider icon={mdiMicrophone} />
       <WidgetWrapper>
-        <Reviews reviews={reviewText}/>
+        <Reviews reviews={reviewText} />
       </WidgetWrapper>
       <WidgetWrapper>
         <FAQs
           title="Frequently Asked Questions"
           tagline="Singing Lessons in Bristol"
           classes={{ container: 'max-w-6xl' }}
+          icon={mdiMicrophone}
           items={[
             {
               question: 'I’ve never had singing lessons before. Can I still learn?',

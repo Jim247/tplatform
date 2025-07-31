@@ -46,14 +46,8 @@ const Steps = ({ title, items = [], image, width = 900, height = 400 }: Props) =
               </div>
               <div className="flex-1 flex flex-col justify-center">
                 <div className="space-y-1">
-                  {title && (
-                    <div className='text-white'>{title}</div>
-                  )}
-                  {description && (
-                    <div className='text-white'>
-                      {description}
-                    </div>
-                  )}
+                  {title && <div className="text-white">{title}</div>}
+                  {description && <div className="text-white">{description}</div>}
                 </div>
               </div>
             </div>
@@ -69,7 +63,7 @@ const Steps = ({ title, items = [], image, width = 900, height = 400 }: Props) =
             "
             style={
               width && height
-                ? { width: "100%", height: "auto", minWidth: 0, minHeight: 0 }
+                ? { width: '100%', height: 'auto', minWidth: 0, minHeight: 0 }
                 : undefined
             }
           >

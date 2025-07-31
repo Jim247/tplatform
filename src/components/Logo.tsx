@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-// Just the logo without text 
+// Just the logo without text
 
 export type LogoProps = {
   width: number;
@@ -8,13 +8,5 @@ export type LogoProps = {
 };
 
 export default function Logo({ width, height }: LogoProps) {
-  return (
-    <Image
-      src="/logo.svg"
-      alt="MusoSpot Logo"
-      width={width}
-      height={height}
-      priority
-    />
-  );
+  return <Image src="/logo.svg" alt="MusoSpot Logo" width={width} height={height} priority />;
 }

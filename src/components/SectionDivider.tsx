@@ -1,8 +1,6 @@
-
-import Icon from "@mdi/react";
-import React from "react";
-import Image from "next/image";
-
+import Icon from '@mdi/react';
+import React from 'react';
+import Image from 'next/image';
 
 type SectionDividerProps = {
   icon?: string; // mdi icon path or custom SVG path
@@ -11,7 +9,12 @@ type SectionDividerProps = {
   color?: string;
 };
 
-export default function SectionDivider({ icon, imgSrc, size = 1.5, color = "#ffe120" }: SectionDividerProps) {
+export default function SectionDivider({
+  icon,
+  imgSrc,
+  size = 1.5,
+  color = '#ffe120',
+}: SectionDividerProps) {
   return (
     <div className="flex items-center justify-center my-20">
       <span className="border-t border-gray-200 flex-grow"></span>

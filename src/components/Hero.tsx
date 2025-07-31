@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import React from 'react';
 
@@ -20,7 +20,9 @@ export default function Hero({ image, mobileImage }: HeroProps) {
 
   // Choose image based on screen size
   const getBackgroundImage = () => {
-    const desktopImage = image?.src ? `url(${image.src})` : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+    const desktopImage = image?.src
+      ? `url(${image.src})`
+      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     const mobileImageSrc = mobileImage?.src ? `url(${mobileImage.src})` : desktopImage;
     return { desktop: desktopImage, mobile: mobileImageSrc };
   };
@@ -31,11 +33,11 @@ export default function Hero({ image, mobileImage }: HeroProps) {
     <div className="w-full flex items-center justify-center">
       <div className="w-7xl p-8 flex items-center justify-center">
         {/* Desktop Hero */}
-        <div 
+        <div
           className="relative w-full h-[800px] bg-center bg-no-repeat items-center justify-center hidden md:flex"
           style={{
             backgroundImage: backgroundImages.desktop,
-            backgroundSize: 'contain'
+            backgroundSize: 'contain',
           }}
         >
           {/* Overlay */}
@@ -50,13 +52,13 @@ export default function Hero({ image, mobileImage }: HeroProps) {
             <div className="w-full opacity-5"></div>
           </div>
         </div>
-        
+
         {/* Mobile Hero */}
-        <div 
+        <div
           className="relative w-full h-[600px] bg-center bg-no-repeat items-center justify-center flex md:hidden"
           style={{
             backgroundImage: backgroundImages.mobile,
-            backgroundSize: 'contain'
+            backgroundSize: 'contain',
           }}
         >
           {/* Overlay */}
@@ -71,7 +73,7 @@ export default function Hero({ image, mobileImage }: HeroProps) {
             <div className="w-full opacity-5"></div>
           </div>
         </div>
-        </div>
-        </div>
-  )
+      </div>
+    </div>
+  );
 }

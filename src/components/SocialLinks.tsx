@@ -15,7 +15,12 @@ export default function SocialLinks({
         rel="noopener noreferrer"
         className="group"
       >
-        <IconBrandFacebook size={size} stroke={1} color="#ffffff" className="transition-transform duration-200 hover:scale-110 hover:text-highlight" />
+        <IconBrandFacebook
+          size={size}
+          stroke={1}
+          color="#ffffff"
+          className="transition-transform duration-200 hover:scale-110 hover:text-highlight"
+        />
       </a>
       <a
         href="https://www.instagram.com/tempomobiletuition"
@@ -23,9 +28,13 @@ export default function SocialLinks({
         rel="noopener noreferrer"
         className="group"
       >
-        <IconBrandInstagram size={size} stroke={1} color="#ffffff" className="transition-transform duration-200 hover:scale-110 hover:text-highlight" />
+        <IconBrandInstagram
+          size={size}
+          stroke={1}
+          color="#ffffff"
+          className="transition-transform duration-200 hover:scale-110 hover:text-highlight"
+        />
       </a>
     </div>
   );
 }
-

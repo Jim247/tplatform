@@ -1,6 +1,6 @@
-import TextBox, { TextBoxProps } from "./TextBox";
-import Instruments from "./Instruments";
-import React from "react";
+import TextBox, { TextBoxProps } from './TextBox';
+import Instruments from './Instruments';
+import React from 'react';
 
 export interface TextBoxWithInstrumentsProps extends TextBoxProps {
   // You can add more props here if you want to customize Instruments
@@ -16,8 +16,8 @@ export default function TextBoxWithInstruments({
   subtext,
   imageSrc,
   imageAlt,
-  instrumentsClassName = "",
-  containerClassName = "",
+  instrumentsClassName = '',
+  containerClassName = '',
 }: TextBoxWithInstrumentsProps) {
   return (
     <div className={`flex flex-col w-full ${containerClassName}`}>

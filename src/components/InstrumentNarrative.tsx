@@ -1,4 +1,3 @@
-
 import Icon from '@mdi/react';
 
 type NarrativeProps = {
@@ -16,7 +15,17 @@ type NarrativeProps = {
 };
 
 export default function InstrumentNarrative({
-  headline1, text1, icon1, headline2, text2, icon2, headline3, text3, icon3, iconSize = 2, iconClassName = "text-yellow-300 mb-2",
+  headline1,
+  text1,
+  icon1,
+  headline2,
+  text2,
+  icon2,
+  headline3,
+  text3,
+  icon3,
+  iconSize = 2,
+  iconClassName = 'text-yellow-300 mb-2',
 }: NarrativeProps) {
   return (
     <section className="max-w-6xl mx-auto my-12 px-4 text-center flex flex-col lg:flex-row gap-10 lg:gap-8">

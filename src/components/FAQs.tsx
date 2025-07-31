@@ -1,5 +1,4 @@
 'use client';
-import { mdiGuitarPick } from '@mdi/js';
 import Icon from '@mdi/react';
 import React, { useState } from 'react';
 
@@ -15,6 +14,7 @@ export interface FAQsProps {
   tagline?: string;
   items?: FAQItem[];
   columns?: number;
+  icon?:string;
   id?: string;
   classes?: {
     container?: string;
@@ -30,6 +30,7 @@ const FAQs: React.FC<FAQsProps> = ({
   tagline = '',
   items = [],
   columns = 2,
+  icon = '',
   id,
   classes = {},
   bg,
@@ -45,15 +46,18 @@ const FAQs: React.FC<FAQsProps> = ({
       id={id}
       className={`w-full max-w-7xl mx-auto my-8 px-6 py-10 rounded-2xl bg-grey ${classes.container || ''}`}
       style={{ position: 'relative' }}
-    ><div className='flex justify-center mb-4'>
-      <Icon path={mdiGuitarPick} size={5} color={'#FFE600'} />
-    </div>
+    >
+      <div className="flex justify-center mb-4">
+        <Icon path={icon} size={5} color={'#FFE600'} />
+      </div>
       {bg && <div className="absolute inset-0 z-0">{bg}</div>}
       <div className="relative z-10">
         {(title || subtitle || tagline) && (
           <div className="mb-8 md:mx-auto md:mb-12 text-center max-w-3xl">
             {tagline && (
-              <p className="text-yellow-300 text-primary font-bold tracking-wide uppercase">{tagline}</p>
+              <p className="text-yellow-300 text-primary font-bold tracking-wide uppercase">
+                {tagline}
+              </p>
             )}
             {title && (
               <h2 className="font-bold text-white leading-tighter tracking-tighter text-3xl md:text-4xl text-heading mb-2">
