@@ -13,7 +13,7 @@ export default function Footer() {
           <SocialLinks size={50} />
         </div>
         <Link className="flex items-center mb-4" href="/">
-          <Logo />
+          <Logo width={50} height={50}/>
           <span className="pl-4 text-xl font-bold text-white">Tempo Tuition</span>
         </Link>
         <nav>
@@ -33,7 +33,7 @@ export default function Footer() {
       <div className="hidden md:flex max-w-7xl mx-auto px-3 md:px-6 py-6 items-center justify-between">
         {/* Logo left */}
         <Link className="flex items-center align-middle" href="/">
-          <Logo />
+          <Logo height={30} width={30} />
           <span className="pl-4 text-xl font-bold text-white uppercase">Tempo Tuition</span>
         </Link>
         {/* Navigation center */}

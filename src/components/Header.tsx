@@ -10,6 +10,7 @@ export default function Header() {
   const [desktopDropdownOpen, setDesktopDropdownOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [mobileInstrumentsOpen, setMobileInstrumentsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -29,8 +30,21 @@ export default function Header() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <header className="w-full px-4 py-4 bg-highlight text-white font-bold text-2xl font-[Montserrat]">
+    <header
+      className={`sticky top-0 z-50 w-full px-4 py-4 text-white font-bold text-2xl font-[Montserrat] transition-colors duration-300
+        ${scrolled ? 'bg-[#444444]/80 backdrop-blur' : 'bg-[#444444]'}
+      `}
+    >
       {/* Mobile header */}
       <div className="relative grid grid-cols-3 items-center lg:hidden w-full px-2">
         {/* Icon left */}
@@ -119,7 +133,7 @@ export default function Header() {
         )}
       </div>
       {/* Desktop header: 2 links left, logo/text center, 2 links right */}
-      <div className="hidden lg:flex flex-row items-center justify-between w-full max-w-7xl mx-auto px-8 flex-nowrap min-w-0">
+      <div className="hidden lg:flex  ditems-center justify-between w-full max-w-7xl py-4 mx-auto px-10 flex-nowrap min-w-0 relative">
         {/* Left links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">
@@ -149,9 +163,9 @@ export default function Header() {
             </li>
           </ul>
         </nav>
-        
+
         {/* Logo and text center */}
-        <div className="flex flex-row items-center gap-2 flex-shrink-0">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row items-center gap-2 flex-shrink-0">
           <span className="uppercase">TEMPO</span>
           <Image
             src="/logo.svg"
@@ -161,7 +175,7 @@ export default function Header() {
           />
           <span className="uppercase">TUITION</span>
         </div>
-        
+
         {/* Right links */}
         <nav className="min-w-0 flex-shrink">
           <ul className="flex flex-row gap-20 whitespace-nowrap">

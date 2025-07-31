@@ -14,26 +14,28 @@ import {
 } from '@mdi/js';
 import FAQs from "@/components/FAQs";
 import ImageBoxes from "@/components/ImageBoxes";
+import VideoHero from "@/components/VideoHero";
+import LogoText from "@/components/LogoText";
 
 export default function Home() {
   return (
     <>
-    <Hero 
-      image={{ src: "/.jpeg", alt: "hero" }}
-      mobileImage={{ src: "/heromob.png", alt: "Mobile hero" }}
-    />
-        <WidgetWrapper>
+    <VideoHero videoSrc="/child-guitar-trimmed.mp4">
+    <LogoText width={200} height={200} text={'GUITAR LESSONS'}></LogoText>
+  <button className="mt-4 px-6 py-2 bg-yellow-300 rounded">Book Now</button>
+</VideoHero>
+      <WidgetWrapper>
 
 <WidgetWrapper>
   <ImageBoxes boxes={[ 
     {
-      src:'',
+      src:'/electric-guitar.jpg',
       title:'Electric Guitar',
       description:'a caption about e guitar'
     },
         {
-      src:'',
-      title:'Electric Guitar',
+      src:'/acoustic-guitar.jpg',
+      title:'Acoustic Guitar',
       description:'a caption about e guitar'
     },
         {
