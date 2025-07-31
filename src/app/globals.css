@@ -6,7 +6,7 @@
 :root {
   --background: #444444;
   --foreground: #171717;
-  --highlight: #fae84b;
+  --highlight: #f5e23e;
 }
 
 
@@ -104,11 +104,5 @@ background: rgb(255, 230, 0) !important;
   .text-highlight {
     color: var(--highlight);
   }
-@layer utilities {
-  .border-image {
-    border-width: 1px;
-    border-style: solid;
-    border-color: var(--highlight);
-  }
-}
+
 }

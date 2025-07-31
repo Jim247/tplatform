@@ -16,77 +16,101 @@ import FAQs from "@/components/FAQs";
 import ImageBoxes from "@/components/ImageBoxes";
 import VideoHero from "@/components/VideoHero";
 import LogoText from "@/components/LogoText";
+import InstrumentNarrative from "@/components/InstrumentNarrative";
+import { mdiGuitarPick, mdiAccountMusic, mdiSchool, mdiGuitarAcoustic } from '@mdi/js';
+import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   return (
     <>
     <VideoHero videoSrc="/child-guitar-trimmed.mp4">
-    <LogoText width={200} height={200} text={'GUITAR LESSONS'}></LogoText>
-  <button className="mt-2 px-6 py-2 bg-yellow-300 rounded">Book Now</button>
-</VideoHero>
+      <div className="bg-black/40 p-6 rounded-lg flex flex-col items-center">
+        <LogoText width={200} height={200} text={'GUITAR LESSONS'} />
+        <button className="mt-4 px-8 py-3 bg-yellow-300 text-black font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition">
+          Book Now
+        </button>
+      </div>
+    </VideoHero>
+    <SectionDivider icon={mdiGuitarPick} />
       <WidgetWrapper>
-
+        <InstrumentNarrative
+          headline1="Professional 1:1 Guitar Tuition in Bristol"
+          text1="Personalised guitar lessons with top local musicians, have lessons with musicians who have performed abroad, at Glastonbury and Leeds Festival, and more."
+          icon1={mdiAccountMusic}
+          headline2="Expert Guitar Teachers"
+          text2="Our tutors are professional musicians, many with music degrees or equivalent experience, Grade 8 certificates, and extensive live experience. Hand-picked for skill, personality, and professionalism."
+          icon2={mdiSchool}
+          headline3="All Ages, Styles & Exam Prep"
+          text3="Ages 7+ to adults welcome. Styles: Rock/Pop, Acoustic/Folk, Jazz, Metal, Classical. Areas: Bedminster, Bishopston, Clifton, Montpelier, Henleaze, Westbury-on-Trym, Greater Bristol. We support Rockschool, ABRSM, Trinity, and more."
+          icon3={mdiGuitarAcoustic}
+          iconSize={2}
+          iconClassName="text-yellow-300 mb-2"
+        />
+      </WidgetWrapper>
+<SectionDivider icon={mdiGuitarPick} />
 <WidgetWrapper>
   <ImageBoxes boxes={[ 
     {
       src:'/electric-guitar.jpg',
       title:'Electric Guitar',
-      description:'a caption about e guitar'
+      description:'a caption about electric guitar'
     },
-        {
+    {
       src:'/acoustic-guitar.jpg',
       title:'Acoustic Guitar',
-      description:'a caption about e guitar'
-    },
-        {
-      src:'',
-      title:'Electric Guitar',
-      description:'a caption about e guitar'
+      description:'a caption about acoustic guitar'
     }
   ]}
   />
 </WidgetWrapper>
-       <Features
-    columns={3}
-    items={[
-      {
-        title: 'Proper Technique',
-        description:
-          'Develop essential guitar-playing skills, including hand positioning, using a plectrum/pick, strumming, and fingerpicking techniques.',
-        icon: <Icon path={mdiHandPointingUp} size={2} />,
-      },
-      {
-        title: 'Music Theory',
-        description: 'Understand chords, scales, and harmony to deepen your knowledge and enhance your guitar playing.',
-        icon: <Icon path={mdiMusic} size={2} />,
-      },
-      {
-        title: 'Repertoire Development',
-        description: 'Learn to play your favourite songs while exploring contemporary, and popular guitar styles.',
-        icon: <Icon path={mdiPlaylistMusic} size={2} />,
-      },
-      {
-        title: 'Improvisation',
-        description:
-          'Express your creativity through improvisation in rock, jazz, or blues, gaining confidence in your musical expression.',
-        icon: <Icon path={mdiBrush} size={2} />,
-      },
-      {
-        title: 'Performance Skills',
-        description: 'Enhance your confidence and stage presence, preparing for live performances or jam sessions.',
-        icon: <Icon path={mdiMicrophone} size={2} />,
-      },
-      {
-        title: 'Composition & Songwriting',
-        description:
-          'Combine creativity with theory to compose your own guitar pieces, improvise your own music or write original songs.',
-        icon: <Icon path={mdiPencil} size={2} />,
-      },
-    ]}
-  />
+
+<Features
+  columns={3}
+  items={[
+    {
+      title: 'Proper Technique',
+      description:
+        'Develop essential guitar-playing skills, including hand positioning, using a plectrum/pick, strumming, and fingerpicking techniques.',
+      icon: <Icon path={mdiHandPointingUp} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+    {
+      title: 'Music Theory',
+      description: 'Understand chords, scales, and harmony to deepen your knowledge and enhance your guitar playing.',
+      icon: <Icon path={mdiMusic} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+    {
+      title: 'Repertoire Development',
+      description: 'Learn to play your favourite songs while exploring contemporary, and popular guitar styles.',
+      icon: <Icon path={mdiPlaylistMusic} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+    {
+      title: 'Improvisation',
+      description:
+        'Express your creativity through improvisation in rock, jazz, or blues, gaining confidence in your musical expression.',
+      icon: <Icon path={mdiBrush} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+    {
+      title: 'Performance Skills',
+      description: 'Enhance your confidence and stage presence, preparing for live performances or jam sessions.',
+      icon: <Icon path={mdiMicrophone} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+    {
+      title: 'Composition & Songwriting',
+      description:
+        'Combine creativity with theory to compose your own guitar pieces, improvise your own music or write original songs.',
+      icon: <Icon path={mdiPencil} size={2} className="text-yellow-300" />, 
+      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
+    },
+  ]}
+/>
+<SectionDivider icon={mdiGuitarPick} />
           <WidgetWrapper>
         <Reviews reviews={reviewText}/>
-        </WidgetWrapper>
         </WidgetWrapper>
         <WidgetWrapper>
           <FAQs
