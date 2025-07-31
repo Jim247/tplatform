@@ -1,6 +1,5 @@
 import Hero from "@components/Hero"
 import Reviews from '@/components/Reviews'
-import TextBox from "@/components/TextBox";
 import WidgetWrapper from "@/components/WidgetWrapper";
 import { reviewText } from '@components/review-text'
 import SectionDivider from "@/components/SectionDivider";

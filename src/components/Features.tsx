@@ -25,7 +25,6 @@ const Features: React.FC<FeaturesProps> = ({
   tagline,
   image,
   items = [],
-  columns,
   defaultIcon,
   className = '',
 }) => {

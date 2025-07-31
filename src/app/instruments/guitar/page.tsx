@@ -1,4 +1,3 @@
-import Hero from "@components/Hero"
 import Reviews from '@/components/Reviews'
 import WidgetWrapper from "@/components/WidgetWrapper";
 import { reviewText } from '@components/review-text'
@@ -31,7 +30,7 @@ export default function Home() {
         </button>
       </div>
     </VideoHero>
-    <SectionDivider icon={mdiGuitarPick} />
+    <SectionDivider icon={mdiGuitarPick}/>
       <WidgetWrapper>
         <InstrumentNarrative
           headline1="Professional 1:1 Guitar Tuition in Bristol"
@@ -43,7 +42,7 @@ export default function Home() {
           headline3="All Ages, Styles & Exam Prep"
           text3="Ages 7+ to adults welcome. Styles: Rock/Pop, Acoustic/Folk, Jazz, Metal, Classical. Areas: Bedminster, Bishopston, Clifton, Montpelier, Henleaze, Westbury-on-Trym, Greater Bristol. We support Rockschool, ABRSM, Trinity, and more."
           icon3={mdiGuitarAcoustic}
-          iconSize={2}
+          iconSize={3}
           iconClassName="text-yellow-300 mb-2"
         />
       </WidgetWrapper>
@@ -51,14 +50,19 @@ export default function Home() {
 <WidgetWrapper>
   <ImageBoxes boxes={[ 
     {
-      src:'/electric-guitar.jpg',
-      title:'Electric Guitar',
-      description:'a caption about electric guitar'
+      src: '/electric-guitar.jpg',
+      title: 'Electric Guitar',
+      description: 'Learn to play classic and modern rock, pop, and blues on electric guitar—from Chuck Berry’s “Johnny B. Goode” to Oasis and beyond. Explore riffs, solos, and effects that define the electric sound.'
     },
     {
-      src:'/acoustic-guitar.jpg',
-      title:'Acoustic Guitar',
-      description:'a caption about acoustic guitar'
+      src: '/acoustic-guitar.jpg',
+      title: 'Acoustic Guitar',
+      description: 'Master acoustic guitar styles including folk, singer-songwriter, and unplugged pop. Build skills in chord strumming, fingerpicking, and perform songs from artists like Ed Sheeran, Taylor Swift, and more.'
+    },
+     {
+      src: '/bass-guitar.jpg',
+      title: 'Bass Guitar',
+      description: 'Master acoustic guitar styles including folk, singer-songwriter, and unplugged pop. Build skills in chord strumming, fingerpicking, and perform songs from artists like Ed Sheeran, Taylor Swift, and more.'
     }
   ]}
   />
@@ -72,39 +76,33 @@ export default function Home() {
       description:
         'Develop essential guitar-playing skills, including hand positioning, using a plectrum/pick, strumming, and fingerpicking techniques.',
       icon: <Icon path={mdiHandPointingUp} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
     {
       title: 'Music Theory',
       description: 'Understand chords, scales, and harmony to deepen your knowledge and enhance your guitar playing.',
       icon: <Icon path={mdiMusic} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
     {
       title: 'Repertoire Development',
       description: 'Learn to play your favourite songs while exploring contemporary, and popular guitar styles.',
       icon: <Icon path={mdiPlaylistMusic} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
     {
       title: 'Improvisation',
       description:
         'Express your creativity through improvisation in rock, jazz, or blues, gaining confidence in your musical expression.',
       icon: <Icon path={mdiBrush} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
     {
       title: 'Performance Skills',
       description: 'Enhance your confidence and stage presence, preparing for live performances or jam sessions.',
       icon: <Icon path={mdiMicrophone} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
     {
       title: 'Composition & Songwriting',
       description:
         'Combine creativity with theory to compose your own guitar pieces, improvise your own music or write original songs.',
       icon: <Icon path={mdiPencil} size={2} className="text-yellow-300" />, 
-      className: "bg-[#232323] rounded-xl shadow-lg p-6 hover:scale-105 transition"
     },
   ]}
 />
