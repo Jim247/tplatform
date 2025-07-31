@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* Yellow 300 is #FFF176*/
+
 :root {
   --background: #444444;
   --foreground: #171717;
-  --highlight: #ffe600;
+  --highlight: #fae84b;
 }
 
 

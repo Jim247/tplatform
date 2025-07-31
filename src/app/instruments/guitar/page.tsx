@@ -22,7 +22,7 @@ export default function Home() {
     <>
     <VideoHero videoSrc="/child-guitar-trimmed.mp4">
     <LogoText width={200} height={200} text={'GUITAR LESSONS'}></LogoText>
-  <button className="mt-4 px-6 py-2 bg-yellow-300 rounded">Book Now</button>
+  <button className="mt-2 px-6 py-2 bg-yellow-300 rounded">Book Now</button>
 </VideoHero>
       <WidgetWrapper>
 

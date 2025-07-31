@@ -17,7 +17,7 @@ export default function Logo({ width, height, text }: LogoProps) {
       height={height}
       priority
     />
-      <div className='text-white text-center font-semibold text-2xl py-3'>{text}</div>
+      <div className='text-white text-center font-semibold text-2xl py-2'>{text}</div>
     </div>
   );
 }

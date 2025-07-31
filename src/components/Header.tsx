@@ -132,12 +132,13 @@ export default function Header() {
           </div>
         )}
       </div>
-      {/* Desktop header: 2 links left, logo/text center, 2 links right */}
-      <div className="hidden lg:flex  ditems-center justify-between w-full max-w-7xl py-4 mx-auto px-10 flex-nowrap min-w-0 relative">
-        {/* Left links */}
-        <nav className="min-w-0 flex-shrink">
-          <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li className=" focus:bg-yellow-200">
+      
+      {/* Desktop header with improved spacing */}
+      <div className="hidden lg:flex items-center justify-center w-full max-w-6xl py-4 mx-auto px-4 gap-16">
+        {/* Left navigation */}
+        <nav className="flex items-center">
+          <ul className="flex items-center gap-8">
+            <li>
               <Link href="/" className="uppercase font-medium nav-link">Home</Link>
             </li>
             <li
@@ -150,7 +151,7 @@ export default function Header() {
                 className={`absolute left-0 top-full pt-2 bg-[#ffe600] text-[#2c2c2c] rounded-lg shadow-lg py-2 min-w-[160px] transition-opacity p-4 z-50 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
                 {instrumentLinks.map(link => (
-                  <li key={link.href} className=" focus:bg-yellow-200">
+                  <li key={link.href} className="focus:bg-yellow-200">
                     <Link
                       href={link.href}
                       className="block px-6 py-2 uppercase"
@@ -164,8 +165,8 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* Logo and text center */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row items-center gap-2 flex-shrink-0">
+        {/* Center logo */}
+        <div className="flex items-center gap-2 flex-shrink-0">
           <span className="uppercase">TEMPO</span>
           <Image
             src="/logo.svg"
@@ -176,11 +177,11 @@ export default function Header() {
           <span className="uppercase">TUITION</span>
         </div>
 
-        {/* Right links */}
-        <nav className="min-w-0 flex-shrink">
-          <ul className="flex flex-row gap-20 whitespace-nowrap">
-            <li className=""><Link href="/about" className="uppercase font-medium nav-link">Jobs</Link></li>
-            <li className=""><Link href="/contact" className="uppercase font-medium nav-link">Contact</Link></li>
+        {/* Right navigation */}
+        <nav className="flex items-center">
+          <ul className="flex items-center gap-12">
+            <li><Link href="/about" className="uppercase font-medium nav-link">Jobs</Link></li>
+            <li><Link href="/contact" className="uppercase font-medium nav-link">Contact</Link></li>
           </ul>
         </nav>
       </div>
