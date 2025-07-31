@@ -137,7 +137,7 @@ export default function Header() {
       <div className="hidden lg:flex items-center justify-center w-full max-w-6xl py-4 mx-auto px-4 gap-16">
         {/* Left navigation */}
         <nav className="flex items-center">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-16">
             <li>
               <Link href="/" className="uppercase font-medium nav-link">Home</Link>
             </li>
@@ -179,7 +179,7 @@ export default function Header() {
 
         {/* Right navigation */}
         <nav className="flex items-center">
-          <ul className="flex items-center gap-12">
+          <ul className="flex items-center gap-16">
             <li><Link href="/about" className="uppercase font-medium nav-link">Jobs</Link></li>
             <li><Link href="/contact" className="uppercase font-medium nav-link">Contact</Link></li>
           </ul>

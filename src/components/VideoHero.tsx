@@ -13,7 +13,7 @@ const VideoHero: React.FC<VideoHeroProps> = ({
   children,
   className = "",
 }) => (
-  <section className={`relative w-full h-[400px] md:h-[600px] border rounded-lg border-yellow-300 overflow-hidden ${className}`}>
+  <section className={`relative w-full h-[400px] md:h-[600px] rounded-lg overflow-hidden ${className}`}>
     <video
       className="absolute inset-0 w-full h-full object-cover"
       src={videoSrc}
