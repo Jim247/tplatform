@@ -52,8 +52,7 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
     },
     {
       title: 'Ongoing Support',
-      description:
-        'Access expert help, from profile optimisation to resolving technical issues.',
+      description: 'Access expert help, from profile optimisation to resolving technical issues.',
       icon: mdiLifebuoy,
     },
   ];
@@ -83,10 +82,7 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
       {/* Mobile: Stacked list */}
       <div className="md:hidden space-y-4">
         {benefits.map((benefit, index) => (
-          <div
-            key={index}
-            className="bg-grey p-6 rounded-2xl border border-gray-600/30 shadow-xl"
-          >
+          <div key={index} className="bg-grey p-6 rounded-2xl border border-gray-600/30 shadow-xl">
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-yellow-300/10 rounded-full flex-shrink-0">
                 <Icon path={benefit.icon} size={1.5} className="text-yellow-300" />

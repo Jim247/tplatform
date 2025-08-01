@@ -1,8 +1,5 @@
-import ContactWidget from "@/components/ContactWidget"
+import ContactWidget from '@/components/ContactWidget';
 
 export default function Contact() {
-    return (
-
-<ContactWidget/>
-    )
+  return <ContactWidget />;
 }

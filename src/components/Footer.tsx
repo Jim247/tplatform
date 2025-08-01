@@ -31,7 +31,10 @@ export default function Footer() {
         </nav>
       </div>
       {/* Desktop: logo left, terms centered */}
-      <div className="hidden md:flex max-w-7xl mx-auto px-3 md:px-6 py-6 items-center relative" style={{ minHeight: '72px' }}>
+      <div
+        className="hidden md:flex max-w-7xl mx-auto px-3 md:px-6 py-6 items-center relative"
+        style={{ minHeight: '72px' }}
+      >
         {/* Logo left */}
         <Link className="flex items-center align-middle" href="/">
           <Logo height={30} width={30} />

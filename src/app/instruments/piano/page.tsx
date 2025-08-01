@@ -184,7 +184,7 @@ export default function Home() {
           ]}
         />
       </WidgetWrapper>
-             <PricingWidget/>
+      <PricingWidget />
     </>
   );
 }

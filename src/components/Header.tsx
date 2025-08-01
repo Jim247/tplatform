@@ -52,10 +52,10 @@ export default function Header() {
       {/* Mobile header */}
       <div className="relative grid grid-cols-3 items-center lg:hidden w-full px-2">
         {/* Icon left */}
-        <Link href='/'>
-        <div className="flex justify-start">
-          <Image src="/logo.svg" alt="Tempo Tuition Logo" width={30} height={30} />
-        </div>
+        <Link href="/">
+          <div className="flex justify-start">
+            <Image src="/logo.svg" alt="Tempo Tuition Logo" width={30} height={30} />
+          </div>
         </Link>
         {/* Text center */}
         <div className="flex flex-row justify-center items-center">
@@ -107,7 +107,9 @@ export default function Header() {
             ref={menuRef}
             className=" absolute left-0 right-0 top-full w-screenfull z-50 lg:hidden mt-3 animate-dropdown"
           >
-            <nav className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} text-white rounded-lg border border-gray-600 shadow-xl p-6 w-full`}>
+            <nav
+              className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} text-white rounded-lg border border-gray-600 shadow-xl p-6 w-full`}
+            >
               <ul className="flex flex-col gap-1">
                 <li>
                   <Link
@@ -213,7 +215,9 @@ export default function Header() {
                 className={`absolute left-1/2 transform -translate-x-1/2 top-full mt-4 transition-opacity z-50
 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
-                <div className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} rounded-lg border border-gray-600 shadow-xl py-3 px-6 min-w-[200px]`}>
+                <div
+                  className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} rounded-lg border border-gray-600 shadow-xl py-3 px-6 min-w-[200px]`}
+                >
                   <ul className="flex flex-col gap-1">
                     {instrumentLinks.map((link) => (
                       <li key={link.href}>
