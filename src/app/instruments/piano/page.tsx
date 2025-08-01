@@ -52,13 +52,13 @@ export default function Home() {
         <ImageBoxes
           boxes={[
             {
-              src: '/electric-piano.jpg',
+              src: '/piano-lesson-square.jpg',
               title: 'Digital & Electric Piano',
               description:
                 'Learn to play modern pop, rock, and jazz on digital and electric pianos. Explore synth sounds, contemporary techniques, and accompaniment styles.',
             },
             {
-              src: '/acoustic-piano.jpg',
+              src: '/piano-square.jpg',
               title: 'Acoustic Piano',
               description:
                 'Master classical and contemporary piano styles. Build skills in sight-reading, technique, and interpretation, performing works from Bach to modern composers.',

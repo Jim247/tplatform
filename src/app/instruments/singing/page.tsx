@@ -51,19 +51,19 @@ export default function Home() {
         <ImageBoxes
           boxes={[
             {
-              src: '/pop-singing.jpg',
+              src: '/singing-lesson-square.jpg',
               title: 'Pop & Contemporary Singing',
               description:
                 'Learn to sing your favourite pop, rock, and contemporary songs. Develop vocal technique, style, and performance skills for modern music.',
             },
             {
-              src: '/classical-singing.jpg',
+              src: '/singer-square.jpg',
               title: 'Classical & Choral Singing',
               description:
                 'Master classical and choral repertoire, focusing on breath control, tone, and musical expression. Suitable for all levels.',
             },
             {
-              src: '/musical-theatre.jpg',
+              src: '/theatre-singer-square.jpg',
               title: 'Musical Theatre',
               description:
                 'Explore the world of musical theatre. Learn to sing, act, and perform songs from Broadway and West End shows.',
