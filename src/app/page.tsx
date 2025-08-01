@@ -2,11 +2,11 @@ import Reviews from '@/components/Reviews';
 import WidgetWrapper from '@/components/WidgetWrapper';
 import { reviewText } from '@components/review-text';
 import SectionDivider from '@/components/SectionDivider';
-import TextBoxWithInstruments from '@/components/TextBoxWithInstruments';
 import VideoHero from '@/components/VideoHero';
 import LogoText from '@/components/LogoText';
 import Instruments from '@/components/Instruments';
 import ImageBoxes from '@/components/ImageBoxes';
+import PricingWidget from '@/components/PricingWidget';
 
 export default function Home() {
   return (
@@ -19,7 +19,6 @@ export default function Home() {
           </button>
         </div>
       </VideoHero>
-
       <SectionDivider imgSrc="/logo.svg" size={3} />
       <Instruments/>
       <div className='py-8'></div>
@@ -49,6 +48,7 @@ export default function Home() {
       <WidgetWrapper>
 
         <Reviews reviews={reviewText} />
+        <PricingWidget/>
       </WidgetWrapper>
     </>
   );

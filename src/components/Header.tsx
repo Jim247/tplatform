@@ -243,7 +243,7 @@ ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-e
         <nav className="flex justify-evenly">
           <ul className="flex items-center gap-12">
             <li>
-              <Link href="/about" className="uppercase font-medium nav-link">
+              <Link href="/jobs" className="uppercase font-medium nav-link">
                 Jobs
               </Link>
             </li>

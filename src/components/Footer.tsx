@@ -31,14 +31,14 @@ export default function Footer() {
         </nav>
       </div>
       {/* Desktop: logo left, terms centered */}
-      <div className="hidden md:flex max-w-7xl mx-auto px-3 md:px-6 py-6 items-center justify-between">
+      <div className="hidden md:flex max-w-7xl mx-auto px-3 md:px-6 py-6 items-center relative" style={{ minHeight: '72px' }}>
         {/* Logo left */}
         <Link className="flex items-center align-middle" href="/">
           <Logo height={30} width={30} />
           <span className="pl-4 text-xl font-bold text-white uppercase">Tempo Tuition</span>
         </Link>
-        {/* Navigation center */}
-        <nav>
+        {/* Navigation center - absolutely centered */}
+        <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <ul className="flex flex-row gap-8 text-white font-medium">
             <li>
               <Link
@@ -52,7 +52,7 @@ export default function Footer() {
           </ul>
         </nav>
         {/* Social right */}
-        <div>
+        <div className="ml-auto">
           <SocialLinks size={40} />
         </div>
       </div>
