@@ -18,6 +18,7 @@ import LogoText from '@/components/LogoText';
 import InstrumentNarrative from '@/components/InstrumentNarrative';
 import { mdiSchool } from '@mdi/js';
 import SectionDivider from '@/components/SectionDivider';
+import PricingWidget from '@/components/PricingWidget';
 
 export default function Home() {
   return (
@@ -182,6 +183,7 @@ export default function Home() {
           ]}
         />
       </WidgetWrapper>
+             <PricingWidget/>
     </>
   );
 }
