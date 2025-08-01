@@ -119,7 +119,7 @@ export default function Reviews({
                 {/* Review Quote */}
                 {reviewText && (
                   <blockquote className="flex-auto mb-4">
-                    <p className="text italic">"{displayText}"</p>
+                    <p className="text italic">&quot;{displayText}&quot;</p>
                     {isLong && !isExpanded && (
                       <button
                         className="text-xs text-red-800 underline mt-2 focus:outline-none"

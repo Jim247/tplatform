@@ -14,7 +14,7 @@ export interface FAQsProps {
   tagline?: string;
   items?: FAQItem[];
   columns?: number;
-  icon?:string;
+  icon?: string;
   id?: string;
   classes?: {
     container?: string;

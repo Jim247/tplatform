@@ -15,8 +15,8 @@ export default function Instruments({ className = '' }: { className?: string }) 
     <div
       className={`container max-w-7xl bg-grey p-5 rounded-lg border border-gray-200 pt-4 ${className}`}
     >
-      <h1 className="text-center text-5xl font-bold pt-8 pb-5 text-white font-[Montserrat] uppercase">
-        We Teach
+      <h1 className="text-center text-5xl font-semibold pt-8 pb-5 text-white font-[Montserrat] uppercase">
+        Welcome to tempo tution
       </h1>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 max-w-xs mx-auto sm:max-w-none uppercase font-[Montserrat]">
         <div className="flex flex-col items-center group cursor-pointer p-2">

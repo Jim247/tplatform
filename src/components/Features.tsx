@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Define the Props interface
 interface FeaturesProps {
@@ -49,7 +50,7 @@ const Features: React.FC<FeaturesProps> = ({
           {typeof image === 'string' ? (
             <div dangerouslySetInnerHTML={{ __html: image }} />
           ) : (
-            <img
+            <Image
               className="w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg"
               src={image.src}
               alt={image.alt || ''}

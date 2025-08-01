@@ -5,11 +5,13 @@ import SectionDivider from '@/components/SectionDivider';
 import TextBoxWithInstruments from '@/components/TextBoxWithInstruments';
 import VideoHero from '@/components/VideoHero';
 import LogoText from '@/components/LogoText';
+import Instruments from '@/components/Instruments';
+import ImageBoxes from '@/components/ImageBoxes';
 
 export default function Home() {
   return (
-<>
-     <VideoHero videoSrc="/child-guitar-trimmed.mp4">
+    <>
+      <VideoHero videoSrc="/child-guitar-trimmed.mp4">
         <div className="bg-black/40 p-6 rounded-lg flex flex-col items-center">
           <LogoText width={200} height={200} text={'TEMPO TUITION'} />
           <button className="mt-4 px-8 py-3 bg-yellow-300 text-black font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition">
@@ -17,25 +19,35 @@ export default function Home() {
           </button>
         </div>
       </VideoHero>
-      
+
       <SectionDivider imgSrc="/logo.svg" size={3} />
-
-      <TextBoxWithInstruments
-        heading="Bristol Music Tuition"
-        imageSrc="/guitar-square.png"
-        intro="We proudly offer music lessons across the greater Bristol area."
-        bulletPoints={[
-          'A hand-picked roster of specialist tutors',
-          "Visit us at a tutor's studio, or mobile service (subject to availability) ",
-          'Excellent customer service - Read our reviews',
-          'Guitar, piano, singing, brass, woodwind, and more',
-        ]}
-        subheading="All Experience Levels"
-        subtext="Beginners are warmly welcomed and supported. Advanced players benefit from tailored mentoring that can be a true game changer for their growth."
-      />
-
-      <WidgetWrapper>
+      <Instruments/>
+      <div className='py-8'></div>
+<ImageBoxes
+  boxes={[
+    {
+      src: '/piano-square.jpg',
+      title: 'Hand-Picked Tutors',
+      description:
+        'We proudly offer music lessons across the greater Bristol area with a hand-picked roster of specialist tutors. Guitar, piano, singing, brass, woodwind, and more instruments available.',
+    },
+    {
+      src: '/guitar-lesson-square.jpg',
+      title: 'All Experience Levels Welcome',
+      description:
+        'Beginners are warmly welcomed and supported with patient, encouraging instruction. Advanced players benefit from tailored mentoring that can be a true game changer for their musical growth.',
+    },
+    {
+      src: '/singing-lesson-square.jpg',
+      title: 'Flexible Lesson Locations',
+      description:
+        'Visit us at a tutor\'s studio, or choose our mobile service (subject to availability). Excellent customer service with outstanding reviews from satisfied students across Bristol.',
+    },
+  ]}
+/>
         <SectionDivider imgSrc="/logo.svg" size={3} />
+      <WidgetWrapper>
+
         <Reviews reviews={reviewText} />
       </WidgetWrapper>
     </>

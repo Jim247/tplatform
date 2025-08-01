@@ -23,7 +23,7 @@ export default function TextBox({
 }: TextBoxProps) {
   return (
     <div
-      className={`max-w-7xl mx-auto my-10 px-4 flex flex-col md:flex-row items-center md:items-center bg-grey p-7 rounded-lg border border-gray-200 gap-8 ${className}`}
+      className={`max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center md:items-center bg-grey p-7 rounded-lg border border-gray-200 gap-8 ${className}`}
     >
       {/* Text content */}
       <div className="flex-1 text-white text-left px-3 space-y-6">

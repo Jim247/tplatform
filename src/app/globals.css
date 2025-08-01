@@ -68,21 +68,7 @@
     background: rgb(255, 230, 0) !important;
   }
 
-  .mobile-nav-link {
-    display: block;
-    width: 100%;
-    padding: 12px 16px;
-    margin: -12px -16px;
-    transition: background-color 0å2s ease;
-    border-radius: 8px;
-    color: inherit;
-  }
 
-  .mobile-nav-link:hover,
-  .mobile-nav-link:active,
-  .mobile-nav-link:focus {
-    background-color: rgba(255, 230, 0, 0.2) !important;
-  }
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

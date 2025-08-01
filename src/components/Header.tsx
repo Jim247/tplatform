@@ -52,9 +52,11 @@ export default function Header() {
       {/* Mobile header */}
       <div className="relative grid grid-cols-3 items-center lg:hidden w-full px-2">
         {/* Icon left */}
+        <Link href='/'>
         <div className="flex justify-start">
           <Image src="/logo.svg" alt="Tempo Tuition Logo" width={30} height={30} />
         </div>
+        </Link>
         {/* Text center */}
         <div className="flex flex-row justify-center items-center">
           <span className="text-center whitespace-nowrap uppercase">TEMPO TUITION</span>
@@ -103,15 +105,15 @@ export default function Header() {
         {menuOpen && (
           <div
             ref={menuRef}
-            className="mobile-header absolute left-0 right-0 top-full z-50 lg:hidden mt-3 animate-dropdown"
+            className=" absolute left-0 right-0 top-full w-screenfull z-50 lg:hidden mt-3 animate-dropdown"
           >
-            <nav className="bg-yellow-300 text-[#2c2c2c] rounded-b-lg shadow-lg p-6 w-full">
-              <ul className="flex flex-col gap-4 text-lg ">
-                <li className="hover:bg-yellow-200 focus:bg-yellow-200">
+            <nav className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} text-white rounded-lg border border-gray-600 shadow-xl p-6 w-full`}>
+              <ul className="flex flex-col gap-1">
+                <li>
                   <Link
                     href="/"
                     onClick={() => setMenuOpen(false)}
-                    className="uppercase mobile-nav-link"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
                   >
                     Home
                   </Link>
@@ -119,7 +121,7 @@ export default function Header() {
                 <li className="flex flex-col">
                   <button
                     type="button"
-                    className="uppercase mobile-nav-link flex items-center justify-between w-full focus:outline-none text-left"
+                    className="flex items-center justify-between w-full px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200 focus:outline-none text-left"
                     onClick={() => setMobileInstrumentsOpen((open) => !open)}
                     aria-expanded={mobileInstrumentsOpen}
                     aria-controls="mobile-instruments-submenu"
@@ -141,39 +143,39 @@ export default function Header() {
                       </svg>
                     </div>
                   </button>
+                  {/* Mobile instruments dropdown opens inline within the menu */}
                   {mobileInstrumentsOpen && (
-                    <div className="ml-4 mt-2 flex flex-col gap-2 ">
+                    <div className="ml-4 mt-2 flex flex-col gap-1">
                       {instrumentLinks.map((link) => (
-                        <li key={link.href} className="hover:bg-yellow-200 focus:bg-yellow-200">
-                          <Link
-                            href={link.href}
-                            onClick={() => {
-                              setMenuOpen(false);
-                              setMobileInstrumentsOpen(false);
-                            }}
-                            className="uppercase mobile-nav-link"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => {
+                            setMenuOpen(false);
+                            setMobileInstrumentsOpen(false);
+                          }}
+                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                        >
+                          {link.label}
+                        </Link>
                       ))}
                     </div>
                   )}
                 </li>
-                <li className="hover:bg-yellow-200 focus:bg-yellow-200">
+                <li>
                   <Link
                     href="/about"
                     onClick={() => setMenuOpen(false)}
-                    className="uppercase mobile-nav-link"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
                   >
                     Jobs
                   </Link>
                 </li>
-                <li className="hover:bg-yellow-200 focus:bg-yellow-200">
+                <li>
                   <Link
                     href="/contact"
                     onClick={() => setMenuOpen(false)}
-                    className="uppercase mobile-nav-link"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
                   >
                     Contact
                   </Link>
@@ -187,8 +189,8 @@ export default function Header() {
       {/* Desktop header with logo absolutely centered */}
       <div className="hidden lg:grid grid-cols-3 items-center w-full max-w-6xl py-4 mx-auto px-4">
         {/* Left navigation */}
-        <nav className="flex-1 flex justify-start">
-          <ul className="flex w-full justify-evenly gap-7">
+        <nav className="flex justify-evenly">
+          <ul className="flex items-center gap-12">
             <li>
               <Link href="/" className="uppercase font-medium nav-link">
                 Home
@@ -202,23 +204,30 @@ export default function Header() {
               <span className="uppercase font-medium nav-link focus:text-yellow-300 cursor-pointer">
                 Instruments
               </span>
-              <ul
-                className={`absolute left-0 top-full pt-2 bg-[#ffe600] text-[#2c2c2c] rounded-lg shadow-lg py-2 min-w-[160px] transition-opacity p-4 z-50 ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+              {/* Invisible bridge to maintain hover state */}
+              {desktopDropdownOpen && (
+                <div className="absolute left-0 top-full w-full h-4 bg-transparent pointer-events-auto z-40" />
+              )}
+              {/* Dropdown appears as header expansion */}
+              <div
+                className={`absolute left-1/2 transform -translate-x-1/2 top-full mt-4 transition-opacity z-50
+${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
               >
-                {instrumentLinks.map((link) => (
-                  <li
-                    key={link.href}
-                    className="hover:bg-yellow-200 focus:bg-yellow-200 font-semibold rounded transition-colors"
-                  >
-                    <Link
-                      href={link.href}
-                      className="block px-6 py-2 uppercase"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+                <div className={`${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'} rounded-lg border border-gray-600 shadow-xl py-3 px-6 min-w-[200px]`}>
+                  <ul className="flex flex-col gap-1">
+                    {instrumentLinks.map((link) => (
+                      <li key={link.href}>
+                        <Link
+                          href={link.href}
+                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </li>
           </ul>
         </nav>
@@ -231,8 +240,8 @@ export default function Header() {
         </div>
 
         {/* Right navigation */}
-        <nav className="flex-1 flex justify-end">
-          <ul className="flex w-full justify-evenly items-center gap-6">
+        <nav className="flex justify-evenly">
+          <ul className="flex items-center gap-12">
             <li>
               <Link href="/about" className="uppercase font-medium nav-link">
                 Jobs
