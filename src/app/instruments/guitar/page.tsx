@@ -68,7 +68,7 @@ export default function Home() {
               src: '/bass-guitar.jpg',
               title: 'Bass Guitar',
               description:
-                'Master acoustic guitar styles including folk, singer-songwriter, and unplugged pop. Build skills in chord strumming, fingerpicking, and perform songs from artists like Ed Sheeran, Taylor Swift, and more.',
+                'Discover the groove and rhythm of bass guitar. Learn essential techniques for rock, pop, funk, and jazz, and develop your skills in playing basslines, locking in with the drums, and supporting the band’s sound.',
             },
           ]}
         />
