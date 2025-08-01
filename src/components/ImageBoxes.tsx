@@ -30,8 +30,8 @@ const ImageBoxes: React.FC<ImageBoxesProps> = ({ boxes, className = '' }) => {
               sizes="(max-width: 640px) 100vw, 288px"
             />
           </div>
-          <h3 className="font-bold text-white uppercase text-lg mb-1 text-center">{box.title}</h3>
-          <p className="text-white text-center">{box.description}</p>
+          <h3 className="pb-4 font-bold text-white uppercase text-lg mb-1 text-center">{box.title}</h3>
+          <p className="text-white font-medium text-center">{box.description}</p>
         </div>
       ))}
     </div>
