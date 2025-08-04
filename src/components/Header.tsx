@@ -166,7 +166,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link
-                    href="/about"
+                    href="/jobs"
                     onClick={() => setMenuOpen(false)}
                     className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
                   >

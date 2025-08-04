@@ -19,7 +19,7 @@ export default function PricingWidget() {
           <div className="text-4xl font-extrabold text-yellow-300 mb-2">
             £33<span className="text-lg font-normal text-gray-200">/hr</span>
           </div>
-          <div className="text-base font-semibold text-yellow-200 mb-2">£17 per 30 mins</div>
+          <div className="text-base font-semibold text-yellow-200 mb-2">£17.50 per 30 mins</div>
           <p className="text-gray-200 mb-4">
             Best value for regular students. Book a series of lessons and save.
           </p>
@@ -51,7 +51,7 @@ export default function PricingWidget() {
           <div className="text-4xl font-extrabold text-yellow-300 mb-2">
             £35<span className="text-lg font-normal text-gray-200">/hr</span>
           </div>
-          <div className="text-base font-semibold text-yellow-200 mb-2">£18 per 30 mins</div>
+          <div className="text-base font-semibold text-yellow-200 mb-2">£19 per 30 mins</div>
           <p className="text-gray-200 mb-4">
             Perfect for ad hoc or trial lessons. No commitment required.
           </p>
