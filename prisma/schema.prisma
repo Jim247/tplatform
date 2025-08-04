@@ -13,3 +13,42 @@ datasource db {
   provider = "postgresql"
   url      = env("NEXT_PUBLIC_SUPABASE_URL")
 }
+
+
+model BookingOwner {
+  id               String    @id @default(uuid())
+  name             String
+  email            String
+  phone            String?
+  postcode         String?
+  age              String?
+  level            String?
+  notes            String?
+  instruments      String[]
+  geopoint         String?   // Store as JSON string or use proper PostGIS
+  ward             String?
+  region           String?
+  city             String?
+  geopoint_consent Boolean   @default(false)
+  is_enquiry_owner Boolean   @default(true)
+  created_at       DateTime  @default(now())
+  
+  students         Student[]
+  
+  @@map("booking_owners")
+}
+
+model Student {
+  id               String       @id @default(uuid())
+  booking_owner_id String
+  name             String
+  age              String
+  level            String
+  notes            String?
+  instruments      String[]
+  created_at       DateTime     @default(now())
+  
+  booking_owner    BookingOwner @relation(fields: [booking_owner_id], references: [id], onDelete: Cascade)
+  
+  @@map("students")
+}

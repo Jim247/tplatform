@@ -7,13 +7,13 @@ import Logo from './Logo';
 import { mdiAccount, mdiAccountMultiple } from '@mdi/js';
 import Icon from '@mdi/react';
 
-interface Learner {
+interface Student {
+  booking_owner_id: string; // New field to link student to booking owner
   name: string;
   age: string;
   level: string;
   notes: string;
   instruments: string[];
-  isEnquiryOwner: boolean;
 }
 
 interface ProfileFields {
@@ -23,8 +23,26 @@ interface ProfileFields {
   postcode: string;
   phone: string;
   geopoint_consent?: boolean;
-  learners: Learner[];
+  students: Student[]; 
   studentIsMyself: boolean;
+}
+
+interface BookingOwner {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  postcode: string;
+  age: string;        // Only filled if they're also a student
+  level: string;      // Only filled if they're also a student  
+  notes: string;      // Only filled if they're also a student
+  instruments: string[]; // Only filled if they're also a student
+  geopoint?: any;
+  ward?: string;
+  region?: string;
+  city?: string;
+  geopoint_consent?: boolean;
+  created_at?: Date;
 }
 
 const ChipSelector = ({ options, selectedOptions, onChange }: {
@@ -62,7 +80,7 @@ const EnquiryForm = () => {
     postcode: '',
     email: '',
     phone: '',
-    learners: [],
+    students: [], // Changed from learners to students
     studentIsMyself: false,
   });
 
@@ -78,7 +96,7 @@ const EnquiryForm = () => {
 
   const validateStep = () => {
     console.log('Validating step:', step, 'subStep:', subStep);
-    console.log('Current learners:', fields.learners);
+    console.log('Current students:', fields.students);
     console.log('Current learner index:', currentLearnerIndex);
     
     switch (step) {
@@ -87,31 +105,31 @@ const EnquiryForm = () => {
       case 2:
         if (subStep === 'instruments') {
           // Must have at least one learner with instruments
-          const currentLearner = fields.learners[currentLearnerIndex];
-          const isValid = currentLearner && currentLearner.instruments.length > 0;
-          console.log('Instruments validation:', isValid, 'Current learner:', currentLearner);
+          const currentStudent = fields.students[currentLearnerIndex];
+          const isValid = currentStudent && currentStudent.instruments.length > 0;
+          console.log('Instruments validation:', isValid, 'Current student:', currentStudent);
           return isValid;
         } else if (subStep === 'details') {
-          // Current learner must have name, age, and level
-          const currentLearner = fields.learners[currentLearnerIndex];
-          const isValid = currentLearner && 
-                 currentLearner.name.trim() !== '' && 
-                 currentLearner.age.trim() !== '' && 
-                 currentLearner.level.trim() !== '';
-          console.log('Details validation:', isValid, 'Current learner:', currentLearner);
+          // Current learner must have age and level (name only required for others, not self)
+          const currentStudent = fields.students[currentLearnerIndex];
+          const isValid = currentStudent && 
+                 (fields.studentIsMyself || currentStudent.name.trim() !== '') && // Only require name if not self-learner
+                 currentStudent.age.trim() !== '' && 
+                 currentStudent.level.trim() !== '';
+          console.log('Details validation:', isValid, 'Current student:', currentStudent);
           return isValid;
         } else if (subStep === 'summary') {
           // Just need at least one complete learner to proceed
-          const hasAtLeastOneCompleteLearner = fields.learners.length > 0 && fields.learners.some(learner => {
-            const learnerComplete = learner.instruments.length > 0 &&
-              learner.name.trim() !== '' &&
-              learner.age.trim() !== '' &&
-              learner.level.trim() !== '';
-            console.log('Learner complete check:', learner.name, learnerComplete, learner);
-            return learnerComplete;
+          const hasAtLeastOneCompleteStudent = fields.students.length > 0 && fields.students.some(student => {
+            const studentComplete = student.instruments.length > 0 &&
+              (fields.studentIsMyself || student.name.trim() !== '') && // Only require name if not self-learner
+              student.age.trim() !== '' &&
+              student.level.trim() !== '';
+            console.log('Student complete check:', student.name, studentComplete, student);
+            return studentComplete;
           });
-          console.log('Summary validation - at least one learner complete:', hasAtLeastOneCompleteLearner);
-          return hasAtLeastOneCompleteLearner;
+          console.log('Summary validation - at least one student complete:', hasAtLeastOneCompleteStudent);
+          return hasAtLeastOneCompleteStudent;
         }
         return false;
       case 3:
@@ -150,8 +168,8 @@ const EnquiryForm = () => {
         setStep(prev => Math.min(prev + 1, 3));
         if (step === 1) {
           // When moving from step 1 to 2, ensure we have a learner
-          if (fields.learners.length === 0) {
-            addLearner();
+          if (fields.students.length === 0) {
+            addStudent();
           }
         }
       }
@@ -185,22 +203,22 @@ const EnquiryForm = () => {
     }
   };
 
-  const addLearner = () => {
-    const newLearner: Learner = {
-      name: fields.studentIsMyself ? `${fields.first_name} ${fields.last_name}` : '',
+  const addStudent = () => {
+    const newStudent: Student = {
+      booking_owner_id: '', // Will be set after creating the booking owner
+      name: fields.studentIsMyself ? '' : '', // Leave empty for self-learners until contact details are filled
       age: '',
       level: '',
       notes: '',
       instruments: [],
-      isEnquiryOwner: fields.studentIsMyself
     };
     setFields(prev => ({
       ...prev,
-      learners: [...prev.learners, newLearner]
+      students: [...prev.students, newStudent]
     }));
-    // Set current learner index to the new learner
-    setCurrentLearnerIndex(fields.learners.length);
-    // Go to instruments step for new learner
+    // Set current student index to the new student
+    setCurrentLearnerIndex(fields.students.length);
+    // Go to instruments step for new student
     setSubStep('instruments');
   };
 
@@ -209,21 +227,21 @@ const EnquiryForm = () => {
     setSubStep('instruments');
   };
 
-  const updateLearner = (index: number, updates: Partial<Learner>) => {
+  const updateStudent = (index: number, updates: Partial<Student>) => {
     setFields(prev => ({
       ...prev,
-      learners: prev.learners.map((learner, i) => 
-        i === index ? { ...learner, ...updates } : learner
+      students: prev.students.map((student, i) => 
+        i === index ? { ...student, ...updates } : student
       )
     }));
   };
 
-  const removeLearner = (index: number) => {
+  const removeStudent = (index: number) => {
     setFields(prev => ({
       ...prev,
-      learners: prev.learners.filter((_, i) => i !== index)
+      students: prev.students.filter((_, i) => i !== index)
     }));
-    // Adjust current learner index if needed
+    // Adjust current student index if needed
     if (currentLearnerIndex >= index && currentLearnerIndex > 0) {
       setCurrentLearnerIndex(currentLearnerIndex - 1);
     }
@@ -241,15 +259,23 @@ const EnquiryForm = () => {
     setSuccess('');
     
     try {
-      // Since this is an enquiry form, write to forms table instead of creating users
       const geoPoint = await postcodeToGeoPoint(fields.postcode);
       
-      // Collect all instruments from all learners
-      const allInstruments = fields.learners.flatMap(learner => learner.instruments);
-      
-      const formData = {
-        ...fields,
-        instruments: allInstruments,
+      // Step 1: Create the booking owner (the person making the enquiry)
+      const bookingOwnerData = {
+        name: `${fields.first_name} ${fields.last_name}`,
+        age: fields.studentIsMyself ? fields.students[0]?.age || '' : '',
+        level: fields.studentIsMyself ? fields.students[0]?.level || '' : '',
+        notes: fields.studentIsMyself ? fields.students[0]?.notes || '' : '',
+        instruments: fields.studentIsMyself ? fields.students[0]?.instruments || [] : [],
+      };
+
+      // Include contact and location data
+      const ownerFormData = {
+        ...bookingOwnerData,
+        email: fields.email,
+        phone: fields.phone,
+        postcode: fields.postcode,
         geopoint: geoPoint?.geopoint || null,
         ward: geoPoint?.ward,
         region: geoPoint?.region,
@@ -257,49 +283,32 @@ const EnquiryForm = () => {
         geopoint_consent: fields.geopoint_consent,
       };
 
-      // Write to forms table instead of users table
-      const { data: formResponse, error: insertError } = await supabase
-        .from('forms') // or whatever your enquiry table is called
-        .insert([formData])
+      const { data: ownerResponse, error: ownerError } = await supabase
+        .from('booking_owners') // New table for booking owners
+        .insert([ownerFormData])
         .select();
         
-      if (insertError) {
-        setError(insertError.message);
+      if (ownerError) {
+        setError(ownerError.message);
         setIsLoading(false);
         return;
       }
 
-      // Write learners to learners table
-      const formId = formResponse[0]?.id; // Assuming the form ID is returned
-      let learnersData: (Learner & { form_id: string })[] = [];
-      
-      if (fields.studentIsMyself) {
-        // If student is the enquiry owner, ensure we have their learner data
-        const selfLearner = fields.learners[0];
-        if (selfLearner) {
-          // Update the learner name with the contact details
-          const updatedSelfLearner = {
-            ...selfLearner,
-            name: `${fields.first_name} ${fields.last_name}`,
-            form_id: formId,
-          };
-          learnersData = [updatedSelfLearner];
-        }
-      } else {
-        // Multiple learners case
-        learnersData = fields.learners.map((learner) => ({
-          ...learner,
-          form_id: formId,
+      const bookingOwnerId = ownerResponse[0]?.id;
+
+      // Step 2: Create students linked to the booking owner
+      if (fields.students.length > 0) {
+        const studentsData = fields.students.map((student) => ({
+          ...student,
+          booking_owner_id: bookingOwnerId,
         }));
-      }
 
-      if (learnersData.length > 0) {
-        const { error: learnersError } = await supabase
-          .from('learners')
-          .insert(learnersData);
+        const { error: studentsError } = await supabase
+          .from('students') // New table for students
+          .insert(studentsData);
 
-        if (learnersError) {
-          setError(learnersError.message);
+        if (studentsError) {
+          setError(studentsError.message);
           setIsLoading(false);
           return;
         }
@@ -307,7 +316,7 @@ const EnquiryForm = () => {
       
       setSuccess('Enquiry submitted successfully! We will be in touch soon.');
       setTimeout(() => {
-        window.location.href = '/thank-you'; // redirect to thank you page
+        window.location.href = '/';
       }, 1500);
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : String(err);
@@ -358,7 +367,7 @@ const EnquiryForm = () => {
                       setFields(prev => ({ 
                         ...prev, 
                         studentIsMyself: true,
-                        learners: []
+                        students: []
                       }));
                     }}
                   >
@@ -373,11 +382,11 @@ const EnquiryForm = () => {
                       setFields(prev => ({ 
                         ...prev, 
                         studentIsMyself: false,
-                        learners: []
+                        students: []
                       }));
                     }}
                   >
-                    <Icon path={mdiAccount} size={1.5} className="card-icon" />
+                    <Icon path={mdiAccountMultiple} size={1.5} className="card-icon" />
                     <h3>I&apos;m enquiring for someone else</h3>
                     <p>Children, family member, or friend</p>
                   </div>
@@ -395,8 +404,8 @@ const EnquiryForm = () => {
               <div className="learner-details-card">
                 <ChipSelector
                   options={Object.values(INSTRUMENTS).flat()}
-                  selectedOptions={fields.learners[currentLearnerIndex]?.instruments || []}
-                  onChange={(selected) => updateLearner(currentLearnerIndex, { instruments: selected })}
+                  selectedOptions={fields.students[currentLearnerIndex]?.instruments || []}
+                  onChange={(selected) => updateStudent(currentLearnerIndex, { instruments: selected })}
                 />
               </div>
             </div>
@@ -420,8 +429,8 @@ const EnquiryForm = () => {
                       className="form-input"
                       type="text"
                       id="learner_name"
-                      value={fields.learners[currentLearnerIndex]?.name || ''}
-                      onChange={(e) => updateLearner(currentLearnerIndex, { name: e.target.value })}
+                      value={fields.students[currentLearnerIndex]?.name || ''}
+                      onChange={(e) => updateStudent(currentLearnerIndex, { name: e.target.value })}
                       placeholder="e.g. Emily Smith"
                       required
                     />
@@ -437,8 +446,8 @@ const EnquiryForm = () => {
                     <select
                       className="form-select"
                       id="learner_age"
-                      value={fields.learners[currentLearnerIndex]?.age || ''}
-                      onChange={(e) => updateLearner(currentLearnerIndex, { age: e.target.value })}
+                      value={fields.students[currentLearnerIndex]?.age || ''}
+                      onChange={(e) => updateStudent(currentLearnerIndex, { age: e.target.value })}
                       required
                     >
                       <option value="">Select Age</option>
@@ -457,8 +466,8 @@ const EnquiryForm = () => {
                     <select
                       className="form-select"
                       id="learner_level"
-                      value={fields.learners[currentLearnerIndex]?.level || ''}
-                      onChange={(e) => updateLearner(currentLearnerIndex, { level: e.target.value })}
+                      value={fields.students[currentLearnerIndex]?.level || ''}
+                      onChange={(e) => updateStudent(currentLearnerIndex, { level: e.target.value })}
                       required
                     >
                       <option value="">Select Level</option>
@@ -478,8 +487,8 @@ const EnquiryForm = () => {
                   <textarea
                     className="form-input"
                     id="learner_notes"
-                    value={fields.learners[currentLearnerIndex]?.notes || ''}
-                    onChange={(e) => updateLearner(currentLearnerIndex, { notes: e.target.value })}
+                    value={fields.students[currentLearnerIndex]?.notes || ''}
+                    onChange={(e) => updateStudent(currentLearnerIndex, { notes: e.target.value })}
                     placeholder={fields.studentIsMyself ? 
                       "What would you like to achieve? Any specific styles, songs, or goals..." :
                       "What would they like to achieve? Any specific styles, songs, or goals..."
@@ -496,7 +505,7 @@ const EnquiryForm = () => {
                     type="button"
                     className="btn-secondary"
                     onClick={() => {
-                      addLearner();
+                      addStudent();
                     }}
                   >
                     + Add Another Learner
@@ -512,10 +521,10 @@ const EnquiryForm = () => {
               <h2 className="form-subtitle">Learners Summary</h2>
               
               <div className="learners-summary">
-                {fields.learners.map((learner, index) => (
+                {fields.students.map((student, index) => (
                   <div key={index} className="learner-summary-card">
                     <div className="learner-summary-header">
-                      <h3>{learner.name || `Learner ${index + 1}`}</h3>
+                      <h3>{student.name || `Learner ${index + 1}`}</h3>
                       <div className="learner-summary-actions">
                         <button
                           type="button"
@@ -524,11 +533,11 @@ const EnquiryForm = () => {
                         >
                           Edit
                         </button>
-                        {fields.learners.length > 1 && (
+                        {fields.students.length > 1 && (
                           <button
                             type="button"
                             className="btn-remove"
-                            onClick={() => removeLearner(index)}
+                            onClick={() => removeStudent(index)}
                           >
                             Remove
                           </button>
@@ -537,10 +546,10 @@ const EnquiryForm = () => {
                     </div>
                     
                     <div className="learner-summary-details">
-                      <p><strong>Age:</strong> {learner.age}</p>
-                      <p><strong>Level:</strong> {learner.level}</p>
-                      <p><strong>Instruments:</strong> {learner.instruments.join(', ')}</p>
-                      {learner.notes && <p><strong>Goals:</strong> {learner.notes}</p>}
+                      <p><strong>Age:</strong> {student.age}</p>
+                      <p><strong>Level:</strong> {student.level}</p>
+                      <p><strong>Instruments:</strong> {student.instruments.join(', ')}</p>
+                      {student.notes && <p><strong>Goals:</strong> {student.notes}</p>}
                     </div>
                   </div>
                 ))}
@@ -549,7 +558,7 @@ const EnquiryForm = () => {
                   <button
                     type="button"
                     className="btn-secondary"
-                    onClick={() => addLearner()}
+                    onClick={() => addStudent()}
                   >
                     + Add Another Learner
                   </button>
