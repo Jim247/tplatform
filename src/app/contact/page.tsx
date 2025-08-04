@@ -1,5 +1,6 @@
-import ContactWidget from '@/components/ContactWidget';
+"use client"
+import EnquiryForm from '@/components/EnquiryForm';
 
 export default function Contact() {
-  return <ContactWidget />;
+  return <EnquiryForm />;
 }

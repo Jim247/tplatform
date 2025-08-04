@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
         <Link className="flex items-center mb-4" href="/">
           <Logo width={50} height={50} />
-          <span className="pl-4 text-xl font-bold text-white">Tempo Tuition</span>
+          <span className="pl-4 text-xl font-bold text-white uppercase">Tempo Tuition</span>
         </Link>
         {/* Absolutely centered nav */}
         <nav className="w-full relative h-12">
@@ -38,7 +38,7 @@ export default function Footer() {
         {/* Logo left */}
         <Link className="flex items-center align-middle" href="/">
           <Logo height={30} width={30} />
-          <span className="pl-4 text-xl font-bold text-white uppercase">Tempo Tuition</span>
+          <span className="pl-4 text-xl font-bold text-white">TEMPO TUITION</span>
         </Link>
         {/* Navigation center - absolutely centered */}
         <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">

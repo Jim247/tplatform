@@ -17,7 +17,7 @@ export default function PricingWidget() {
             Block Booked Lessons
           </h3>
           <div className="text-4xl font-extrabold text-yellow-300 mb-2">
-            £33<span className="text-lg font-normal text-gray-200">/hr</span>
+            35<span className="text-lg font-normal text-gray-200">/hr</span>
           </div>
           <div className="text-base font-semibold text-yellow-200 mb-2">£17.50 per 30 mins</div>
           <p className="text-gray-200 mb-4">
@@ -49,7 +49,7 @@ export default function PricingWidget() {
             Single Lesson
           </h3>
           <div className="text-4xl font-extrabold text-yellow-300 mb-2">
-            £35<span className="text-lg font-normal text-gray-200">/hr</span>
+            £38<span className="text-lg font-normal text-gray-200">/hr</span>
           </div>
           <div className="text-base font-semibold text-yellow-200 mb-2">£19 per 30 mins</div>
           <p className="text-gray-200 mb-4">
