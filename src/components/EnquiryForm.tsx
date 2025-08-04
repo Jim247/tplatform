@@ -257,22 +257,13 @@ const EnquiryForm = () => {
     setIsLoading(true);
     setError('');
     setSuccess('');
-    
+
     try {
       const geoPoint = await postcodeToGeoPoint(fields.postcode);
-      
-      // Step 1: Create the booking owner (the person making the enquiry)
-      const bookingOwnerData = {
-        name: `${fields.first_name} ${fields.last_name}`,
-        age: fields.studentIsMyself ? fields.students[0]?.age || '' : '',
-        level: fields.studentIsMyself ? fields.students[0]?.level || '' : '',
-        notes: fields.studentIsMyself ? fields.students[0]?.notes || '' : '',
-        instruments: fields.studentIsMyself ? fields.students[0]?.instruments || [] : [],
-      };
 
-      // Include contact and location data
-      const ownerFormData = {
-        ...bookingOwnerData,
+      // Prepare the enquirer details
+      const enquirerDetails = {
+        name: `${fields.first_name} ${fields.last_name}`,
         email: fields.email,
         phone: fields.phone,
         postcode: fields.postcode,
@@ -281,39 +272,31 @@ const EnquiryForm = () => {
         region: geoPoint?.region,
         city: geoPoint?.city,
         geopoint_consent: fields.geopoint_consent,
+        students: fields.students.length > 0 ? fields.students : [
+          {
+            name: `${fields.first_name} ${fields.last_name}`,
+            age: fields.students[0]?.age || '',
+            level: fields.students[0]?.level || '',
+            notes: fields.students[0]?.notes || '',
+            instruments: fields.students[0]?.instruments || [],
+          },
+        ], // Include students even if it's a self-learner
       };
 
-      const { data: ownerResponse, error: ownerError } = await supabase
-        .from('booking_owners') // New table for booking owners
-        .insert([ownerFormData])
-        .select();
-        
-      if (ownerError) {
-        setError(ownerError.message);
-        setIsLoading(false);
-        return;
+      // Send the enquirer details to the API
+      const response = await fetch('/api/handle-enquiry', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(enquirerDetails),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to process enquiry');
       }
 
-      const bookingOwnerId = ownerResponse[0]?.id;
-
-      // Step 2: Create students linked to the booking owner
-      if (fields.students.length > 0) {
-        const studentsData = fields.students.map((student) => ({
-          ...student,
-          booking_owner_id: bookingOwnerId,
-        }));
-
-        const { error: studentsError } = await supabase
-          .from('students') // New table for students
-          .insert(studentsData);
-
-        if (studentsError) {
-          setError(studentsError.message);
-          setIsLoading(false);
-          return;
-        }
-      }
-      
       setSuccess('Enquiry submitted successfully! We will be in touch soon.');
       setTimeout(() => {
         window.location.href = '/';
@@ -321,7 +304,6 @@ const EnquiryForm = () => {
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : String(err);
       setError(errorMsg);
-      setIsLoading(false);
       console.error('Form submission error:', errorMsg);
     } finally {
       setIsLoading(false);
@@ -493,7 +475,7 @@ const EnquiryForm = () => {
                       "What would you like to achieve? Any specific styles, songs, or goals..." :
                       "What would they like to achieve? Any specific styles, songs, or goals..."
                     }
-                    rows={3}
+                    rows={6}
                   />
                 </div>
               </div>
