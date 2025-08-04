@@ -5,6 +5,7 @@ import PostcodeAutocomplete from '@/utils/postcodes/ValidatePostcode';
 import { postcodeToGeoPoint } from '@/utils/postcodes/postcodeUtils';
 import { isValidUKPhone } from '@/utils/validationUtils';
 import { INSTRUMENTS } from '@/constants/instruments';
+import Logo from './Logo';
 
 interface ProfileFields {
   first_name: string;
@@ -62,6 +63,9 @@ const EnquiryForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
 
+  // Add state for tracking direction
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
+
   const validateStep = async (currentStep: number): Promise<boolean> => {
     setError('');
     if (currentStep === 1) {
@@ -96,13 +100,16 @@ const EnquiryForm = () => {
   };
 
   const nextStep = async () => {
+    setError('');
     if (await validateStep(step)) {
-      setStep(prev => Math.min(prev + 1, 4));
+      setDirection('forward');
+      setStep(prev => Math.min(prev + 1, 3));
     }
   };
 
   const prevStep = () => {
     setError('');
+    setDirection('backward');
     setStep(prev => Math.max(prev - 1, 1));
   };
 
@@ -158,173 +165,159 @@ const EnquiryForm = () => {
 
   return (
     <div className="form-container">
-      <h1 className="form-title">
-        Complete Your Profile
-        <br />
-        <span className="block text-base font-normal mt-2">Step {step} of 3</span>
-      </h1>
-      {error && (
-        <div
-          className="form-error"
-          style={{
-            margin: '24px 0',
-            padding: '12px',
-            background: '#fff0f0',
-            color: '#b91c1c',
-            border: '1px solid #fca5a5',
-            borderRadius: '6px',
-            fontWeight: 500,
-            fontSize: '1.1em',
-            textAlign: 'center',
-          }}
-        >
-          {error}
-        </div>
-      )}
-      {success && (
-        <div
-          className="form-success"
-          style={{
-            margin: '24px 0',
-            padding: '12px',
-            background: '#f0fff4',
-            color: '#047857',
-            border: '1px solid #6ee7b7',
-            borderRadius: '6px',
-            fontWeight: 500,
-            fontSize: '1.1em',
-            textAlign: 'center',
-          }}
-        >
-          {success}
-        </div>
-      )}
-      <form ref={undefined} onSubmit={handleValidatedSubmit} className="form-section">
-        {step === 1 && !success && (
-          <>
-            <div className="flex flex-col gap-4">
-              <div className="form-group">
-                <label className="form-label" htmlFor="first_name">
-                  First Name
-                </label>
-                <input
-                  className="form-input"
-                  type="text"
-                  id="first_name"
-                  name="first_name"
-                  value={fields.first_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label" htmlFor="last_name">
-                  Last Name
-                </label>
-                <input
-                  className="form-input"
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  value={fields.last_name}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            </div>
-          </>
-        )}
-        {step === 2 && !success && (
-          <div className="form-group">
-            <label className="form-label" htmlFor="instruments">
-              Which Instruments do you require tuition for?
-            </label>
-            <ChipSelector
-              options={Object.values(INSTRUMENTS).flat()}
-              selectedOptions={fields.instruments || []}
-              onChange={(selected) => setFields({ ...fields, instruments: selected })}
-            />
+      {/* Header Section */}
+      <div className="form-header">
+        <Logo height={100} width={100} />
+        <h1 className="form-title">
+          Make An Enquiry
+          <br />
+          <span className="block text-base font-normal mt-2">Step {step} of 3</span>
+        </h1>
+      </div>
+
+      {/* Content Section */}
+      <div className="form-content">
+        {error && (
+          <div className="form-error">
+            {error}
           </div>
         )}
-        {step === 3 && !success && (
-          <>
-            <div className="form-group">
-              <label className="form-label" htmlFor="postcode">
-                Postcode
+        {success && (
+          <div className="form-success">
+            {success}
+          </div>
+        )}
+        <form ref={undefined} onSubmit={handleValidatedSubmit} className="form-section">
+          {/* Form Steps */}
+          {step === 1 && !success && (
+            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+              {/* Step 1 Content */}
+              <div className="flex flex-col gap-4">
+                <div className="form-group">
+                  <label className="form-label" htmlFor="first_name">
+                    First Name
+                  </label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    value={fields.first_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="last_name">
+                    Last Name
+                  </label>
+                  <input
+                    className="form-input"
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    value={fields.last_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+          {step === 2 && !success && (
+            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+              {/* Step 2 Content */}
+              <label className="form-label" htmlFor="instruments">
+                Which Instruments do you require tuition for?
               </label>
-              <PostcodeAutocomplete
-                value={fields.postcode}
-                onChange={(val: string) => setFields(f => ({ ...f, postcode: val }))}
-                required
+              <ChipSelector
+                options={Object.values(INSTRUMENTS).flat()}
+                selectedOptions={fields.instruments || []}
+                onChange={(selected) => setFields({ ...fields, instruments: selected })}
               />
             </div>
+          )}
+          {step === 3 && !success && (
+            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+              {/* Step 3 Content */}
               <div className="form-group">
-              <label className="form-label" htmlFor="email">
-                Email Address
-              </label>
-              <input
-              className="form-input"
-              type="email"
-              id="email"
-              name="email"
-              value={fields.email}
-              onChange={handleChange}
-              placeholder="e.g elton@john.com"
-
-              />
-
-            </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="phone">
-                Mobile Phone
-              </label>
-              <input
+                <label className="form-label" htmlFor="postcode">
+                  Postcode
+                </label>
+                <PostcodeAutocomplete
+                  value={fields.postcode}
+                  onChange={(val: string) => setFields(f => ({ ...f, postcode: val }))}
+                  required
+                />
+              </div>
+                <div className="form-group">
+                <label className="form-label" htmlFor="email">
+                  Email Address
+                </label>
+                <input
                 className="form-input"
-                type="tel"
-                id="phone"
-                name="phone"
-                value={fields.phone}
+                type="email"
+                id="email"
+                name="email"
+                value={fields.email}
                 onChange={handleChange}
-                placeholder="e.g. 07123 456789"
-                required
-              />
-            </div>
-            <div className="form-group">
-              <label className="flex items-center">
+                placeholder="e.g elton@john.com"
+
+                />
+
+              </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="phone">
+                  Mobile Phone
+                </label>
                 <input
-                  type="checkbox"
-                  name="geopoint_consent"
-                  checked={fields.geopoint_consent}
-                  onChange={e => setFields(f => ({ ...f, geopoint_consent: e.target.checked }))}
+                  className="form-input"
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={fields.phone}
+                  onChange={handleChange}
+                  placeholder="e.g. 07123 456789"
                   required
                 />
-                <span className="ml-2">
-                  I consent to my information being shared with the team at Tempo. All information is handled within GDPR and our Privacy Policy
-                </span>
-              </label>
+              </div>
+              <div className="form-group">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="geopoint_consent"
+                    checked={fields.geopoint_consent}
+                    onChange={e => setFields(f => ({ ...f, geopoint_consent: e.target.checked }))}
+                    required
+                  />
+                  <span className="ml-2">
+                    I consent to my information being shared with the team at Tempo. All information is handled within GDPR and our Privacy Policy
+                  </span>
+                </label>
+              </div>
             </div>
-          </>
-        )}
-        {!success && (
-          <div className="flex items-center justify-center pt-3 space-x-4">
-            {step > 1 && (
-              <button type="button" className="btn-secondary" onClick={prevStep}>
-                Back
-              </button>
-            )}
-            {step < 3 && (
-              <button type="button" className="btn-primary" onClick={nextStep}>
-                Next
-              </button>
-            )}
-            {step === 3 && (
-              <button type="submit" className="btn-primary" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save Profile'}
-              </button>
-            )}
-          </div>
-        )}
-      </form>
+          )}
+          {!success && (
+            <div className="form-buttons-container">
+              {step > 1 && (
+                <button type="button" className="btn-secondary" onClick={prevStep}>
+                  Back
+                </button>
+              )}
+              {step < 3 && (
+                <button type="button" className="btn-primary" onClick={nextStep}>
+                  Next
+                </button>
+              )}
+              {step === 3 && (
+                <button type="submit" className="btn-primary" disabled={isLoading}>
+                  {isLoading ? 'Saving...' : 'Save Profile'}
+                </button>
+              )}
+            </div>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

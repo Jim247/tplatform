@@ -83,13 +83,40 @@
 /* General form styles */
 .form-container {
   max-width: 600px;
-  height: 50vh;
+  height: 60vh; /* Ensure the container has a fixed height */
   margin: 0 auto;
   padding: 20px;
   background-color: #2c2c2c;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #ffffff
+  color: #ffffff;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.form-content {
+  flex: 1; /* Allows the content to expand into the central part */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-buttons-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .form-title {
@@ -148,7 +175,7 @@
 .form-input:focus,
 .form-select:focus {
   outline: none;
-  border-color: #2563eb;
+  border-color: #ffe120;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
 }
 
@@ -159,21 +186,19 @@
   border: none;
   border-radius: 4px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.btn-primary:hover {
-  background-color: #1d4ed8;
-}
-
 .btn-secondary {
   background-color: #e5e7eb;
-  color: #374151;
+  color: #000000;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -193,12 +218,12 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  padding: 12px 20px;
   background-color  : #f3f4f6;
   border: 2px solid #e5e7eb;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -232,5 +257,70 @@
   .text-highlight {
     color: var(--highlight);
   }
+}
+
+/* Add these new styles for form stage transitions */
+
+.form-stage {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.3s ease-in-out;
+}
+
+.form-stage-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.form-stage-exit {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+/* Alternative slide transition */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.form-stage-slide-in-right {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.form-stage-slide-in-left {
+  animation: slideInLeft 0.4s ease-out;
+}
+
+/* Fade transition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.form-stage-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
