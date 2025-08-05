@@ -175,11 +175,11 @@ export default function Header() {
                 </li>
                 <li>
                   <Link
-                    href="/contact"
+                    href="/book"
                     onClick={() => setMenuOpen(false)}
                     className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
                   >
-                    Contact
+                    Book Now
                   </Link>
                 </li>
               </ul>
@@ -252,8 +252,8 @@ ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-e
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="uppercase font-medium nav-link">
-                Contact
+              <Link href="/book" className="uppercase font-medium nav-link ">
+                Book Now
               </Link>
             </li>
           </ul>

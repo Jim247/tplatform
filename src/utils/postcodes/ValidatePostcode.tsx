@@ -61,7 +61,7 @@ const PostcodeAutocomplete: React.FC<Props> = ({
   return (
     <div className="relative">
       <input
-        className="w-full border rounded px-3 py-2 uppercase"
+        className="w-full form-input border rounded px-3 py-2 uppercase"
         type="text"
         id={id}
         name={name}
@@ -74,7 +74,7 @@ const PostcodeAutocomplete: React.FC<Props> = ({
         onFocus={() => value.length > 2 && setShowSuggestions(true)}
       />
       {showSuggestions && suggestions.length > 0 && (
-        <ul className="absolute z-10 bg-white border w-full mt-1 rounded shadow max-h-48 overflow-auto">
+        <ul className="absolute z-10 bg-white text-black border w-full mt-1 rounded shadow max-h-48 overflow-auto">
           {suggestions.map(postcode => (
             <li
               key={postcode}

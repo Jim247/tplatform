@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import supabase from '../lib/supabaseClient'
+
 import PostcodeAutocomplete from '@/utils/postcodes/ValidatePostcode';
 import { postcodeToGeoPoint } from '@/utils/postcodes/postcodeUtils';
 import { INSTRUMENTS } from '@/constants/instruments';
@@ -27,23 +27,6 @@ interface ProfileFields {
   studentIsMyself: boolean;
 }
 
-interface BookingOwner {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  postcode: string;
-  age: string;        // Only filled if they're also a student
-  level: string;      // Only filled if they're also a student  
-  notes: string;      // Only filled if they're also a student
-  instruments: string[]; // Only filled if they're also a student
-  geopoint?: any;
-  ward?: string;
-  region?: string;
-  city?: string;
-  geopoint_consent?: boolean;
-  created_at?: Date;
-}
 
 const ChipSelector = ({ options, selectedOptions, onChange }: {
   options: string[];
@@ -88,7 +71,7 @@ const EnquiryForm = () => {
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
-  const [subStep, setSubStep] = useState<'instruments' | 'details' | 'summary'>('instruments');
+  const [subStep, setSubStep] = useState<'instruments' | 'details' | 'levelnotes' | 'summary'>('instruments');
   const [currentLearnerIndex, setCurrentLearnerIndex] = useState(0);
 
   // Add state for tracking direction
@@ -110,13 +93,18 @@ const EnquiryForm = () => {
           console.log('Instruments validation:', isValid, 'Current student:', currentStudent);
           return isValid;
         } else if (subStep === 'details') {
-          // Current learner must have age and level (name only required for others, not self)
+          // Current learner must have name (if not self) and age
           const currentStudent = fields.students[currentLearnerIndex];
           const isValid = currentStudent && 
                  (fields.studentIsMyself || currentStudent.name.trim() !== '') && // Only require name if not self-learner
-                 currentStudent.age.trim() !== '' && 
-                 currentStudent.level.trim() !== '';
+                 currentStudent.age.trim() !== '';
           console.log('Details validation:', isValid, 'Current student:', currentStudent);
+          return isValid;
+        } else if (subStep === 'levelnotes') {
+          // Current learner must have level
+          const currentStudent = fields.students[currentLearnerIndex];
+          const isValid = currentStudent && currentStudent.level.trim() !== '';
+          console.log('Level/Notes validation:', isValid, 'Current student:', currentStudent);
           return isValid;
         } else if (subStep === 'summary') {
           // Just need at least one complete learner to proceed
@@ -141,38 +129,44 @@ const EnquiryForm = () => {
     }
   };
 
-  const nextStep = async () => {
+  const nextStep = () => {
     setError('');
-    if (await validateStep()) {
-      setDirection('forward');
-      
-      if (step === 2 && subStep === 'instruments') {
-        // Move to details sub-step for current learner
+    setDirection('forward');
+    
+    if (step === 1) {
+      // Moving to step 2 - ensure we have a student
+      if (fields.students.length === 0) {
+        const newStudent: Student = {
+          booking_owner_id: '',
+          name: fields.studentIsMyself ? '' : '',
+          age: '',
+          level: '',
+          notes: '',
+          instruments: [],
+        };
+        setFields(prev => ({
+          ...prev,
+          students: [newStudent]
+        }));
+      }
+      setStep(2);
+    } else if (step === 2) {
+      if (subStep === 'instruments') {
         setSubStep('details');
-      } else if (step === 2 && subStep === 'details') {
-        // Move to summary if we have learners, or next step if self-learner
-        if (fields.studentIsMyself) {
-          // Self-learner goes directly to contact details
-          setStep(3);
+      } else if (subStep === 'details') {
+        setSubStep('levelnotes');
+      } else if (subStep === 'levelnotes') {
+        if (currentLearnerIndex < fields.students.length - 1) {
+          setCurrentLearnerIndex(currentLearnerIndex + 1);
           setSubStep('instruments');
         } else {
-          // Others go to summary to manage multiple learners
           setSubStep('summary');
         }
-      } else if (step === 2 && subStep === 'summary') {
-        // Move to contact details
+      } else if (subStep === 'summary') {
         setStep(3);
-        setSubStep('instruments');
-      } else {
-        // Normal step progression
-        setStep(prev => Math.min(prev + 1, 3));
-        if (step === 1) {
-          // When moving from step 1 to 2, ensure we have a learner
-          if (fields.students.length === 0) {
-            addStudent();
-          }
-        }
       }
+    } else if (step < 4) {
+      setStep(step + 1);
     }
   };
 
@@ -183,9 +177,12 @@ const EnquiryForm = () => {
     if (step === 2 && subStep === 'details') {
       // Move back to instruments sub-step
       setSubStep('instruments');
-    } else if (step === 2 && subStep === 'summary') {
-      // Move back to details for current learner
+    } else if (step === 2 && subStep === 'levelnotes') {
+      // Move back to details sub-step
       setSubStep('details');
+    } else if (step === 2 && subStep === 'summary') {
+      // Move back to levelnotes for current learner
+      setSubStep('levelnotes');
     } else if (step === 2 && subStep === 'instruments') {
       // Move back to step 1
       setStep(prev => Math.max(prev - 1, 1));
@@ -194,11 +191,7 @@ const EnquiryForm = () => {
       setStep(prev => Math.max(prev - 1, 1));
       if (step === 3) {
         // When moving back to step 2, set appropriate sub-step
-        if (fields.studentIsMyself) {
-          setSubStep('details');
-        } else {
-          setSubStep('summary');
-        }
+        setSubStep('summary');
       }
     }
   };
@@ -319,7 +312,7 @@ const EnquiryForm = () => {
           Make An Enquiry
           <br />
           <span className="block text-base font-normal mt-2">
-            Step {step === 2 && subStep === 'details' ? '3' : step === 2 ? '2' : step > 2 ? step + 1 : step} of 4
+            Step {step === 2 && subStep === 'details' ? '3' : step === 2 && subStep === 'levelnotes' ? '4' : step === 2 ? '2' : step > 2 ? step + 2 : step} of 5
           </span>
         </h1>
       </div>
@@ -397,7 +390,7 @@ const EnquiryForm = () => {
           {step === 2 && subStep === 'details' && !success && (
             <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
               <h2 className="form-subtitle">
-                {fields.studentIsMyself ? 'Your Learning Details' : 'Learner Details'}
+                {fields.studentIsMyself ? 'Your Basic Details' : 'Learner Basic Details'}
               </h2>
               
               <div className="learner-details-card">
@@ -419,46 +412,56 @@ const EnquiryForm = () => {
                   </div>
                 )}
 
-                {/* Age and Level */}
-                <div className="form-group-row">
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="learner_age">
-                      {fields.studentIsMyself ? 'Your Age' : 'Age'}
-                    </label>
-                    <select
-                      className="form-select"
-                      id="learner_age"
-                      value={fields.students[currentLearnerIndex]?.age || ''}
-                      onChange={(e) => updateStudent(currentLearnerIndex, { age: e.target.value })}
-                      required
-                    >
-                      <option value="">Select Age</option>
-                      {Array.from({ length: 95 }, (_, i) => i + 6).map((age) => (
-                        <option key={age} value={age}>
-                          {age}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
+                {/* Age */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor="learner_age">
+                    {fields.studentIsMyself ? 'Your Age' : 'Age'}
+                  </label>
+                  <select
+                    className="form-select"
+                    id="learner_age"
+                    value={fields.students[currentLearnerIndex]?.age || ''}
+                    onChange={(e) => updateStudent(currentLearnerIndex, { age: e.target.value })}
+                    required
+                  >
+                    <option value="">Select Age</option>
+                    {Array.from({ length: 95 }, (_, i) => i + 6).map((age) => (
+                      <option key={age} value={age}>
+                        {age}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+          )}
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="learner_level">
-                      {fields.studentIsMyself ? 'Your Level' : 'Level'}
-                    </label>
-                    <select
-                      className="form-select"
-                      id="learner_level"
-                      value={fields.students[currentLearnerIndex]?.level || ''}
-                      onChange={(e) => updateStudent(currentLearnerIndex, { level: e.target.value })}
-                      required
-                    >
-                      <option value="">Select Level</option>
-                      <option value="Complete Beginner">Complete Beginner</option>
-                      <option value="Some Experience">Some Experience</option>
-                      <option value="Intermediate">Intermediate</option>
-                      <option value="Advanced">Advanced</option>
-                    </select>
-                  </div>
+          {/* Step 2: Level & Notes */}
+          {step === 2 && subStep === 'levelnotes' && !success && (
+            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+              <h2 className="form-subtitle">
+                {fields.studentIsMyself ? 'Your Learning Level & Goals' : 'Learning Level & Goals'}
+              </h2>
+              
+              <div className="learner-details-card">
+                {/* Level */}
+                <div className="form-group">
+                  <label className="form-label" htmlFor="learner_level">
+                    {fields.studentIsMyself ? 'Your Current Level' : 'Current Level'}
+                  </label>
+                  <select
+                    className="form-select"
+                    id="learner_level"
+                    value={fields.students[currentLearnerIndex]?.level || ''}
+                    onChange={(e) => updateStudent(currentLearnerIndex, { level: e.target.value })}
+                    required
+                  >
+                    <option value="">Select Level</option>
+                    <option value="Complete Beginner">Complete Beginner</option>
+                    <option value="Some Experience">Some Experience</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                  </select>
                 </div>
 
                 {/* Notes */}
@@ -651,7 +654,7 @@ const EnquiryForm = () => {
           {/* Navigation Buttons */}
           {!success && (
             <div className="form-buttons-container">
-              {(step > 1 || (step === 2 && (subStep === 'details' || subStep === 'summary'))) && (
+              {(step > 1 || (step === 2 && (subStep === 'details' || subStep === 'levelnotes' || subStep === 'summary'))) && (
                 <button type="button" className="btn-secondary" onClick={prevStep}>
                   Back
                 </button>

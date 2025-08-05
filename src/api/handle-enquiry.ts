@@ -1,8 +1,9 @@
 import { sendEnquiryConfirmationEmail } from './confirm-enquiry-email';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { notifyOfficeEmail } from './notify-office';
 import { sendMailtrapEmail } from '@utils/sendMailtrapEmail'; // Assuming you have a utility for sending emails
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -23,18 +24,23 @@ export default async function handler(req: any, res: any) {
 
     // Respond with success
     res.status(200).json({ message: 'Enquiry processed and confirmation email sent successfully' });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Error processing enquiry:', error);
 
     // Send error notification email
     try {
       const errorNotificationEmail = 'jim@tempotuition.co.uk'; // Replace with your admin/office email
       const subject = 'Error Processing Enquiry';
+
+      // Narrow the type of `error` to `Error`
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      const errorStack = error instanceof Error ? error.stack : 'No stack trace available';
+
       const message = `
 An error occurred while processing an enquiry:
 
-Error Message: ${error.message || 'Unknown error'}
-Stack Trace: ${error.stack || 'No stack trace available'}
+Error Message: ${errorMessage}
+Stack Trace: ${errorStack}
 
 Payload:
 ${JSON.stringify(req.body, null, 2)}
@@ -48,10 +54,11 @@ Please investigate the issue as soon as possible.
         message,
       });
     } catch (emailError) {
-      console.error('Failed to send error notification email:', emailError);
+      console.error('Error sending notification email:', emailError instanceof Error ? emailError.message : 'Unknown error');
     }
 
     // Respond with error
-    res.status(500).json({ error: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    res.status(500).json({ error: errorMessage });
   }
 }

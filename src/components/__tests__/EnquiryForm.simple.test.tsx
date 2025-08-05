@@ -276,4 +276,86 @@ describe('EnquiryForm Tests', () => {
       expect(screen.getByText('Step 2 of 4')).toBeInTheDocument();
     });
   });
+
+  test('progresses through substeps including levelnotes', async () => {
+    render(<EnquiryForm />);
+
+    // Navigate to instruments step
+    const selfLearnerCard = screen.getByText("I'm the learner").closest('.learner-type-card');
+    await user.click(selfLearnerCard!);
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Which instruments would you like to learn?')).toBeInTheDocument();
+    });
+
+    // Select an instrument and proceed
+    const pianoChip = screen.getByText('Piano');
+    await user.click(pianoChip);
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Your Learning Details')).toBeInTheDocument();
+    });
+
+    // Fill in details and proceed
+    const ageSelect = screen.getByLabelText('Your Age');
+    const levelSelect = screen.getByLabelText('Your Level');
+    await user.selectOptions(ageSelect, '25');
+    await user.selectOptions(levelSelect, 'Complete Beginner');
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Tell us about your goals')).toBeInTheDocument();
+    });
+
+    // Fill in goals and proceed
+    const notesTextarea = screen.getByLabelText('Tell us about your goals');
+    await user.type(notesTextarea, 'Learn jazz piano');
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Summary')).toBeInTheDocument();
+    });
+  });
+
+  test('validation prevents progression without level in levelnotes substep', async () => {
+    render(<EnquiryForm />);
+
+    // Navigate to levelnotes step
+    const selfLearnerCard = screen.getByText("I'm the learner").closest('.learner-type-card');
+    await user.click(selfLearnerCard!);
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Which instruments would you like to learn?')).toBeInTheDocument();
+    });
+
+    const pianoChip = screen.getByText('Piano');
+    await user.click(pianoChip);
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Your Learning Details')).toBeInTheDocument();
+    });
+
+    const ageSelect = screen.getByLabelText('Your Age');
+    await user.selectOptions(ageSelect, '25');
+    await user.click(screen.getByText('Next'));
+
+    await waitFor(() => {
+      expect(screen.getByText('Tell us about your goals')).toBeInTheDocument();
+    });
+
+    const nextButton = screen.getByText('Next');
+    expect(nextButton).toBeDisabled();
+
+    // Fill in level and proceed
+    const levelSelect = screen.getByLabelText('Your Level');
+    await user.selectOptions(levelSelect, 'Complete Beginner');
+
+    await waitFor(() => {
+      expect(nextButton).not.toBeDisabled();
+    });
+  });
 });
