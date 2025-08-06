@@ -1,6 +1,6 @@
 import { sendEnquiryConfirmationEmail } from './confirm-enquiry-email';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { notifyOfficeEmail } from './notify-office';
+import { notifyOfficeEmail } from './notify-office-email';
 import { sendMailtrapEmail } from '@utils/sendMailtrapEmail'; // Assuming you have a utility for sending emails
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
