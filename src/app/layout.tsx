@@ -44,6 +44,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <title>Tempo Tuition - Music Lessons in Bristol</title>
+        <meta name="description" content="Professional music lessons in Bristol for guitar, piano, bass, and more. Expert teachers, flexible scheduling, and lessons for all ages and skill levels." />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
