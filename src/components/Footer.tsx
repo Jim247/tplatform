@@ -27,6 +27,14 @@ export default function Footer() {
                 TERMS
               </Link>
             </li>
+            <li>
+              <Link
+                href="/blog"
+                className="hover:text-link text-white px-4 py-3 flex items-center whitespace-nowrap"
+              >
+                BLOG
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -42,16 +50,23 @@ export default function Footer() {
         </Link>
         {/* Navigation center - absolutely centered */}
         <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <ul className="flex flex-row gap-8 text-white font-medium">
+          <ul className="flex items-center gap-8 text-white font-medium">
             <li>
               <Link
                 href="/terms"
-                className="hover:text-link px-4 py-3 flex items-center whitespace-nowrap"
+                className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
               >
                 TERMS
               </Link>
             </li>
-            {/* Add more links as needed */}
+            <li>
+              <Link
+                href="/blog"
+                className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
+              >
+                BLOG
+              </Link>
+            </li>
           </ul>
         </nav>
         {/* Social right */}
