@@ -1,19 +1,21 @@
-import { sendEnquiryConfirmationEmail } from './confirm-enquiry-email';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { notifyOfficeEmail } from './notify-office';
-import { sendMailtrapEmail } from '@utils/sendMailtrapEmail'; // Assuming you have a utility for sending emails
+import { sendEnquiryConfirmationEmail, EnquiryNotification } from '../../../api/confirm-enquiry-email';
+import { notifyOfficeEmail } from '../../../api/notify-office';
+import { sendMailtrapEmail } from '@utils/sendMailtrapEmail';
+import { NextRequest, NextResponse } from 'next/server';
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
-
+export async function POST(request: NextRequest) {
+  let enquirerDetails: EnquiryNotification | null = null;
+  
   try {
     // Extract the enquirer details from the request body
-    const enquirerDetails = req.body;
+    const rawData = await request.json();
+    enquirerDetails = rawData as EnquiryNotification;
 
     if (!enquirerDetails || !enquirerDetails.email) {
-      return res.status(400).json({ error: 'Invalid request: Missing enquirer details or email' });
+      return NextResponse.json(
+        { error: 'Invalid request: Missing enquirer details or email' },
+        { status: 400 }
+      );
     }
 
     // Pass the enquirer details to the confirmation email function
@@ -23,13 +25,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await notifyOfficeEmail(enquirerDetails);
 
     // Respond with success
-    res.status(200).json({ message: 'Enquiry processed and confirmation email sent successfully' });
+    return NextResponse.json({ 
+      message: 'Enquiry processed and confirmation email sent successfully' 
+    });
   } catch (error) {
     console.error('Error processing enquiry:', error);
 
     // Send error notification email
     try {
-      const errorNotificationEmail = 'jim@tempotuition.co.uk'; // Replace with your admin/office email
+      const errorNotificationEmail = 'jim@tempotuition.co.uk';
       const subject = 'Error Processing Enquiry';
 
       // Narrow the type of `error` to `Error`
@@ -43,7 +47,7 @@ Error Message: ${errorMessage}
 Stack Trace: ${errorStack}
 
 Payload:
-${JSON.stringify(req.body, null, 2)}
+${JSON.stringify(enquirerDetails || 'No data available', null, 2)}
 
 Please investigate the issue as soon as possible.
       `;
@@ -59,6 +63,9 @@ Please investigate the issue as soon as possible.
 
     // Respond with error
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
-    res.status(500).json({ error: errorMessage });
+    return NextResponse.json(
+      { error: errorMessage },
+      { status: 500 }
+    );
   }
 }

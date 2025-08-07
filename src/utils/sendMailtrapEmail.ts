@@ -8,8 +8,8 @@ export interface SendEmailOptions {
 }
 
 export async function sendMailtrapEmail(options: SendEmailOptions) {
-  const apiToken = process.env.MAILTRAP_API_TOKEN;
-  if (!apiToken) throw new Error('MAILTRAP_API_TOKEN is not set in environment variables.');
+  const apiToken = process.env.NEXT_MAILTRAP_API_KEY;
+  if (!apiToken) throw new Error('NEXT_MAILTRAP_API_KEY is not set in environment variables.');
 
   const {
     to,
@@ -17,7 +17,7 @@ export async function sendMailtrapEmail(options: SendEmailOptions) {
     message,
     html,
     category = 'Notification',
-    from = { email: 'no-reply@musospot.co.uk', name: 'MusoSpot' },
+    from = { email: 'jim@tempomobile.co.uk', name: 'MusoSpot' },
   } = options;
 
   const payload: any = {
