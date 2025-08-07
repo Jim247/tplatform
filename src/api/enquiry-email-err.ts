@@ -3,31 +3,31 @@ import { sendMailtrapEmail } from '@/utils/sendMailtrapEmail';
 import { NextResponse } from 'next/server';
 
 export async function enquiryErrorEmail(
-  enquirerDetails: EnquiryNotification | undefined,
+  enquiryDetails: EnquiryNotification | undefined,
   error: unknown
 ) {
   const errorNotificationEmail = 'jim@tempotuition.co.uk';
   const subject = 'Error Processing Enquiry';
 
   const errorMessage =
-    error instanceof Error
-      ? error.message
-      : error
-      ? String(error)
-      : 'Unknown error';
+    error instanceof Error ? error.message : error ? String(error) : 'Unknown error';
   const errorStack =
-    error instanceof Error && error.stack
-      ? error.stack
-      : 'No stack trace available';
+    error instanceof Error && error.stack ? error.stack : 'No stack trace available';
+
+  const customerInfo = enquiryDetails?.booking_owner
+    ? `Customer: ${enquiryDetails.booking_owner.first_name} ${enquiryDetails.booking_owner.last_name} (${enquiryDetails.booking_owner.email})`
+    : 'No customer data available';
 
   const message = `
 An error occurred while processing an enquiry:
 
+${customerInfo}
+
 Error Message: ${errorMessage}
 Stack Trace: ${errorStack}
 
-Payload:
-${JSON.stringify(enquirerDetails || 'No data available', null, 2)}
+Full Payload:
+${JSON.stringify(enquiryDetails || 'No data available', null, 2)}
 
 Please investigate the issue as soon as possible.
   `;
@@ -45,8 +45,5 @@ Please investigate the issue as soon as possible.
     );
   }
 
-  return NextResponse.json(
-    { error: errorMessage },
-    { status: 500 }
-  );
+  return NextResponse.json({ error: errorMessage }, { status: 500 });
 }

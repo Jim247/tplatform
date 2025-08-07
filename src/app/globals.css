@@ -85,7 +85,7 @@
   max-width: 70%;
   height: auto;
   margin: 0 auto;
-  padding:40px;
+  padding: 40px;
   background-color: #2c2c2c;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -130,7 +130,7 @@
 .learner-type-cards {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px; 
+  gap: 16px;
   max-height: fit-content;
   margin-bottom: 24px;
 }
@@ -264,14 +264,13 @@
   .learner-type-cards {
     grid-template-columns: 1fr;
     gap: 12px;
-    color: ffffff
+    color: ffffff;
   }
 
   .learner-type-card {
     min-height: 120px;
     padding: 16px;
   }
-
 
   .form-group-row {
     grid-template-columns: 1fr;
@@ -378,7 +377,7 @@
 }
 
 /* Style the default "Select..." option to look like a placeholder */
-.form-select option[value=""] {
+.form-select option[value=''] {
   color: #6b7280;
   font-style: italic;
 }
@@ -434,7 +433,7 @@
   display: inline-flex;
   align-items: center;
   padding: 12px 20px;
-  background-color  : #f3f4f6;
+  background-color: #f3f4f6;
   border: 2px solid #e5e7eb;
   border-radius: 30px;
   font-size: 0.875rem;
@@ -623,10 +622,9 @@
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .learner-summary-actions {
     width: 100%;
     justify-content: flex-end;
   }
 }
-

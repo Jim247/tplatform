@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Geist, Geist_Mono, Montserrat } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -46,7 +46,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Tempo Tuition - Music Lessons in Bristol</title>
-        <meta name="description" content="Professional music lessons in Bristol for guitar, piano, bass, and more. Expert teachers, flexible scheduling, and lessons for all ages and skill levels." />
+        <meta
+          name="description"
+          content="Professional music lessons in Bristol for guitar, piano, bass, and more. Expert teachers, flexible scheduling, and lessons for all ages and skill levels."
+        />
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body
@@ -54,9 +57,7 @@ export default function RootLayout({
       >
         {isContactPage && isMobile ? (
           // Full-page layout for contact on mobile
-          <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-            {children}
-          </div>
+          <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>{children}</div>
         ) : (
           // Normal layout for other pages or contact on desktop
           <>

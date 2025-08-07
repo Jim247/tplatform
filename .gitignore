@@ -33,6 +33,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# scripts folder for database inspection and development utilities
+/scripts
+
 # vercel
 .vercel
 
