@@ -1,11 +1,12 @@
-import { sendEnquiryConfirmationEmail, EnquiryNotification } from '../../../api/confirm-enquiry-email';
+import { sendEnquiryConfirmationEmail } from '../../../api/confirm-enquiry-email';
 import { notifyOfficeEmail } from '../../../api/notify-office';
-import { sendMailtrapEmail } from '@utils/sendMailtrapEmail';
 import { NextRequest, NextResponse } from 'next/server';
+import { EnquiryNotification } from '@/constants/email';
+import { enquiryErrorEmail } from '@/api/enquiry-email-err';
 
 export async function POST(request: NextRequest) {
-  let enquirerDetails: EnquiryNotification | null = null;
-  
+  let enquirerDetails: EnquiryNotification | undefined;
+
   try {
     // Extract the enquirer details from the request body
     const rawData = await request.json();
@@ -25,43 +26,19 @@ export async function POST(request: NextRequest) {
     await notifyOfficeEmail(enquirerDetails);
 
     // Respond with success
-    return NextResponse.json({ 
-      message: 'Enquiry processed and confirmation email sent successfully' 
+    return NextResponse.json({
+      message: 'Enquiry processed and confirmation email sent successfully'
     });
   } catch (error) {
     console.error('Error processing enquiry:', error);
 
-    // Send error notification email
+    // Try to send error notification email, but always return the error response
     try {
-      const errorNotificationEmail = 'jim@tempotuition.co.uk';
-      const subject = 'Error Processing Enquiry';
-
-      // Narrow the type of `error` to `Error`
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      const errorStack = error instanceof Error ? error.stack : 'No stack trace available';
-
-      const message = `
-An error occurred while processing an enquiry:
-
-Error Message: ${errorMessage}
-Stack Trace: ${errorStack}
-
-Payload:
-${JSON.stringify(enquirerDetails || 'No data available', null, 2)}
-
-Please investigate the issue as soon as possible.
-      `;
-
-      await sendMailtrapEmail({
-        to: errorNotificationEmail,
-        subject,
-        message,
-      });
+      await enquiryErrorEmail(enquirerDetails, error);
     } catch (emailError) {
-      console.error('Error sending notification email:', emailError instanceof Error ? emailError.message : 'Unknown error');
+      console.error('Error sending error notification email:', emailError);
     }
 
-    // Respond with error
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
     return NextResponse.json(
       { error: errorMessage },

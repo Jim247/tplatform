@@ -1,22 +1,5 @@
 import { sendMailtrapEmail } from '@utils/sendMailtrapEmail';
-
-// Applicant sub type, for notifications
-export type EnquiryNotification = {
-  id: string;
-  email: string;
-  phone?: string;
-  first_name: string;
-  last_name: string;
-  username: string;
-  instruments?: string[];
-  students?: {
-    name: string;
-    age: string;
-    level: string;
-    notes?: string;
-    instruments: string[];
-  }[]; // Include student details if submitting on behalf
-};
+import { EnquiryNotification } from '@constants/email';
 
 export const notifyOfficeEmail = async (
   enquirer: EnquiryNotification
@@ -29,8 +12,7 @@ New enquiry received:
 Name: ${enquirer.first_name} ${enquirer.last_name}
 Email: ${enquirer.email}
 Phone: ${enquirer.phone || 'N/A'}
-Username: ${enquirer.username}
-Instruments: ${enquirer.instruments?.join(', ') || 'N/A'}
+Instruments: ${enquirer.instruments?.join(', ') || 'N/A - Enquirer is parent or guardian'}
 
 ${
   enquirer.students && enquirer.students.length > 0
@@ -52,7 +34,6 @@ Please follow up with the enquirer as soon as possible.
 `;
 
   try {
-    // Send a copy to the office
     await sendMailtrapEmail({ to: officeEmail, subject: subjectToOffice, message: messageToOffice });
   } catch (emailErr) {
     console.error(`Error sending email to the office:`, emailErr);

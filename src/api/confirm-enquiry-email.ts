@@ -1,14 +1,5 @@
 import { sendMailtrapEmail } from '@utils/sendMailtrapEmail';
-
-export type EnquiryNotification = {
-  id: string;
-  email: string;
-  phone?: string;
-  first_name: string;
-  last_name: string;
-  username: string;
-  instruments?: string[];
-};
+import { EnquiryNotification } from '@/constants/email';
 
 export const sendEnquiryConfirmationEmail = async (
   enquirer: EnquiryNotification

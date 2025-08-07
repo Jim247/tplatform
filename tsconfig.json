@@ -23,6 +23,7 @@
       "@/*": ["./src/*"],
       "@images/*": ["./public/*"],
       "@components/*": ["./src/components/*"],
+      "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"]
     },
     "types": ["jest", "node"]

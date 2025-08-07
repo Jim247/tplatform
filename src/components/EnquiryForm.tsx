@@ -256,7 +256,10 @@ const EnquiryForm = () => {
 
       // Prepare the enquirer details
       const enquirerDetails = {
-        name: `${fields.first_name} ${fields.last_name}`,
+        id: Date.now().toString(),
+        first_name: fields.first_name,
+        last_name: fields.last_name,
+        username: `${fields.first_name}${fields.last_name}`.toLowerCase().replace(/\s+/g, ''),
         email: fields.email,
         phone: fields.phone,
         postcode: fields.postcode,
@@ -265,9 +268,10 @@ const EnquiryForm = () => {
         region: geoPoint?.region,
         city: geoPoint?.city,
         geopoint_consent: fields.geopoint_consent,
+        instruments: fields.studentIsMyself ? fields.students[0]?.instruments || [] : [],
         students: fields.students.length > 0 ? fields.students : [
           {
-            name: `${fields.first_name} ${fields.last_name}`,
+            name: fields.studentIsMyself ? `${fields.first_name} ${fields.last_name}` : fields.students[0]?.name || '',
             age: fields.students[0]?.age || '',
             level: fields.students[0]?.level || '',
             notes: fields.students[0]?.notes || '',
@@ -293,7 +297,7 @@ const EnquiryForm = () => {
       setSuccess('Enquiry submitted successfully! We will be in touch soon.');
       setTimeout(() => {
         window.location.href = '/';
-      }, 1500);
+      }, 3000);
     } catch (err: unknown) {
       const errorMsg = err instanceof Error ? err.message : String(err);
       setError(errorMsg);
