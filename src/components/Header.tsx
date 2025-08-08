@@ -58,10 +58,10 @@ export default function Header() {
           </div>
         </Link>
         {/* Text center */}
-          <Link href="/">
-        <div className="flex flex-row justify-center items-center">
-          <span className="text-center whitespace-nowrap uppercase">TEMPO TUITION</span>
-        </div>
+        <Link href="/">
+          <div className="flex flex-row justify-center items-center">
+            <span className="text-center whitespace-nowrap uppercase">TEMPO TUITION</span>
+          </div>
         </Link>
         {/* Hamburger right */}
         <div className="flex justify-end">
@@ -131,9 +131,7 @@ export default function Header() {
                     aria-controls="mobile-instruments-submenu"
                   >
                     <div className="flex flex-row items-center gap-2 w-full justify-start">
-                      <span
-                        className={mobileInstrumentsOpen ? "text-yellow-300" : "text-white"}
-                      >
+                      <span className={mobileInstrumentsOpen ? 'text-yellow-300' : 'text-white'}>
                         Instruments
                       </span>
                       <svg
@@ -141,7 +139,7 @@ export default function Header() {
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke={mobileInstrumentsOpen ? "#fde047" : "currentColor"} // yellow-300 when open
+                        stroke={mobileInstrumentsOpen ? '#fde047' : 'currentColor'} // yellow-300 when open
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -244,11 +242,11 @@ ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-e
 
         {/* Center logo - absolutely centered with text */}
         <Link href="/">
-        <div className="flex justify-center items-center gap-x-2 select-none">
-          <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TEMPO</span>
-          <Image src="/logo.svg" alt="Tempo Tuition Logo" width={48} height={48} />
-          <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TUITION</span>
-        </div>
+          <div className="flex justify-center items-center gap-x-2 select-none">
+            <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TEMPO</span>
+            <Image src="/logo.svg" alt="Tempo Tuition Logo" width={48} height={48} />
+            <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TUITION</span>
+          </div>
         </Link>
 
         {/* Right navigation */}

@@ -106,18 +106,21 @@ export default function Reviews({
                 )}
 
                 {/* 5-Star Rating */}
-                <div className="flex mb-4 transition-transform duration-200" aria-label="5 star rating">
-                    {[...Array(5)].map((_, i) => (
-                      <span
+                <div
+                  className="flex mb-4 transition-transform duration-200"
+                  aria-label="5 star rating"
+                >
+                  {[...Array(5)].map((_, i) => (
+                    <span
                       key={i}
                       style={{
                         filter: 'drop-shadow(0 0.5px 1px rgba(0,0,0,0.12))',
                         display: 'inline-block',
                       }}
-                      >
+                    >
                       <Icon path={mdiStar} size={'30px'} color="#FFD700" />
-                      </span>
-                    ))}
+                    </span>
+                  ))}
                 </div>
 
                 {/* Review Quote */}

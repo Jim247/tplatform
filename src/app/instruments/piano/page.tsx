@@ -55,10 +55,7 @@ export default function Home() {
       </WidgetWrapper>
       <SectionDivider icon={mdiPiano} />
       <WidgetWrapper>
-          <CTA 
-              icon={mdiHelp}
-              ctaQuestion='Heard Enough Already?'
-              />
+        <CTA icon={mdiHelp} ctaQuestion="Heard Enough Already?" />
         <ImageBoxes
           boxes={[
             {
@@ -194,11 +191,7 @@ export default function Home() {
         />
       </WidgetWrapper>
       <PricingWidget />
-            <CTA 
-            icon={mdiHelp}
-            ctaQuestion='Time to book?'
-            />
-          </>
+      <CTA icon={mdiHelp} ctaQuestion="Time to book?" />
     </>
   );
 }

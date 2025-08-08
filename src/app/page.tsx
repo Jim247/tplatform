@@ -54,10 +54,7 @@ export default function Home() {
         <Reviews reviews={reviewText} />
         <PricingWidget />
       </WidgetWrapper>
-         <CTA 
-            icon={mdiHelp}
-            ctaQuestion='Time to book?'
-            />
+      <CTA icon={mdiHelp} ctaQuestion="Time to book?" />
     </>
   );
 }

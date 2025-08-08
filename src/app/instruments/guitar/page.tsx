@@ -11,7 +11,7 @@ import {
   mdiMicrophone,
   mdiPencil,
   mdiGuitarPickOutline,
-  mdiHelp
+  mdiHelp,
 } from '@mdi/js';
 import FAQs from '@/components/FAQs';
 import ImageBoxes from '@/components/ImageBoxes';
@@ -53,10 +53,7 @@ export default function Home() {
           iconClassName="text-yellow-300 mb-2"
         />
       </WidgetWrapper>
-      <CTA 
-      icon={mdiHelp}
-      ctaQuestion='Heard Enough Already?'
-      />
+      <CTA icon={mdiHelp} ctaQuestion="Heard Enough Already?" />
       <SectionDivider icon={mdiGuitarPick} />
       <WidgetWrapper>
         <ImageBoxes
@@ -194,11 +191,7 @@ export default function Home() {
         />
       </WidgetWrapper>
       <PricingWidget />
-      <CTA 
-      icon={mdiHelp}
-      ctaQuestion='Time to book?'
-      />
+      <CTA icon={mdiHelp} ctaQuestion="Time to book?" />
     </>
-    
   );
 }

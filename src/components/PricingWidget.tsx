@@ -46,10 +46,10 @@ export default function PricingWidget() {
               Flexible rescheduling
             </li>
           </ul>
-              <a href ='/book'>
-          <button className="bg-yellow-300 hover:bg-yellow-300 text-black font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
-            Book Block Lessons
-          </button>
+          <a href="/book">
+            <button className="bg-yellow-300 hover:bg-yellow-300 text-black font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
+              Book Block Lessons
+            </button>
           </a>
         </div>
 
@@ -82,11 +82,11 @@ export default function PricingWidget() {
               Try before you commit
             </li>
           </ul>
-          <a href ='/book'>
-          <button className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
-            Book Single Lesson
-          </button>
-            </a>
+          <a href="/book">
+            <button className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
+              Book Single Lesson
+            </button>
+          </a>
         </div>
 
         {/* Custom Packages */}
@@ -117,10 +117,10 @@ export default function PricingWidget() {
               Personalised plans
             </li>
           </ul>
-          <a href ='/book'>
-          <button className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
-            Enquire Now
-          </button>
+          <a href="/book">
+            <button className="bg-gray-600 hover:bg-gray-500 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 w-full">
+              Enquire Now
+            </button>
           </a>
         </div>
       </div>
