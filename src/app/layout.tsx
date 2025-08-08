@@ -17,10 +17,11 @@ const geistMono = Geist_Mono({
 });
 
 const montserrat = Montserrat({
-  variable: '--font-montserrat',
   subsets: ['latin'],
-  weight: ['700'],
-});
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-montserrat',
+})
+
 
 export default function RootLayout({
   children,
