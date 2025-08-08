@@ -71,7 +71,7 @@ export default function Reviews({
         ref={scrollRef}
         className="
           flex gap-6 overflow-x-auto pb-4 hide-scrollbar
-          sm:grid sm:grid-cols-2 sm:overflow-x-visible sm:pb-0
+          md:grid md:grid-cols-2 md:overflow-x-visible md:pb-0
           lg:grid-cols-4
         "
         style={{ scrollSnapType: 'x mandatory' }}
@@ -85,7 +85,7 @@ export default function Reviews({
           return (
             <div
               key={idx}
-              className="flex-shrink-0 w-[380px] sm:w-auto sm:flex-1"
+              className="flex-shrink-0 w-[280px] sm:w-auto sm:flex-1"
               style={{ scrollSnapAlign: 'start' }}
             >
               <div className="flex flex-col rounded-xl bg-white border border-gray-200 hover:border-yellow-300 transition-all duration-300 hover:shadow-xl w-full h-[380px] relative overflow-hidden group">

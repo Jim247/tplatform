@@ -282,7 +282,8 @@ const EnquiryForm = () => {
           return '2';
       }
     }
-    return step > 2 ? String(step + 3) : String(step);
+    if (step === 3) return '6';
+    return String(step);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -369,7 +370,7 @@ const EnquiryForm = () => {
         </a>
         <br />
         <span className="block text-base font-normal mt-2 text-gray-300">
-          Step {getStepNumber()} of 5
+          Step {getStepNumber()} of 6
         </span>
       </div>
 
