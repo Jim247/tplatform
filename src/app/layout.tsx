@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const isContactPage = pathname === '/contact';
+  const isBookPage = pathname === '/book';
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -55,11 +55,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
-        {isContactPage && isMobile ? (
-          // Full-page layout for contact on mobile
+        {(isBookPage) && isMobile ? (
+          // Full-page layout for contact/book on mobile
           <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>{children}</div>
         ) : (
-          // Normal layout for other pages or contact on desktop
+          // Normal layout for other pages or contact/book on desktop
           <>
             <Header />
             <div className="p-2">
