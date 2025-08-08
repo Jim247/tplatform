@@ -20,7 +20,7 @@ export default function Instruments({ className = '' }: { className?: string }) 
   ];
 
   return (
-    <div className={`container max-w-7xl mx-auto px-6 py-16 ${className}`}>
+    <div className={`container max-w-7xl mx-auto px-2 py-16 ${className}`}>
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
           Professional Music Tuition
@@ -33,7 +33,7 @@ export default function Instruments({ className = '' }: { className?: string }) 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
         {instruments.map((instrument, index) => (
           <Link key={index} href={instrument.link} className="group">
-            <div className="flex flex-col items-center text-center p-6 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-yellow-300/50 transition-all duration-300 hover:bg-gray-800/50 min-h-[160px] justify-center">
+            <div className="flex flex-col items-center text-center p-6 bg-gray-800/30 rounded-xl border border-gray-700/50 hover:border-yellow-300-70 transition-all duration-300 hover:bg-gray-800/50 min-h-[160px] justify-center">
               <Icon
                 path={instrument.icon}
                 size={2.5}

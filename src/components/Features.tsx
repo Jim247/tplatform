@@ -64,7 +64,7 @@ const Features: React.FC<FeaturesProps> = ({
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group"
           >
             <div className="flex items-start gap-4">
               {/* Icon column */}

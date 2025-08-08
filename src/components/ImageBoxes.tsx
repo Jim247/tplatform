@@ -17,7 +17,7 @@ const ImageBoxes: React.FC<ImageBoxesProps> = ({ boxes, className = '' }) => {
       {boxes.map((box, index) => (
         <div
           key={index}
-          className="bg-gray-800/30 border border-gray-700/50 rounded-xl hover:border-yellow-300/50 transition-all duration-300 hover:bg-gray-800/50 overflow-hidden group"
+          className="bg-gray-800/30 border border-gray-700/50 rounded-xl hover:border-yellow-300-70 transition-all duration-300 hover:bg-gray-800/50 overflow-hidden group"
         >
           <div className="w-full aspect-square relative overflow-hidden">
             <Image

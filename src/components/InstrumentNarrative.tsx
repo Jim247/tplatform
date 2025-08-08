@@ -28,9 +28,9 @@ export default function InstrumentNarrative({
   iconClassName = 'text-yellow-300 mb-4',
 }: NarrativeProps) {
   return (
-    <section className="max-w-6xl mx-auto my-16 px-6">
+    <section className="max-w-6xl mx-auto my-16">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group">
           {icon1 && (
             <div className="flex justify-center mb-6">
               <Icon path={icon1} size={iconSize} className={iconClassName} />
@@ -40,7 +40,7 @@ export default function InstrumentNarrative({
           <p className="text-gray-300 leading-relaxed">{text1}</p>
         </div>
 
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group">
           {icon2 && (
             <div className="flex justify-center mb-6">
               <Icon path={icon2} size={iconSize} className={iconClassName} />
@@ -50,7 +50,7 @@ export default function InstrumentNarrative({
           <p className="text-gray-300 leading-relaxed">{text2}</p>
         </div>
 
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group">
           {icon3 && (
             <div className="flex justify-center mb-6">
               <Icon path={icon3} size={iconSize} className={iconClassName} />

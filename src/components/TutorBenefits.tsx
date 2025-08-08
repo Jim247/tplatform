@@ -64,7 +64,7 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group"
           >
             <div className="flex flex-col items-center text-center space-y-6">
               <div className="p-4 bg-yellow-300/10 rounded-xl group-hover:bg-yellow-300/20 transition-colors duration-300">
@@ -82,7 +82,7 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group"
           >
             <div className="flex items-start space-x-4">
               <div className="p-3 bg-yellow-300/10 rounded-lg flex-shrink-0 group-hover:bg-yellow-300/20 transition-colors duration-300">

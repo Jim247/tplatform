@@ -363,7 +363,7 @@ const EnquiryForm = () => {
       <div className="form-header">
         <a href="./" className="flex flex-col items-center gap-3 group">
           <Logo height={100} width={100} />
-          <span className="text-yellow-300 hover:text-yellow-300 transition-colors duration-200 font-medium pb-5">
+          <span className="text-yellow-300 hover:text-yellow-400 transition-colors duration-200 font-medium pb-10">
             Back to Homepage
           </span>
         </a>
@@ -393,7 +393,7 @@ const EnquiryForm = () => {
                     className={`bg-gray-800/30 border-2 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 hover:bg-gray-800/50 ${
                       fields.studentIsMyself
                         ? 'border-yellow-300 bg-yellow-300/10'
-                        : 'border-gray-700/50 hover:border-yellow-300/50'
+                        : 'border-gray-700/50 hover:border-yellow-300-70'
                     }`}
                     onClick={() => {
                       setFields((prev) => ({
@@ -426,7 +426,7 @@ const EnquiryForm = () => {
                     className={`bg-gray-800/30 border-2 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 hover:bg-gray-800/50 ${
                       !fields.studentIsMyself
                         ? 'border-yellow-300 bg-yellow-300/10'
-                        : 'border-gray-700/50 hover:border-yellow-300/50'
+                        : 'border-gray-700/50 hover:border-yellow-300-70'
                     }`}
                     onClick={() => {
                       setFields((prev) => ({
@@ -617,7 +617,7 @@ const EnquiryForm = () => {
                 {fields.students.map((student, index) => (
                   <div
                     key={index}
-                    className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 transition-all duration-300"
+                    className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300-70 transition-all duration-300"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <h3 className="text-lg font-semibold text-white">
@@ -666,7 +666,7 @@ const EnquiryForm = () => {
                 <div className="text-center">
                   <button
                     type="button"
-                    className="bg-gray-700/50 hover:bg-gray-600/50 text-white px-6 py-3 rounded-lg transition-colors border border-gray-600/50 hover:border-yellow-300/50"
+                    className="bg-gray-700/50 hover:bg-gray-600/50 text-white px-6 py-3 rounded-lg transition-colors border border-gray-600/50 hover:border-yellow-300-70"
                     onClick={() => addStudent()}
                   >
                     + Add Another Learner

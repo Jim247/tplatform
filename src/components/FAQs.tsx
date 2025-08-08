@@ -53,7 +53,7 @@ const FAQs: React.FC<FAQsProps> = ({
         {(title || subtitle || tagline) && (
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
-              <div className="bg-yellow-300/10 p-4 rounded-xl">
+              <div className="bg-yellow-300/10 rounded-xl">
                 <Icon path={icon} size={3} className="text-yellow-300" />
               </div>
             </div>
@@ -74,7 +74,7 @@ const FAQs: React.FC<FAQsProps> = ({
             return (
               <div
                 key={idx}
-                className={`bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 transition-all duration-300 ${classes.panel || ''}`}
+                className={`bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/70 transition-all duration-300 ${classes.panel || ''}`}
               >
                 <button
                   className="flex items-center w-full text-left focus:outline-none group"

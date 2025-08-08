@@ -3,7 +3,7 @@ import { mdiAccountMultiple, mdiCalendarCheck, mdiStar, mdiCheckCircle } from '@
 
 export default function PricingWidget() {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-16">
+    <section className="max-w-6xl mx-auto px-2 py-16">
       <div className="text-center mb-12">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Lesson Pricing</h2>
         <p className="text-lg text-gray-300">
@@ -52,7 +52,7 @@ export default function PricingWidget() {
         </div>
 
         {/* Single Lesson */}
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 flex flex-col text-center group hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 flex flex-col text-center group hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300">
           <div className="mb-6 flex justify-center">
             <Icon path={mdiCalendarCheck} size={2.5} className="text-yellow-300" />
           </div>
@@ -86,7 +86,7 @@ export default function PricingWidget() {
         </div>
 
         {/* Custom Packages */}
-        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 flex flex-col text-center group hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 flex flex-col text-center group hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300">
           <div className="mb-6 flex justify-center">
             <Icon path={mdiStar} size={2.5} className="text-yellow-300" />
           </div>
