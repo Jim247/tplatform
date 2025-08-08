@@ -276,9 +276,9 @@
 @media (max-width: 768px) {
   html,
   body {
-    height: 100%;
+    height: auto;
     min-height: 100%;
-    overflow: hidden;
+    /* overflow: hidden; removed to allow page scrolling */
   }
 
   .form-container {
@@ -294,6 +294,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
   }
 
   .form-header {
@@ -311,6 +315,11 @@
     padding-right: 0;
     display: flex;
     flex-direction: column;
+  }
+  /* Make learner summary scrollable */
+  .form-content .space-y-6 {
+    overflow-y: auto !important;
+    max-height: calc(100vh - 200px) !important;
   }
 
   .form-section {
