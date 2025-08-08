@@ -64,10 +64,10 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 hover:border-yellow-300-70 hover:bg-gray-800/50 transition-all duration-300 group"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 hover:border-yellow-300/70 transition-all duration-300 group"
           >
             <div className="flex flex-col items-center text-center space-y-6">
-              <div className="p-4 bg-yellow-300/10 rounded-xl group-hover:bg-yellow-300/20 transition-colors duration-300">
+              <div className="p-4 bg-yellow-300/10 rounded-xl hover:border-yellow-300/70 transition-colors duration-300">
                 <Icon path={benefit.icon} size={2.5} className="text-yellow-300" />
               </div>
               <h3 className="text-xl font-bold text-white leading-tight">{benefit.title}</h3>

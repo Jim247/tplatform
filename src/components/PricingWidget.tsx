@@ -126,7 +126,7 @@ export default function PricingWidget() {
       </div>
 
       <div className="text-center mt-12">
-        <p className="text-gray-400 text-sm">
+        <p className="text-gray-100">
           All lessons include professional tuition and personalized learning plans
         </p>
       </div>

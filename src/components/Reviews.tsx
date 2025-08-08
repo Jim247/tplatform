@@ -1,6 +1,5 @@
 'use client';
-import { mdiStar } from '@mdi/js';
-import Icon from '@mdi/react';
+import Image from 'next/image';
 import { useRef, useState, useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 
@@ -117,16 +116,14 @@ export default function Reviews({
                         filter: 'drop-shadow(0 0.5px 1px rgba(0,0,0,0.12))',
                         display: 'inline-block',
                       }}
-                    >
-                      <Icon path={mdiStar} size={'30px'} color="#FFD700" />
-                    </span>
+                    ></span>
                   ))}
                 </div>
 
                 {/* Review Quote */}
                 {reviewText && (
                   <blockquote className="flex-auto mb-4">
-                    <p className="text-gray-700 italic leading-relaxed">
+                    <p className="text-gray-700 text-lg leading-relaxed">
                       &quot;{displayText}&quot;
                     </p>
                     {isLong && !isExpanded && (
@@ -154,14 +151,14 @@ export default function Reviews({
                     {reviewerName && <p className="font-semibold text-gray-900">{reviewerName}</p>}
                     <span className="text-sm text-gray-600">via Google My Business</span>
                   </div>
-                  {IconComponent && reviewLink && (
+                  {reviewLink && (
                     <a
                       href={reviewLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 hover:text-amber-600 transition-colors"
                     >
-                      <IconComponent size={24} />
+                      <Image src="/google-logo.svg" alt="google logo" width={30} height={30} />
                     </a>
                   )}
                 </div>

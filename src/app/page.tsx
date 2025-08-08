@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <VideoHero videoSrc="/child-guitar-trimmed.mp4">
-        <div className="bg-black/40 p-6 rounded-lg flex flex-col items-center">
+        <div className="bg-gray-700/90 p-6 rounded-lg flex flex-col items-center">
           <LogoText width={200} height={200} text={'TEMPO TUITION'} />
           <ButtonBookNow />
         </div>
