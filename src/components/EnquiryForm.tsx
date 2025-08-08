@@ -358,10 +358,15 @@ const EnquiryForm = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container justify-center items-center">
       {/* Header Section */}
       <div className="form-header">
+        <a href='./'>
         <Logo height={100} width={100} />
+        </a>
+         <a className='font-semibold pb-5' href='./'>
+       BACK TO HOMEPAGE
+        </a>
         <h1 className="form-title">
           Make An Enquiry
           <br />
