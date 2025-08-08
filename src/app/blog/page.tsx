@@ -1,6 +1,10 @@
 import { getAllPosts } from '@/lib/blog';
 import Link from 'next/link';
 import formatUkDate from '@/utils/FormatUkDate';
+import { blogMetadata } from '@/utils/metadata';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = blogMetadata;
 
 export default function BlogPage() {
   const posts = getAllPosts();

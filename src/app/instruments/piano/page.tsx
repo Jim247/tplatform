@@ -21,6 +21,10 @@ import { mdiAccountMusic, mdiSchool } from '@mdi/js';
 import SectionDivider from '@/components/SectionDivider';
 import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
+import { createInstrumentMetadata } from '@/utils/metadata';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createInstrumentMetadata('piano');
 
 export default function Home() {
   return (

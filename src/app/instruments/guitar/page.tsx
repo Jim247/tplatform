@@ -21,6 +21,10 @@ import { mdiGuitarPick, mdiAccountMusic, mdiSchool, mdiGuitarAcoustic } from '@m
 import SectionDivider from '@/components/SectionDivider';
 import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
+import { createInstrumentMetadata } from '@/utils/metadata';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createInstrumentMetadata('guitar');
 
 export default function Home() {
   return (

@@ -8,6 +8,10 @@ import Instruments from '@/components/Instruments';
 import ImageBoxes from '@/components/ImageBoxes';
 import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
+import { homePageMetadata } from '@/utils/metadata';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = homePageMetadata;
 
 export default function Home() {
   return (

@@ -21,10 +21,10 @@ export default function Footer() {
           <ul className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row gap-6 text-base font-medium justify-center">
             <li>
               <Link
-                href="/terms"
+                href="/privacy"
                 className="hover:text-link text-white px-4 py-3 flex items-center whitespace-nowrap"
               >
-                TERMS
+                PRIVACY & TERMS
               </Link>
             </li>
             <li>
@@ -53,10 +53,10 @@ export default function Footer() {
           <ul className="flex items-center gap-8 text-white font-medium">
             <li>
               <Link
-                href="/terms"
+                href="/privacy"
                 className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
               >
-                TERMS
+                  PRIVACY & TERMS
               </Link>
             </li>
             <li>

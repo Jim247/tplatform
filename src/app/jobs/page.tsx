@@ -2,6 +2,10 @@ import FAQs from '@/components/FAQs';
 import SectionDivider from '@/components/SectionDivider';
 import TutorBenefits from '@/components/TutorBenefits';
 import { mdiChatQuestion } from '@mdi/js';
+import { jobsMetadata } from '@/utils/metadata';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = jobsMetadata;
 export default function Jobs() {
   return (
     <>
