@@ -55,7 +55,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
-        {(isBookPage) && isMobile ? (
+        {isBookPage && isMobile ? (
           // Full-page layout for contact/book on mobile
           <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>{children}</div>
         ) : (

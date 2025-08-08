@@ -20,6 +20,7 @@ import InstrumentNarrative from '@/components/InstrumentNarrative';
 import { mdiGuitarPick, mdiAccountMusic, mdiSchool, mdiGuitarAcoustic } from '@mdi/js';
 import SectionDivider from '@/components/SectionDivider';
 import PricingWidget from '@/components/PricingWidget';
+import ButtonBookNow from '@/components/BookNowButton';
 
 export default function Home() {
   return (
@@ -27,9 +28,7 @@ export default function Home() {
       <VideoHero videoSrc="/child-guitar-trimmed.mp4">
         <div className="bg-black/40 p-6 rounded-lg flex flex-col items-center">
           <LogoText width={200} height={200} text={'GUITAR LESSONS'} />
-          <button className="mt-4 px-8 py-3 bg-yellow-300 text-black font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition">
-            Book Now
-          </button>
+      <ButtonBookNow/>
         </div>
       </VideoHero>
       <SectionDivider icon={mdiGuitarPick} />
