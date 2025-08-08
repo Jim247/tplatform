@@ -46,7 +46,7 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 w-full px-4 py-4 text-white font-bold text-2xl font-[Montserrat] transition-colors duration-300
-        ${scrolled ? 'bg-[#444444]/80 backdrop-blur' : 'bg-[#444444]'}
+        ${scrolled ? 'bg-[#444444]/90 backdrop-blur' : 'bg-[#444444]'}
       `}
     >
       {/* Mobile header */}
