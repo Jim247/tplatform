@@ -13,7 +13,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
 
   return (
     <main className="max-w-4xl mx-auto py-12 px-6">
-      <Link href="/blog" className="text-amber-400 hover:text-amber-300 mb-6 inline-block">
+      <Link href="/blog" className="text-yellow-300 hover:text-yellow-300 mb-6 inline-block">
         ← Back to Blog
       </Link>
       <article className="space-y-6">

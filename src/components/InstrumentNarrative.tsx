@@ -25,36 +25,40 @@ export default function InstrumentNarrative({
   text3,
   icon3,
   iconSize = 2,
-  iconClassName = 'text-yellow-300 mb-2',
+  iconClassName = 'text-yellow-300 mb-4',
 }: NarrativeProps) {
   return (
-    <section className="max-w-6xl mx-auto my-12 px-4 text-center flex flex-col lg:flex-row gap-10 lg:gap-8">
-      <div className="flex-1 transition-transform duration-200 hover:scale-105 bg-grey border border-gray-200 rounded-xl p-6">
-        {icon1 && (
-          <div className="flex justify-center mb-2">
-            <Icon path={icon1} size={iconSize} className={iconClassName} />
-          </div>
-        )}
-        <h2 className="text-xl font-bold text-yellow-300 mb-2">{headline1}</h2>
-        <p className="text-white text-lg">{text1}</p>
-      </div>
-      <div className="flex-1 transition-transform duration-200 hover:scale-105 bg-grey border border-gray-200 rounded-xl p-6">
-        {icon2 && (
-          <div className="flex justify-center mb-2">
-            <Icon path={icon2} size={iconSize} className={iconClassName} />
-          </div>
-        )}
-        <h3 className="text-xl font-bold text-yellow-300 mb-2">{headline2}</h3>
-        <p className="text-white text-lg">{text2}</p>
-      </div>
-      <div className="flex-1 transition-transform duration-200 hover:scale-105 bg-grey border border-gray-200 rounded-xl p-6">
-        {icon3 && (
-          <div className="flex justify-center mb-2">
-            <Icon path={icon3} size={iconSize} className={iconClassName} />
-          </div>
-        )}
-        <h3 className="text-xl font-bold text-yellow-300 mb-2">{headline3}</h3>
-        <p className="text-white text-lg">{text3}</p>
+    <section className="max-w-6xl mx-auto my-16 px-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+          {icon1 && (
+            <div className="flex justify-center mb-6">
+              <Icon path={icon1} size={iconSize} className={iconClassName} />
+            </div>
+          )}
+          <h2 className="text-xl font-bold text-white mb-4 leading-tight">{headline1}</h2>
+          <p className="text-gray-300 leading-relaxed">{text1}</p>
+        </div>
+
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+          {icon2 && (
+            <div className="flex justify-center mb-6">
+              <Icon path={icon2} size={iconSize} className={iconClassName} />
+            </div>
+          )}
+          <h3 className="text-xl font-bold text-white mb-4 leading-tight">{headline2}</h3>
+          <p className="text-gray-300 leading-relaxed">{text2}</p>
+        </div>
+
+        <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 text-center hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group">
+          {icon3 && (
+            <div className="flex justify-center mb-6">
+              <Icon path={icon3} size={iconSize} className={iconClassName} />
+            </div>
+          )}
+          <h3 className="text-xl font-bold text-white mb-4 leading-tight">{headline3}</h3>
+          <p className="text-gray-300 leading-relaxed">{text3}</p>
+        </div>
       </div>
     </section>
   );

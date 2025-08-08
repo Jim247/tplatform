@@ -6,12 +6,12 @@ export const metadata: Metadata = privacyMetadata;
 export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto py-12 px-6 text-white">
-      <h1 className="text-4xl font-bold mb-8 text-amber-300">Privacy Policy & Terms of Service</h1>
+      <h1 className="text-4xl font-bold mb-8 text-yellow-300">Privacy Policy & Terms of Service</h1>
       <p className="text-gray-300 mb-8">Last updated: {new Date().toLocaleDateString('en-GB')}</p>
 
       {/* Privacy Policy Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6 text-amber-300">Privacy Policy</h2>
+        <h2 className="text-3xl font-bold mb-6 text-yellow-300">Privacy Policy</h2>
 
         <div className="space-y-6">
           <div>
@@ -140,7 +140,7 @@ export default function PrivacyPage() {
 
       {/* Terms of Service Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6 text-amber-300">Terms of Service</h2>
+        <h2 className="text-3xl font-bold mb-6 text-yellow-300">Terms of Service</h2>
 
         <div className="space-y-6">
           <div>
@@ -201,7 +201,7 @@ export default function PrivacyPage() {
 
       {/* Contact Section */}
       <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6 text-amber-300">Contact Us</h2>
+        <h2 className="text-3xl font-bold mb-6 text-yellow-300">Contact Us</h2>
         <div className="space-y-4">
           <p className="text-gray-200 leading-relaxed">
             If you have any questions about this privacy policy, our terms of service, or wish to

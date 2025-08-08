@@ -32,21 +32,21 @@ const Features: React.FC<FeaturesProps> = ({
   className = '',
 }) => {
   return (
-    <div className={className}>
+    <div className={`max-w-6xl mx-auto px-6 py-16 ${className}`}>
       {/* Headline Section */}
-      <div className="text-center">
+      <div className="text-center mb-12">
         {tagline && (
-          <p className="text-sm font-semibold uppercase tracking-wide text-primary">{tagline}</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-yellow-300 mb-3">
+            {tagline}
+          </p>
         )}
-        {title && (
-          <h2 className="text-3xl text-yellow-200 font-bold tracking-tight sm:text-4xl">{title}</h2>
-        )}
-        {subtitle && <p className="mt-4 text-lg text-white">{subtitle}</p>}
+        {title && <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{title}</h2>}
+        {subtitle && <p className="text-lg text-gray-300 max-w-2xl mx-auto">{subtitle}</p>}
       </div>
 
       {/* Image Section */}
       {image && (
-        <div className="mt-8 w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
+        <div className="mb-12 w-full h-80 object-cover rounded-xl mx-auto bg-gray-500 shadow-lg">
           {typeof image === 'string' ? (
             <div dangerouslySetInnerHTML={{ __html: image }} />
           ) : (
@@ -60,30 +60,30 @@ const Features: React.FC<FeaturesProps> = ({
       )}
 
       {/* Items Grid */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {items.map((item, index) => (
           <div
             key={index}
-            className="w-full flex flex-col justify-center rounded-2xl bg-grey border border-white shadow-lg p-6 min-h-[180px]  duration-200 hover:scale-105"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
           >
-            <div className="flex items-center gap-4">
+            <div className="flex items-start gap-4">
               {/* Icon column */}
-              <div className="flex items-center justify-center w-14 h-14 rounded-xl shadow-sm">
+              <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-yellow-300/10 flex-shrink-0 group-hover:bg-yellow-300/20 transition-colors duration-300">
                 {(item.icon || defaultIcon) && (
-                  <span className="text-yellow-300 w-12 h-12 flex items-center justify-center">
+                  <span className="text-yellow-300 w-8 h-8 flex items-center justify-center">
                     {item.icon || defaultIcon}
                   </span>
                 )}
               </div>
-              {/* Headings/description column */}
+              {/* Content column */}
               <div className="flex-1">
                 {item.title && (
-                  <h3 className="font-semibold text-white text-base sm:text-lg leading-tight">
+                  <h3 className="font-semibold text-white text-lg leading-tight mb-2">
                     {item.title}
                   </h3>
                 )}
                 {item.description && (
-                  <p className="mt-1 text-gray-200 text-sm sm:text-base">{item.description}</p>
+                  <p className="text-gray-300 leading-relaxed">{item.description}</p>
                 )}
               </div>
             </div>

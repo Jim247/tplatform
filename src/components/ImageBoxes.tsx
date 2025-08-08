@@ -13,25 +13,25 @@ export interface ImageBoxesProps {
 
 const ImageBoxes: React.FC<ImageBoxesProps> = ({ boxes, className = '' }) => {
   return (
-    <div
-      className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 justify-center ${className}`}
-    >
+    <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto ${className}`}>
       {boxes.map((box, index) => (
         <div
           key={index}
-          className="bg-grey border border-white rounded-lg hover:scale-105 duration-200 flex flex-col items-center p-4"
+          className="bg-gray-800/30 border border-gray-700/50 rounded-xl hover:border-yellow-300/50 transition-all duration-300 hover:bg-gray-800/50 overflow-hidden group"
         >
-          <div className="w-full aspect-square mb-3 relative">
+          <div className="w-full aspect-square relative overflow-hidden">
             <Image
               src={box.src}
               alt={box.title}
               fill
-              className="rounded-md object-cover"
-              sizes="(max-width: 640px) 100vw, 288px"
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 33vw"
             />
           </div>
-          <h3 className="pb-4 text-white uppercase text-lg mb-1 text-center">{box.title}</h3>
-          <p className="text-white font-medium text-center">{box.description}</p>
+          <div className="p-6">
+            <h3 className="text-xl font-bold text-white mb-3 text-center">{box.title}</h3>
+            <p className="text-gray-300 text-center leading-relaxed">{box.description}</p>
+          </div>
         </div>
       ))}
     </div>

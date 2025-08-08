@@ -6,14 +6,14 @@
 :root {
   --background: #444444;
   --foreground: #171717;
-  --highlight: #ffe120;
+  --highlight: #fde047;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --highlight: #ffe600;
+    --highlight: #fde047;
   }
 }
 
@@ -25,7 +25,7 @@
   }
 
   .mobile-header {
-    background: rgb(255 230 0);
+    background: rgb(253 224 71);
     color: #2c2c2c;
   }
 
@@ -57,15 +57,15 @@
   }
 
   .nav-link:hover {
-    color: rgb(255, 230, 0) !important;
+    color: rgb(253, 224, 71) !important;
   }
 
   .btn-primary {
-    background: rgb(255, 230, 0) !important;
+    background: rgb(253, 224, 71) !important;
   }
 
   .review-cards {
-    background: rgb(255, 230, 0) !important;
+    background: rgb(253, 224, 71) !important;
   }
 }
 
@@ -82,10 +82,11 @@
 
 /* General form styles */
 .form-container {
-  max-width: 70%;
+  width: 100%;
+  max-width: 1400px; /* Balanced wide layout cap */
   height: auto;
   margin: 0 auto;
-  padding: 40px;
+  padding: 40px; /* Reduced to give inner sections more room */
   background-color: #2c2c2c;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -117,7 +118,7 @@
   font-weight: 600;
   margin-bottom: 20px;
   text-align: center;
-  color: #ffe120;
+  color: #fde047;
 }
 
 /* Learner Type Selection Cards */
@@ -152,15 +153,15 @@
 }
 
 .learner-type-card:hover {
-  border-color: #ffe120;
+  border-color: #fde047;
   background: #404040;
   transform: translateY(-2px);
 }
 
 .learner-type-card.selected {
-  border-color: #ffe120;
+  border-color: #fde047;
   background: #404040;
-  box-shadow: 0 0 0 2px rgba(255, 225, 32, 0.2);
+  box-shadow: 0 0 0 2px rgba(253, 224, 71, 0.2);
 }
 
 .card-icon {
@@ -172,7 +173,7 @@
   font-size: 1rem;
   font-weight: 600;
   margin: 0;
-  color: #ffe120;
+  color: #fde047;
 }
 
 .learner-type-card p {
@@ -331,7 +332,7 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .form-label {
@@ -341,19 +342,20 @@
 
 .form-input,
 .form-select {
-  padding: 8px 12px;
+  padding: 16px 20px;
   background-color: white;
   border: 1px solid #d1d5db;
   border-radius: 4px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #000; /* Ensure text is always black/dark */
+  width: 100%; /* Ensure full width in any layout context */
 }
 
 .form-input:focus,
 .form-select:focus {
   outline: none;
-  border-color: #ffe120;
-  box-shadow: 0 0 0 3px rgba(255, 225, 32, 0.3);
+  border-color: #fde047;
+  box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.3);
   color: #000;
 }
 
@@ -394,7 +396,7 @@
 }
 
 .btn-primary {
-  background-color: #ffe600;
+  background-color: #fde047;
   color: #000000;
   padding: 10px 20px;
   border: none;
@@ -445,21 +447,21 @@
 }
 
 .chip:hover {
-  background-color: #ffe120;
+  background-color: #fde047;
   border-color: #d1d5db;
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .chip-selected {
-  background-color: #ffe120;
+  background-color: #fde047;
   border-color: #000;
   color: #000000;
 }
 
 .chip-selected:hover {
-  background-color: #ffe120;
-  border-color: #ffe120;
+  background-color: #fde047;
+  border-color: #fde047;
 }
 
 .chip:active {

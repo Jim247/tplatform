@@ -7,7 +7,7 @@ export default function NotFound() {
       <p className="text-gray-400 mb-6">
         The blog post you&apos;re looking for doesn&apos;t exist.
       </p>
-      <Link href="/blog" className="text-amber-400 hover:text-amber-300">
+      <Link href="/blog" className="text-yellow-300 hover:text-yellow-300">
         ← Back to Blog
       </Link>
     </main>

@@ -58,40 +58,39 @@ export default function TutorBenefits({ className = '' }: TutorBenefitsProps) {
   ];
 
   return (
-    <div className={`max-w-7xl mx-auto px-4 py-12 ${className}`}>
+    <div className={`max-w-6xl mx-auto px-6 py-16 ${className}`}>
       {/* Grid: 3 columns on desktop, 2 rows */}
       <div className="hidden md:grid md:grid-cols-3 gap-8">
         {benefits.map((benefit, index) => (
           <div
             key={index}
-            className="bg-grey p-6 rounded-2xl border border-gray-600/30 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-8 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
           >
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="p-4 bg-yellow-300/10 rounded-full">
+            <div className="flex flex-col items-center text-center space-y-6">
+              <div className="p-4 bg-yellow-300/10 rounded-xl group-hover:bg-yellow-300/20 transition-colors duration-300">
                 <Icon path={benefit.icon} size={2.5} className="text-yellow-300" />
               </div>
-              <h3 className="text-xl font-bold text-white font-[Montserrat] uppercase tracking-wide">
-                {benefit.title}
-              </h3>
-              <p className="text-gray-200 text-base leading-relaxed">{benefit.description}</p>
+              <h3 className="text-xl font-bold text-white leading-tight">{benefit.title}</h3>
+              <p className="text-gray-300 leading-relaxed">{benefit.description}</p>
             </div>
           </div>
         ))}
       </div>
 
       {/* Mobile: Stacked list */}
-      <div className="md:hidden space-y-4">
+      <div className="md:hidden space-y-6">
         {benefits.map((benefit, index) => (
-          <div key={index} className="bg-grey p-6 rounded-2xl border border-gray-600/30 shadow-xl">
+          <div
+            key={index}
+            className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 hover:bg-gray-800/50 transition-all duration-300 group"
+          >
             <div className="flex items-start space-x-4">
-              <div className="p-3 bg-yellow-300/10 rounded-full flex-shrink-0">
+              <div className="p-3 bg-yellow-300/10 rounded-lg flex-shrink-0 group-hover:bg-yellow-300/20 transition-colors duration-300">
                 <Icon path={benefit.icon} size={1.5} className="text-yellow-300" />
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-bold text-white font-[Montserrat] uppercase tracking-wide mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-gray-200 text-sm leading-relaxed">{benefit.description}</p>
+                <h3 className="text-lg font-bold text-white mb-3 leading-tight">{benefit.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{benefit.description}</p>
               </div>
             </div>
           </div>

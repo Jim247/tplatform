@@ -54,7 +54,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/privacy"
-                className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
+                className="hover:text-yellow-300 px-4 py-3 flex items-center whitespace-nowrap"
               >
                 PRIVACY & TERMS
               </Link>
@@ -62,7 +62,7 @@ export default function Footer() {
             <li>
               <Link
                 href="/blog"
-                className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
+                className="hover:text-yellow-300 px-4 py-3 flex items-center whitespace-nowrap"
               >
                 BLOG
               </Link>

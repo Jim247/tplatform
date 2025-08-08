@@ -19,7 +19,7 @@ export default function BlogPage() {
           {posts.map((post) => (
             <article key={post.slug} className="border-b border-gray-700 pb-6">
               <Link href={`/blog/${post.slug}`}>
-                <h2 className="text-2xl font-bold text-amber-300 hover:text-amber-400 mb-2">
+                <h2 className="text-2xl font-bold text-yellow-300 hover:text-yellow-300 mb-2">
                   {post.title}
                 </h2>
               </Link>
@@ -29,7 +29,7 @@ export default function BlogPage() {
               {post.excerpt && <p className="text-gray-200 mb-4">{post.excerpt}</p>}
               <Link
                 href={`/blog/${post.slug}`}
-                className="text-amber-300 hover:text-amber-400 font-medium"
+                className="text-yellow-300 hover:text-yellow-300 font-medium"
               >
                 Read more →
               </Link>

@@ -361,21 +361,23 @@ const EnquiryForm = () => {
     <div className="form-container justify-center items-center">
       {/* Header Section */}
       <div className="form-header">
-        <a href="./">
+        <a href="./" className="flex flex-col items-center gap-3 group">
           <Logo height={100} width={100} />
-        </a>
-        <a className="font-semibold pb-5" href="./">
-          BACK TO HOMEPAGE
+          <span className="text-yellow-300 hover:text-yellow-300 transition-colors duration-200 font-medium pb-5">
+            Back to Homepage
+          </span>
         </a>
         <h1 className="form-title">
           Make An Enquiry
           <br />
-          <span className="block text-base font-normal mt-2">Step {getStepNumber()} of 5</span>
+          <span className="block text-base font-normal mt-2 text-gray-300">
+            Step {getStepNumber()} of 5
+          </span>
         </h1>
       </div>
 
       {/* Content Section */}
-      <div className="form-content">
+      <div className="form-content relative">
         {error && <div className="form-error">{error}</div>}
         {success && <div className="form-success">{success}</div>}
         <form ref={undefined} onSubmit={handleValidatedSubmit} className="form-section">
@@ -386,9 +388,13 @@ const EnquiryForm = () => {
             >
               <div className="learner-type-selection">
                 <h2 className="form-subtitle">Who is this enquiry for?</h2>
-                <div className="learner-type-cards">
+                <div className="grid gap-6 grid-cols-1 md:[grid-template-columns:repeat(auto-fit,minmax(320px,1fr))] max-w-screen-lg mx-auto">
                   <div
-                    className={`learner-type-card ${fields.studentIsMyself ? 'selected' : ''}`}
+                    className={`bg-gray-800/30 border-2 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 hover:bg-gray-800/50 ${
+                      fields.studentIsMyself
+                        ? 'border-yellow-300 bg-yellow-300/10'
+                        : 'border-gray-700/50 hover:border-yellow-300/50'
+                    }`}
                     onClick={() => {
                       setFields((prev) => ({
                         ...prev,
@@ -397,13 +403,31 @@ const EnquiryForm = () => {
                       }));
                     }}
                   >
-                    <Icon path={mdiAccount} size={1.5} className="card-icon" />
-                    <h3>Myself, or myself & others</h3>
-                    <p className="text-white">Add yourself, plus other learners if needed</p>
+                    <div className="flex flex-col items-center gap-4">
+                      <div
+                        className={`p-4 rounded-xl ${fields.studentIsMyself ? 'bg-yellow-300/20' : 'bg-gray-700/30'}`}
+                      >
+                        <Icon
+                          path={mdiAccount}
+                          size={2}
+                          className={fields.studentIsMyself ? 'text-yellow-300' : 'text-gray-400'}
+                        />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white">
+                        Myself, or myself & others
+                      </h3>
+                      <p className="text-gray-300 text-sm">
+                        Add yourself, plus other learners if needed
+                      </p>
+                    </div>
                   </div>
 
                   <div
-                    className={`learner-type-card ${!fields.studentIsMyself ? 'selected' : ''}`}
+                    className={`bg-gray-800/30 border-2 rounded-xl p-8 text-center cursor-pointer transition-all duration-300 hover:bg-gray-800/50 ${
+                      !fields.studentIsMyself
+                        ? 'border-yellow-300 bg-yellow-300/10'
+                        : 'border-gray-700/50 hover:border-yellow-300/50'
+                    }`}
                     onClick={() => {
                       setFields((prev) => ({
                         ...prev,
@@ -412,9 +436,21 @@ const EnquiryForm = () => {
                       }));
                     }}
                   >
-                    <Icon path={mdiAccountMultiple} size={1.5} className="card-icon" />
-                    <h3>I&apos;m enquiring for someone else </h3>
-                    <p>Children, family member, or friend</p>
+                    <div className="flex flex-col items-center gap-4">
+                      <div
+                        className={`p-4 rounded-xl ${!fields.studentIsMyself ? 'bg-yellow-300/20' : 'bg-gray-700/30'}`}
+                      >
+                        <Icon
+                          path={mdiAccountMultiple}
+                          size={2}
+                          className={!fields.studentIsMyself ? 'text-yellow-300' : 'text-gray-400'}
+                        />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white">
+                        I&apos;m enquiring for someone else
+                      </h3>
+                      <p className="text-gray-300 text-sm">Children, family member, or friend</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -424,12 +460,12 @@ const EnquiryForm = () => {
           {/* Step 2: Instruments Selection */}
           {step === 2 && subStep === 'instruments' && !success && (
             <div
-              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+              className={`form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
             >
               <h2 className="form-subtitle">
                 Which instruments would {fields.studentIsMyself ? 'you' : 'they'} like to learn?
               </h2>
-              <div className="learner-details-card">
+              <div className="max-w-2xl mx-auto">
                 <ChipSelector
                   options={Object.values(INSTRUMENTS).flat()}
                   selectedOptions={getCurrentStudent()?.instruments || []}
@@ -450,7 +486,7 @@ const EnquiryForm = () => {
                 {fields.studentIsMyself ? 'Your Basic Details' : 'Learner Basic Details'}
               </h2>
 
-              <div className="learner-details-card">
+              <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-10 w-full max-w-screen-xl mx-auto">
                 {/* Name - show for all students, but pre-populate for self-learners */}
                 <div className="form-group">
                   <label className="form-label" htmlFor="learner_name">
@@ -504,15 +540,15 @@ const EnquiryForm = () => {
           {/* Step 2: Level & Notes */}
           {step === 2 && subStep === 'levelnotes' && !success && (
             <div
-              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+              className={`form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
             >
               <h2 className="form-subtitle">
                 {fields.studentIsMyself ? 'Your Learning Level & Goals' : 'Learning Level & Goals'}
               </h2>
 
-              <div className="learner-details-card">
+              <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-10 w-full max-w-screen-xl mx-auto">
                 {/* Level */}
-                <div className="form-group">
+                <div className="">
                   <label className="form-label" htmlFor="learner_level">
                     {fields.studentIsMyself ? 'Your Current Level' : 'Current Level'}
                   </label>
@@ -577,15 +613,20 @@ const EnquiryForm = () => {
             >
               <h2 className="form-subtitle">Learners Summary</h2>
 
-              <div className="learners-summary">
+              <div className="space-y-6 w-full max-w-screen-xl mx-auto">
                 {fields.students.map((student, index) => (
-                  <div key={index} className="learner-summary-card">
-                    <div className="learner-summary-header">
-                      <h3>{student.name || `Learner ${index + 1}`}</h3>
-                      <div className="learner-summary-actions">
+                  <div
+                    key={index}
+                    className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 transition-all duration-300"
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <h3 className="text-lg font-semibold text-white">
+                        {student.name || `Learner ${index + 1}`}
+                      </h3>
+                      <div className="flex gap-2">
                         <button
                           type="button"
-                          className="btn-edit"
+                          className="px-3 py-1 text-sm bg-yellow-300/20 text-yellow-300 hover:bg-yellow-300/30 rounded-lg transition-colors"
                           onClick={() => editLearner(index)}
                         >
                           Edit
@@ -593,7 +634,7 @@ const EnquiryForm = () => {
                         {fields.students.length > 1 && (
                           <button
                             type="button"
-                            className="btn-remove"
+                            className="px-3 py-1 text-sm bg-red-400/20 text-red-300 hover:bg-red-400/30 rounded-lg transition-colors"
                             onClick={() => removeStudent(index)}
                           >
                             Remove
@@ -602,27 +643,32 @@ const EnquiryForm = () => {
                       </div>
                     </div>
 
-                    <div className="learner-summary-details">
-                      <p>
-                        <strong>Age:</strong> {student.age}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                      <p className="text-gray-300">
+                        <span className="font-medium text-white">Age:</span> {student.age}
                       </p>
-                      <p>
-                        <strong>Level:</strong> {student.level}
+                      <p className="text-gray-300">
+                        <span className="font-medium text-white">Level:</span> {student.level}
                       </p>
-                      <p>
-                        <strong>Instruments:</strong> {student.instruments.join(', ')}
+                      <p className="text-gray-300 md:col-span-2">
+                        <span className="font-medium text-white">Instruments:</span>{' '}
+                        {student.instruments.join(', ')}
                       </p>
                       {student.notes && (
-                        <p>
-                          <strong>Goals:</strong> {student.notes}
+                        <p className="text-gray-300 md:col-span-2">
+                          <span className="font-medium text-white">Goals:</span> {student.notes}
                         </p>
                       )}
                     </div>
                   </div>
                 ))}
 
-                <div className="add-learner-section">
-                  <button type="button" className="btn-secondary" onClick={() => addStudent()}>
+                <div className="text-center">
+                  <button
+                    type="button"
+                    className="bg-gray-700/50 hover:bg-gray-600/50 text-white px-6 py-3 rounded-lg transition-colors border border-gray-600/50 hover:border-yellow-300/50"
+                    onClick={() => addStudent()}
+                  >
                     + Add Another Learner
                   </button>
                 </div>
@@ -636,9 +682,9 @@ const EnquiryForm = () => {
               className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
             >
               <h2 className="form-subtitle">Contact Details</h2>
-              <div className="contact-details-card">
-                <div className="form-group-row">
-                  <div className="form-group">
+              <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-10 w-full max-w-screen-xl mx-auto">
+                <div className="flex flex-col lg:flex-row gap-6 mb-6">
+                  <div className="form-group flex-1 min-w-[320px]">
                     <label className="form-label" htmlFor="first_name">
                       Your First Name
                     </label>
@@ -653,7 +699,7 @@ const EnquiryForm = () => {
                       required
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group flex-1 min-w-[320px]">
                     <label className="form-label" htmlFor="last_name">
                       Your Last Name
                     </label>
@@ -670,7 +716,7 @@ const EnquiryForm = () => {
                   </div>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group mb-6">
                   <label className="form-label" htmlFor="email">
                     Email Address
                   </label>
@@ -686,7 +732,7 @@ const EnquiryForm = () => {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group mb-6">
                   <label className="form-label" htmlFor="phone">
                     Mobile Phone
                   </label>
@@ -702,7 +748,7 @@ const EnquiryForm = () => {
                   />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group mb-6">
                   <label className="form-label" htmlFor="postcode">
                     Postcode
                   </label>
@@ -713,8 +759,8 @@ const EnquiryForm = () => {
                   />
                 </div>
 
-                <div className="form-group consent-group">
-                  <label className="consent-label">
+                <div className="form-group">
+                  <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       name="geopoint_consent"
@@ -722,11 +768,18 @@ const EnquiryForm = () => {
                       onChange={(e) =>
                         setFields((f) => ({ ...f, geopoint_consent: e.target.checked }))
                       }
+                      className="mt-1 w-4 h-4 text-yellow-300 border-gray-600 rounded focus:ring-yellow-300 focus:ring-2"
                       required
                     />
-                    <span className="consent-text">
+                    <span className="text-gray-300 text-sm leading-relaxed">
                       I consent to my information being shared with the team at Tempo. All
-                      information is handled within GDPR and our Privacy Policy
+                      information is handled within GDPR and our{' '}
+                      <a
+                        href="/privacy"
+                        className="text-yellow-300 hover:text-yellow-300 underline"
+                      >
+                        Privacy Policy
+                      </a>
                     </span>
                   </label>
                 </div>
@@ -736,31 +789,44 @@ const EnquiryForm = () => {
 
           {/* Navigation Buttons */}
           {!success && (
-            <div className="form-buttons-container">
-              {(step > 1 ||
-                (step === 2 &&
-                  (subStep === 'details' ||
-                    subStep === 'levelnotes' ||
-                    subStep === 'summary'))) && (
-                <button type="button" className="btn-secondary" onClick={prevStep}>
-                  Back
-                </button>
-              )}
-              {(step < 3 || (step === 2 && subStep !== 'summary')) && (
-                <button
-                  type="button"
-                  className="btn-primary"
-                  onClick={nextStep}
-                  disabled={!validateStep()}
-                >
-                  Next
-                </button>
-              )}
-              {step === 3 && (
-                <button type="submit" className="btn-primary" disabled={isLoading}>
-                  {isLoading ? 'Sending...' : 'Send Enquiry'}
-                </button>
-              )}
+            <div className="flex justify-center gap-10 items-center mt-8">
+              <div>
+                {(step > 1 ||
+                  (step === 2 &&
+                    (subStep === 'details' ||
+                      subStep === 'levelnotes' ||
+                      subStep === 'summary'))) && (
+                  <button
+                    type="button"
+                    className="bg-gray-700/50 hover:bg-gray-600/50 text-white px-6 py-3 rounded-lg transition-colors border border-gray-600/50 hover:border-gray-500/50 font-medium"
+                    onClick={prevStep}
+                  >
+                    ← Back
+                  </button>
+                )}
+              </div>
+
+              <div>
+                {(step < 3 || (step === 2 && subStep !== 'summary')) && (
+                  <button
+                    type="button"
+                    className="bg-yellow-300 hover:bg-yellow-300 text-black px-8 py-3 rounded-lg transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    onClick={nextStep}
+                    disabled={!validateStep()}
+                  >
+                    Next →
+                  </button>
+                )}
+                {step === 3 && (
+                  <button
+                    type="submit"
+                    className="bg-yellow-300 hover:bg-yellow-300 text-black px-8 py-3 rounded-lg transition-colors font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? 'Sending...' : 'Send Enquiry'}
+                  </button>
+                )}
+              </div>
             </div>
           )}
         </form>

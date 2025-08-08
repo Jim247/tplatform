@@ -44,61 +44,61 @@ const FAQs: React.FC<FAQsProps> = ({
   return (
     <section
       id={id}
-      className={`w-full max-w-7xl mx-auto my-8 px-6 py-10 rounded-2xl bg-grey ${classes.container || ''}`}
+      className={`w-full max-w-6xl mx-auto my-16 px-6 py-12 ${classes.container || ''}`}
       style={{ position: 'relative' }}
     >
-      <div className="flex justify-center mb-4">
-        <Icon path={icon} size={5} color={'#FFE600'} />
-      </div>
       {bg && <div className="absolute inset-0 z-0">{bg}</div>}
       <div className="relative z-10">
+        {/* Header Section */}
         {(title || subtitle || tagline) && (
-          <div className="mb-8 md:mx-auto md:mb-12 text-center max-w-3xl">
+          <div className="text-center mb-12">
+            <div className="flex justify-center mb-6">
+              <div className="bg-yellow-300/10 p-4 rounded-xl">
+                <Icon path={icon} size={3} className="text-yellow-300" />
+              </div>
+            </div>
             {tagline && (
-              <p className="text-yellow-300 text-primary font-bold tracking-wide uppercase">
+              <p className="text-yellow-300 font-semibold tracking-wide uppercase mb-3">
                 {tagline}
               </p>
             )}
-            {title && (
-              <h2 className="font-bold text-white leading-tighter tracking-tighter text-3xl md:text-4xl text-heading mb-2">
-                {title}
-              </h2>
-            )}
-            {subtitle && <p className="mt-4 text-white text-xl">{subtitle}</p>}
+            {title && <h2 className="font-bold text-white text-3xl md:text-4xl mb-4">{title}</h2>}
+            {subtitle && <p className="text-gray-300 text-lg max-w-2xl mx-auto">{subtitle}</p>}
           </div>
         )}
-        <div
-          className={`grid mx-auto gap-8 sm:grid-cols-2 gap-y-8 md:gap-y-12 ${columns === 1 ? 'max-w-4xl' : ''}`}
-        >
+
+        {/* FAQ Items Grid */}
+        <div className={`grid gap-6 ${columns === 1 ? 'max-w-4xl mx-auto' : 'md:grid-cols-2'}`}>
           {items.map((item, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className={`flex flex-col max-w-none border-b border-gray-400 pb-4 ${classes.panel || ''}`}
+                className={`bg-gray-800/30 border border-gray-700/50 rounded-xl p-6 hover:border-yellow-300/50 transition-all duration-300 ${classes.panel || ''}`}
               >
                 <button
-                  className={`faq-button flex items-center w-full text-left focus:outline-none group`}
+                  className="flex items-center w-full text-left focus:outline-none group"
                   aria-expanded={isOpen}
                   aria-controls={`faq-content-${idx}`}
                   onClick={() => handleToggle(idx)}
                 >
                   {item.icon && (
                     <span
-                      className={`faq-icon flex justify-center mr-2 rtl:mr-0 rtl:ml-2 flex-shrink-0 mt-1 w-6 h-6 text-primary transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${classes.icon || ''}`}
+                      className={`flex justify-center mr-3 flex-shrink-0 w-6 h-6 text-yellow-300 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} ${classes.icon || ''}`}
                     >
                       <item.icon size={24} />
                     </span>
                   )}
-                  <span className="text-xl font-bold text-white flex-1">{item.question}</span>
+                  <span className="text-lg font-semibold text-white flex-1 group-hover:text-amber-100 transition-colors">
+                    {item.question}
+                  </span>
                   <span
-                    className={`ml-2 transition-transform duration-200 text-yellow-300 ${isOpen ? 'rotate-180' : ''}`}
+                    className={`ml-3 transition-transform duration-200 text-yellow-300 flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
                     aria-hidden="true"
                   >
-                    {/* Chevron Down SVG */}
                     <svg
-                      width="24"
-                      height="24"
+                      width="20"
+                      height="20"
                       viewBox="0 0 24 24"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -115,10 +115,9 @@ const FAQs: React.FC<FAQsProps> = ({
                 </button>
                 <div
                   id={`faq-content-${idx}`}
-                  className={`faq-description overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 py-3' : 'max-h-0 opacity-0 py-0'}`}
-                  style={{}}
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100 pt-4' : 'max-h-0 opacity-0 pt-0'}`}
                 >
-                  <p className="text-white">{item.answer}</p>
+                  <p className="text-gray-300 leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             );

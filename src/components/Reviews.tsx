@@ -61,12 +61,12 @@ export default function Reviews({
   const CHAR_LIMIT = 130;
 
   return (
-    <div className="max-w-6xl mx-auto" id={id}>
+    <div className="max-w-6xl mx-auto pb-10" id={id}>
       {/* Header */}
       {title && (
-        <div className="text-center mb-12 text-white uppercase">
-          <h2 className="text-5xl font-bold mb-4">{title}</h2>
-          {subtitle && <p className="text-lg">{subtitle}</p>}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">{title}</h2>
+          {subtitle && <p className="text-lg text-gray-300">{subtitle}</p>}
         </div>
       )}
 
@@ -95,10 +95,12 @@ export default function Reviews({
               `}
               style={{ scrollSnapAlign: 'start' }}
             >
-              <div className="flex flex-col p-6 rounded-xl review-cards text-black transition-transform duration-300 sm:hover:scale-105 hover:shadow-lg w-full min-h-[340px] sm:min-h-[340px] md:min-h-[340px] relative overflow-hidden mb-8 lg:aspect-square">
+              <div className="flex flex-col p-6 rounded-xl bg-white border border-gray-200 hover:border-yellow-300 transition-all duration-300 hover:shadow-xl w-full min-h-[320px] relative overflow-hidden group">
                 {/* Review Title */}
                 {reviewTitle && (
-                  <h3 className="text-lg font-medium leading-6 pb-4">{reviewTitle}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 leading-6 pb-4">
+                    {reviewTitle}
+                  </h3>
                 )}
 
                 {/* 5-Star Rating */}
@@ -108,7 +110,7 @@ export default function Reviews({
                       key={i}
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
-                      fill="#000"
+                      fill="#F59E0B"
                       className="w-5 h-5 mr-1"
                     >
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.966c.3.922-.755 1.688-1.54 1.118l-3.38-2.454a1 1 0 00-1.175 0l-3.38 2.454c-.784.57-1.838-.196-1.54-1.118l1.287-3.966a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" />
@@ -119,10 +121,12 @@ export default function Reviews({
                 {/* Review Quote */}
                 {reviewText && (
                   <blockquote className="flex-auto mb-4">
-                    <p className="text italic">&quot;{displayText}&quot;</p>
+                    <p className="text-gray-700 italic leading-relaxed">
+                      &quot;{displayText}&quot;
+                    </p>
                     {isLong && !isExpanded && (
                       <button
-                        className="text-xs text-red-800 underline mt-2 focus:outline-none"
+                        className="text-sm text-amber-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
                         onClick={() => setExpandedIdx(idx)}
                       >
                         Read more
@@ -130,7 +134,7 @@ export default function Reviews({
                     )}
                     {isExpanded && (
                       <button
-                        className="text-xs text-yellow-700 underline mt-2 focus:outline-none"
+                        className="text-sm text-amber-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
                         onClick={() => setExpandedIdx(null)}
                       >
                         Show less
@@ -140,19 +144,19 @@ export default function Reviews({
                 )}
 
                 {/* Name and Icon */}
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mt-auto">
                   <div>
-                    {reviewerName && <p className="font-semibold">{reviewerName}</p>}
-                    <span className="text-sm text-black">via Google My Business</span>
+                    {reviewerName && <p className="font-semibold text-gray-900">{reviewerName}</p>}
+                    <span className="text-sm text-gray-600">via Google My Business</span>
                   </div>
                   {IconComponent && reviewLink && (
                     <a
                       href={reviewLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="lg-absolute right-2 :bottom-3 "
+                      className="text-gray-600 hover:text-amber-600 transition-colors"
                     >
-                      <IconComponent size={28} />
+                      <IconComponent size={24} />
                     </a>
                   )}
                 </div>
@@ -163,7 +167,7 @@ export default function Reviews({
       </div>
       {/* Dots below reviews (show only if more than 1 review) */}
       {reviews.length > 1 && (
-        <div className="md:hidden flex justify-center mt-4 gap-2">
+        <div className="md:hidden flex justify-center mt-6 gap-2">
           {reviews.map((_, idx) => (
             <span
               key={idx}
