@@ -29,7 +29,7 @@ const ImageBoxes: React.FC<ImageBoxesProps> = ({ boxes, className = '' }) => {
             />
           </div>
           <div className="p-6">
-            <h3 className="text-xl font-bold text-white mb-3 text-center">{box.title}</h3>
+            <h3 className="text-xl text-white mb-3 text-center">{box.title}</h3>
             <p className="text-gray-300 text-center leading-relaxed">{box.description}</p>
           </div>
         </div>
