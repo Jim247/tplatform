@@ -1,7 +1,7 @@
 ---
-title: "5 Reasons to Take Music Lessons"
+title: '5 Reasons to Take Music Lessons'
 date: 2023-03-22T00:00:00.000Z
-excerpt: "Discover 5 compelling reasons why music lessons are worth the investment, from enhancing brain development to providing lifelong enjoyment."
+excerpt: 'Discover 5 compelling reasons why music lessons are worth the investment, from enhancing brain development to providing lifelong enjoyment.'
 ---
 
 ### We Asked ChatGPT: 5 Reasons to Take Music Lessons

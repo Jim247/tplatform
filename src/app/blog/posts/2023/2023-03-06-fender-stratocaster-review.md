@@ -1,7 +1,7 @@
 ---
-title: "Fender Stratocaster Review: Iconic Electric Guitar Models"
+title: 'Fender Stratocaster Review: Iconic Electric Guitar Models'
 date: 2023-03-06T00:00:00.000Z
-excerpt: "A review of the Fender Stratocaster, covering the Squier, Player Series, and American Original models for different levels of players and budgets."
+excerpt: 'A review of the Fender Stratocaster, covering the Squier, Player Series, and American Original models for different levels of players and budgets.'
 ---
 
 ![Fender Stratocaster](https://musomatch.tempomobile.co.uk/blog/wp-content/uploads/2023/03/IMG_2078-798x1024.jpeg)

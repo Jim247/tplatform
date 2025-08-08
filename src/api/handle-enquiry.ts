@@ -54,7 +54,10 @@ Please investigate the issue as soon as possible.
         message,
       });
     } catch (emailError) {
-      console.error('Error sending notification email:', emailError instanceof Error ? emailError.message : 'Unknown error');
+      console.error(
+        'Error sending notification email:',
+        emailError instanceof Error ? emailError.message : 'Unknown error'
+      );
     }
 
     // Respond with error

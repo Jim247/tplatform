@@ -1,7 +1,7 @@
 ---
-title: "Learning a Musical Instrument: Tips for Beginners"
+title: 'Learning a Musical Instrument: Tips for Beginners'
 date: 2023-02-25T00:00:00.000Z
-excerpt: "Key considerations and tips for starting your journey of learning a musical instrument, from selecting an instrument to joining a music community."
+excerpt: 'Key considerations and tips for starting your journey of learning a musical instrument, from selecting an instrument to joining a music community.'
 ---
 
 Learning a musical instrument can be an incredibly fulfilling and enriching experience. Whether you're picking up an instrument as a pastime, looking to enhance your musical skills, or pursuing a career in music, embarking on this journey can be both exciting and daunting. In this article, we'll delve into some key considerations and tips for those who are starting to learn a musical instrument.

@@ -19,9 +19,9 @@ const postsDirectory = path.join(process.cwd(), 'src/app/blog/posts');
 function getAllPostFiles(dir: string): string[] {
   let results: string[] = [];
   if (!fs.existsSync(dir)) return results;
-  
+
   const list = fs.readdirSync(dir);
-  list.forEach(file => {
+  list.forEach((file) => {
     const filePath = path.join(dir, file);
     const stat = fs.statSync(filePath);
     if (stat && stat.isDirectory()) {
@@ -35,10 +35,10 @@ function getAllPostFiles(dir: string): string[] {
 
 export function getAllPosts(): BlogPost[] {
   const files = getAllPostFiles(postsDirectory);
-  const posts = files.map(filePath => {
+  const posts = files.map((filePath) => {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const { data, content } = matter(fileContent);
-    
+
     // Handle both folder-based (index.md) and direct .md files
     let slug: string;
     if (path.basename(filePath) === 'index.md') {
@@ -46,7 +46,7 @@ export function getAllPosts(): BlogPost[] {
     } else {
       slug = path.basename(filePath, '.md');
     }
-    
+
     return {
       slug,
       title: data.title || slug,
@@ -64,27 +64,24 @@ export function getAllPosts(): BlogPost[] {
 export function getPostBySlug(slug: string): BlogPost | null {
   const files = getAllPostFiles(postsDirectory);
   let filePath: string | undefined;
-  
+
   // First try to find folder-based structure (index.md)
-  filePath = files.find(file => 
-    path.basename(file) === 'index.md' && 
-    path.basename(path.dirname(file)) === slug
+  filePath = files.find(
+    (file) => path.basename(file) === 'index.md' && path.basename(path.dirname(file)) === slug
   );
-  
+
   // If not found, try direct .md file
   if (!filePath) {
-    filePath = files.find(file => 
-      path.basename(file, '.md') === slug
-    );
+    filePath = files.find((file) => path.basename(file, '.md') === slug);
   }
-  
+
   if (!filePath || !fs.existsSync(filePath)) {
     return null;
   }
 
   const fileContent = fs.readFileSync(filePath, 'utf8');
   const { data, content } = matter(fileContent);
-  
+
   return {
     slug,
     title: data.title || slug,

@@ -1,7 +1,7 @@
 ---
-title: "Practicing Your Musical Instrument: An Evidence-Based Approach"
+title: 'Practicing Your Musical Instrument: An Evidence-Based Approach'
 date: 2023-04-19T00:00:00.000Z
-excerpt: "Learn how to optimize your practice sessions and develop a consistent routine to improve your musical skills effectively."
+excerpt: 'Learn how to optimize your practice sessions and develop a consistent routine to improve your musical skills effectively.'
 ---
 
 ### Introduction

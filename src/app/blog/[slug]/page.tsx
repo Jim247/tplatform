@@ -1,7 +1,7 @@
 import { getPostWithHtml } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import formatUkDate from '@utils/FormatUkDate'
+import formatUkDate from '@utils/FormatUkDate';
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const post = await getPostWithHtml(params.slug);
@@ -21,9 +21,9 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           {formatUkDate(post.date)} {post.author && `• ${post.author}`}
         </div>
         <div className="mb-4" />
-        <div 
+        <div
           className="prose prose-invert prose-amber max-w-none text-white [&>*]:text-white space-y-4"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }} 
+          dangerouslySetInnerHTML={{ __html: post.contentHtml || '' }}
         />
       </article>
     </main>

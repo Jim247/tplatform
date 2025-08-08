@@ -1,7 +1,7 @@
 ---
-title: "Mastering Guitar Techniques: A Guide for Beginners"
+title: 'Mastering Guitar Techniques: A Guide for Beginners'
 date: 2023-03-14T00:00:00.000Z
-excerpt: "Learn essential guitar techniques like hammer-ons, pull-offs, palm muting, slides, and vibrato to enhance your playing and develop your unique style."
+excerpt: 'Learn essential guitar techniques like hammer-ons, pull-offs, palm muting, slides, and vibrato to enhance your playing and develop your unique style.'
 ---
 
 ### Introduction

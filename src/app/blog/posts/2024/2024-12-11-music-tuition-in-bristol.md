@@ -1,7 +1,7 @@
 ---
-title: "Music Tuition in Bristol: A Perfect Christmas Gift"
+title: 'Music Tuition in Bristol: A Perfect Christmas Gift'
 date: 2024-12-11T00:00:00.000Z
-excerpt: "Discover why music lessons make the perfect Christmas gift and how music tuition in Bristol can help you or your loved ones start a magical musical journey."
+excerpt: 'Discover why music lessons make the perfect Christmas gift and how music tuition in Bristol can help you or your loved ones start a magical musical journey.'
 ---
 
 ### Introduction
@@ -16,7 +16,7 @@ Music lessons are a thoughtful and enriching gift that can last a lifetime. Whet
 - **Enhanced creativity** and confidence.
 - **A fun way** to connect with family and friends by playing festive tunes together.
 
-🎶 Imagine playing *Silent Night* or *Jingle Bells* by the fireside—it's an experience that brings warmth to any Christmas celebration.
+🎶 Imagine playing _Silent Night_ or _Jingle Bells_ by the fireside—it's an experience that brings warmth to any Christmas celebration.
 
 ### Why Choose Music Tuition in Bristol?
 

@@ -1,7 +1,7 @@
 ---
-title: "Easter Bank Holiday: 5 Guitar Tips to Make the Most of Your Weekend"
+title: 'Easter Bank Holiday: 5 Guitar Tips to Make the Most of Your Weekend'
 date: 2023-04-08T00:00:00.000Z
-excerpt: "Make the most of your Easter Bank Holiday with these 5 guitar tips, from learning new chords to experimenting with effects."
+excerpt: 'Make the most of your Easter Bank Holiday with these 5 guitar tips, from learning new chords to experimenting with effects.'
 ---
 
 ### Introduction

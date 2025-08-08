@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Geist, Geist_Mono, Montserrat } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -49,9 +49,7 @@ export default function RootLayout({
       >
         {isContactPage && isMobile ? (
           // Full-page layout for contact on mobile
-          <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
-            {children}
-          </div>
+          <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>{children}</div>
         ) : (
           // Normal layout for other pages or contact on desktop
           <>

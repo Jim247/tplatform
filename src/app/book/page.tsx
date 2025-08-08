@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import EnquiryForm from '@/components/EnquiryForm';
 import { useEffect, useState } from 'react';
 

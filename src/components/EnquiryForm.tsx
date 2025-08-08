@@ -18,17 +18,20 @@ interface Student {
 
 interface ProfileFields {
   first_name: string;
-  last_name: string
-  email: string
+  last_name: string;
+  email: string;
   postcode: string;
   phone: string;
   geopoint_consent?: boolean;
-  students: Student[]; 
+  students: Student[];
   studentIsMyself: boolean;
 }
 
-
-const ChipSelector = ({ options, selectedOptions, onChange }: {
+const ChipSelector = ({
+  options,
+  selectedOptions,
+  onChange,
+}: {
   options: string[];
   selectedOptions: string[];
   onChange: (selected: string[]) => void;
@@ -71,7 +74,9 @@ const EnquiryForm = () => {
   const [success, setSuccess] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [step, setStep] = useState(1);
-  const [subStep, setSubStep] = useState<'instruments' | 'details' | 'levelnotes' | 'summary'>('instruments');
+  const [subStep, setSubStep] = useState<'instruments' | 'details' | 'levelnotes' | 'summary'>(
+    'instruments'
+  );
   const [currentLearnerIndex, setCurrentLearnerIndex] = useState(0);
 
   // Add state for tracking direction
@@ -81,7 +86,7 @@ const EnquiryForm = () => {
     console.log('Validating step:', step, 'subStep:', subStep);
     console.log('Current students:', fields.students);
     console.log('Current learner index:', currentLearnerIndex);
-    
+
     switch (step) {
       case 1:
         return true; // Just selecting learner type
@@ -95,9 +100,10 @@ const EnquiryForm = () => {
         } else if (subStep === 'details') {
           // Current learner must have name (if not self) and age
           const currentStudent = fields.students[currentLearnerIndex];
-          const isValid = currentStudent && 
-                 (fields.studentIsMyself || currentStudent.name.trim() !== '') && // Only require name if not self-learner
-                 currentStudent.age.trim() !== '';
+          const isValid =
+            currentStudent &&
+            (fields.studentIsMyself || currentStudent.name.trim() !== '') && // Only require name if not self-learner
+            currentStudent.age.trim() !== '';
           console.log('Details validation:', isValid, 'Current student:', currentStudent);
           return isValid;
         } else if (subStep === 'levelnotes') {
@@ -108,20 +114,30 @@ const EnquiryForm = () => {
           return isValid;
         } else if (subStep === 'summary') {
           // Just need at least one complete learner to proceed
-          const hasAtLeastOneCompleteStudent = fields.students.length > 0 && fields.students.some(student => {
-            const studentComplete = student.instruments.length > 0 &&
-              (fields.studentIsMyself || student.name.trim() !== '') && // Only require name if not self-learner
-              student.age.trim() !== '' &&
-              student.level.trim() !== '';
-            console.log('Student complete check:', student.name, studentComplete, student);
-            return studentComplete;
-          });
-          console.log('Summary validation - at least one student complete:', hasAtLeastOneCompleteStudent);
+          const hasAtLeastOneCompleteStudent =
+            fields.students.length > 0 &&
+            fields.students.some((student) => {
+              const studentComplete =
+                student.instruments.length > 0 &&
+                (fields.studentIsMyself || student.name.trim() !== '') && // Only require name if not self-learner
+                student.age.trim() !== '' &&
+                student.level.trim() !== '';
+              console.log('Student complete check:', student.name, studentComplete, student);
+              return studentComplete;
+            });
+          console.log(
+            'Summary validation - at least one student complete:',
+            hasAtLeastOneCompleteStudent
+          );
           return hasAtLeastOneCompleteStudent;
         }
         return false;
       case 3:
-        return fields.first_name.trim() !== '' && fields.last_name.trim() !== '' && fields.email.trim() !== '';
+        return (
+          fields.first_name.trim() !== '' &&
+          fields.last_name.trim() !== '' &&
+          fields.email.trim() !== ''
+        );
       case 4:
         return true; // Review step
       default:
@@ -132,7 +148,7 @@ const EnquiryForm = () => {
   const nextStep = () => {
     setError('');
     setDirection('forward');
-    
+
     if (step === 1) {
       // Moving to step 2 - ensure we have a student
       if (fields.students.length === 0) {
@@ -144,9 +160,9 @@ const EnquiryForm = () => {
           notes: '',
           instruments: [],
         };
-        setFields(prev => ({
+        setFields((prev) => ({
           ...prev,
-          students: [newStudent]
+          students: [newStudent],
         }));
       }
       setStep(2);
@@ -173,7 +189,7 @@ const EnquiryForm = () => {
   const prevStep = () => {
     setError('');
     setDirection('backward');
-    
+
     if (step === 2 && subStep === 'details') {
       // Move back to instruments sub-step
       setSubStep('instruments');
@@ -185,10 +201,10 @@ const EnquiryForm = () => {
       setSubStep('levelnotes');
     } else if (step === 2 && subStep === 'instruments') {
       // Move back to step 1
-      setStep(prev => Math.max(prev - 1, 1));
+      setStep((prev) => Math.max(prev - 1, 1));
     } else {
       // Normal step progression
-      setStep(prev => Math.max(prev - 1, 1));
+      setStep((prev) => Math.max(prev - 1, 1));
       if (step === 3) {
         // When moving back to step 2, set appropriate sub-step
         setSubStep('summary');
@@ -205,9 +221,9 @@ const EnquiryForm = () => {
       notes: '',
       instruments: [],
     };
-    setFields(prev => ({
+    setFields((prev) => ({
       ...prev,
-      students: [...prev.students, newStudent]
+      students: [...prev.students, newStudent],
     }));
     // Set current student index to the new student
     setCurrentLearnerIndex(fields.students.length);
@@ -221,18 +237,18 @@ const EnquiryForm = () => {
   };
 
   const updateStudent = (index: number, updates: Partial<Student>) => {
-    setFields(prev => ({
+    setFields((prev) => ({
       ...prev,
-      students: prev.students.map((student, i) => 
+      students: prev.students.map((student, i) =>
         i === index ? { ...student, ...updates } : student
-      )
+      ),
     }));
   };
 
   const removeStudent = (index: number) => {
-    setFields(prev => ({
+    setFields((prev) => ({
       ...prev,
-      students: prev.students.filter((_, i) => i !== index)
+      students: prev.students.filter((_, i) => i !== index),
     }));
     // Adjust current student index if needed
     if (currentLearnerIndex >= index && currentLearnerIndex > 0) {
@@ -265,15 +281,18 @@ const EnquiryForm = () => {
         region: geoPoint?.region,
         city: geoPoint?.city,
         geopoint_consent: fields.geopoint_consent,
-        students: fields.students.length > 0 ? fields.students : [
-          {
-            name: `${fields.first_name} ${fields.last_name}`,
-            age: fields.students[0]?.age || '',
-            level: fields.students[0]?.level || '',
-            notes: fields.students[0]?.notes || '',
-            instruments: fields.students[0]?.instruments || [],
-          },
-        ], // Include students even if it's a self-learner
+        students:
+          fields.students.length > 0
+            ? fields.students
+            : [
+                {
+                  name: `${fields.first_name} ${fields.last_name}`,
+                  age: fields.students[0]?.age || '',
+                  level: fields.students[0]?.level || '',
+                  notes: fields.students[0]?.notes || '',
+                  instruments: fields.students[0]?.instruments || [],
+                },
+              ], // Include students even if it's a self-learner
       };
 
       // Send the enquirer details to the API
@@ -312,52 +331,56 @@ const EnquiryForm = () => {
           Make An Enquiry
           <br />
           <span className="block text-base font-normal mt-2">
-            Step {step === 2 && subStep === 'details' ? '3' : step === 2 && subStep === 'levelnotes' ? '4' : step === 2 ? '2' : step > 2 ? step + 2 : step} of 5
+            Step{' '}
+            {step === 2 && subStep === 'details'
+              ? '3'
+              : step === 2 && subStep === 'levelnotes'
+                ? '4'
+                : step === 2
+                  ? '2'
+                  : step > 2
+                    ? step + 2
+                    : step}{' '}
+            of 5
           </span>
         </h1>
       </div>
 
       {/* Content Section */}
       <div className="form-content">
-        {error && (
-          <div className="form-error">
-            {error}
-          </div>
-        )}
-        {success && (
-          <div className="form-success">
-            {success}
-          </div>
-        )}
+        {error && <div className="form-error">{error}</div>}
+        {success && <div className="form-success">{success}</div>}
         <form ref={undefined} onSubmit={handleValidatedSubmit} className="form-section">
           {/* Step 1: Learner Type Selection */}
           {step === 1 && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <div className="learner-type-selection">
                 <h2 className="form-subtitle">Who is this enquiry for?</h2>
                 <div className="learner-type-cards">
-                  <div 
+                  <div
                     className={`learner-type-card ${fields.studentIsMyself ? 'selected' : ''}`}
                     onClick={() => {
-                      setFields(prev => ({ 
-                        ...prev, 
+                      setFields((prev) => ({
+                        ...prev,
                         studentIsMyself: true,
-                        students: []
+                        students: [],
                       }));
                     }}
                   >
                     <Icon path={mdiAccount} size={1.5} className="card-icon" />
                     <h3>I&apos;m the learner</h3>
-                    <p className='text-white'>Music lessons for myself</p>
+                    <p className="text-white">Music lessons for myself</p>
                   </div>
-                  
-                  <div 
+
+                  <div
                     className={`learner-type-card ${!fields.studentIsMyself ? 'selected' : ''}`}
                     onClick={() => {
-                      setFields(prev => ({ 
-                        ...prev, 
+                      setFields((prev) => ({
+                        ...prev,
                         studentIsMyself: false,
-                        students: []
+                        students: [],
                       }));
                     }}
                   >
@@ -372,7 +395,9 @@ const EnquiryForm = () => {
 
           {/* Step 2: Instruments Selection */}
           {step === 2 && subStep === 'instruments' && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <h2 className="form-subtitle">
                 Which instruments would {fields.studentIsMyself ? 'you' : 'they'} like to learn?
               </h2>
@@ -380,7 +405,9 @@ const EnquiryForm = () => {
                 <ChipSelector
                   options={Object.values(INSTRUMENTS).flat()}
                   selectedOptions={fields.students[currentLearnerIndex]?.instruments || []}
-                  onChange={(selected) => updateStudent(currentLearnerIndex, { instruments: selected })}
+                  onChange={(selected) =>
+                    updateStudent(currentLearnerIndex, { instruments: selected })
+                  }
                 />
               </div>
             </div>
@@ -388,11 +415,13 @@ const EnquiryForm = () => {
 
           {/* Step 3: Learner Details */}
           {step === 2 && subStep === 'details' && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <h2 className="form-subtitle">
                 {fields.studentIsMyself ? 'Your Basic Details' : 'Learner Basic Details'}
               </h2>
-              
+
               <div className="learner-details-card">
                 {/* Name (only for others, not self) */}
                 {!fields.studentIsMyself && (
@@ -438,11 +467,13 @@ const EnquiryForm = () => {
 
           {/* Step 2: Level & Notes */}
           {step === 2 && subStep === 'levelnotes' && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <h2 className="form-subtitle">
                 {fields.studentIsMyself ? 'Your Learning Level & Goals' : 'Learning Level & Goals'}
               </h2>
-              
+
               <div className="learner-details-card">
                 {/* Level */}
                 <div className="form-group">
@@ -467,16 +498,19 @@ const EnquiryForm = () => {
                 {/* Notes */}
                 <div className="form-group">
                   <label className="form-label" htmlFor="learner_notes">
-                    {fields.studentIsMyself ? 'Tell us about your goals' : 'Tell us about their goals'}
+                    {fields.studentIsMyself
+                      ? 'Tell us about your goals'
+                      : 'Tell us about their goals'}
                   </label>
                   <textarea
                     className="form-input"
                     id="learner_notes"
                     value={fields.students[currentLearnerIndex]?.notes || ''}
                     onChange={(e) => updateStudent(currentLearnerIndex, { notes: e.target.value })}
-                    placeholder={fields.studentIsMyself ? 
-                      "What would you like to achieve? Any specific styles, songs, or goals..." :
-                      "What would they like to achieve? Any specific styles, songs, or goals..."
+                    placeholder={
+                      fields.studentIsMyself
+                        ? 'What would you like to achieve? Any specific styles, songs, or goals...'
+                        : 'What would they like to achieve? Any specific styles, songs, or goals...'
                     }
                     rows={6}
                   />
@@ -502,9 +536,11 @@ const EnquiryForm = () => {
 
           {/* Step 2: Summary - Show all learners */}
           {step === 2 && subStep === 'summary' && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <h2 className="form-subtitle">Learners Summary</h2>
-              
+
               <div className="learners-summary">
                 {fields.students.map((student, index) => (
                   <div key={index} className="learner-summary-card">
@@ -529,22 +565,28 @@ const EnquiryForm = () => {
                         )}
                       </div>
                     </div>
-                    
+
                     <div className="learner-summary-details">
-                      <p><strong>Age:</strong> {student.age}</p>
-                      <p><strong>Level:</strong> {student.level}</p>
-                      <p><strong>Instruments:</strong> {student.instruments.join(', ')}</p>
-                      {student.notes && <p><strong>Goals:</strong> {student.notes}</p>}
+                      <p>
+                        <strong>Age:</strong> {student.age}
+                      </p>
+                      <p>
+                        <strong>Level:</strong> {student.level}
+                      </p>
+                      <p>
+                        <strong>Instruments:</strong> {student.instruments.join(', ')}
+                      </p>
+                      {student.notes && (
+                        <p>
+                          <strong>Goals:</strong> {student.notes}
+                        </p>
+                      )}
                     </div>
                   </div>
                 ))}
-                
+
                 <div className="add-learner-section">
-                  <button
-                    type="button"
-                    className="btn-secondary"
-                    onClick={() => addStudent()}
-                  >
+                  <button type="button" className="btn-secondary" onClick={() => addStudent()}>
                     + Add Another Learner
                   </button>
                 </div>
@@ -554,7 +596,9 @@ const EnquiryForm = () => {
 
           {/* Step 4: Contact Details */}
           {step === 3 && !success && (
-            <div className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}>
+            <div
+              className={`form-group form-stage ${direction === 'forward' ? 'form-stage-slide-in-right' : 'form-stage-slide-in-left'}`}
+            >
               <h2 className="form-subtitle">Contact Details</h2>
               <div className="contact-details-card">
                 <div className="form-group-row">
@@ -628,7 +672,7 @@ const EnquiryForm = () => {
                   </label>
                   <PostcodeAutocomplete
                     value={fields.postcode}
-                    onChange={(val: string) => setFields(f => ({ ...f, postcode: val }))}
+                    onChange={(val: string) => setFields((f) => ({ ...f, postcode: val }))}
                     required
                   />
                 </div>
@@ -639,11 +683,14 @@ const EnquiryForm = () => {
                       type="checkbox"
                       name="geopoint_consent"
                       checked={fields.geopoint_consent}
-                      onChange={e => setFields(f => ({ ...f, geopoint_consent: e.target.checked }))}
+                      onChange={(e) =>
+                        setFields((f) => ({ ...f, geopoint_consent: e.target.checked }))
+                      }
                       required
                     />
                     <span className="consent-text">
-                      I consent to my information being shared with the team at Tempo. All information is handled within GDPR and our Privacy Policy
+                      I consent to my information being shared with the team at Tempo. All
+                      information is handled within GDPR and our Privacy Policy
                     </span>
                   </label>
                 </div>
@@ -654,15 +701,19 @@ const EnquiryForm = () => {
           {/* Navigation Buttons */}
           {!success && (
             <div className="form-buttons-container">
-              {(step > 1 || (step === 2 && (subStep === 'details' || subStep === 'levelnotes' || subStep === 'summary'))) && (
+              {(step > 1 ||
+                (step === 2 &&
+                  (subStep === 'details' ||
+                    subStep === 'levelnotes' ||
+                    subStep === 'summary'))) && (
                 <button type="button" className="btn-secondary" onClick={prevStep}>
                   Back
                 </button>
               )}
               {(step < 3 || (step === 2 && subStep !== 'summary')) && (
-                <button 
-                  type="button" 
-                  className="btn-primary" 
+                <button
+                  type="button"
+                  className="btn-primary"
                   onClick={nextStep}
                   disabled={!validateStep()}
                 >

@@ -1,7 +1,7 @@
 ---
-title: "Guitar vs. Bass Guitar: Understanding the Differences"
+title: 'Guitar vs. Bass Guitar: Understanding the Differences'
 date: 2023-02-24T00:00:00.000Z
-excerpt: "Explore the key differences between the guitar and bass guitar, including their roles, sounds, and playing techniques."
+excerpt: 'Explore the key differences between the guitar and bass guitar, including their roles, sounds, and playing techniques.'
 ---
 
 ![Guitar and Bass Guitar](https://musomatch.tempomobile.co.uk/blog/wp-content/uploads/2023/02/IMG_2711.jpg)

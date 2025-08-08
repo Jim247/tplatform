@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev --turbopack\"",
-    "build": "tinacms build && npm run format:check && next build",
+    "dev": "next dev --turbopack",
+    "build": "npm run format:check && next build",
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
@@ -20,7 +20,6 @@
     "@prisma/client": "^6.13.0",
     "@supabase/supabase-js": "^2.53.0",
     "@tabler/icons-react": "^3.34.1",
-    "@tinacms/cli": "^1.10.2",
     "gray-matter": "^4.0.3",
     "next": "15.4.4",
     "postcode-validator": "^3.10.5",
@@ -28,8 +27,7 @@
     "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1",
-    "tinacms": "^2.8.2"
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

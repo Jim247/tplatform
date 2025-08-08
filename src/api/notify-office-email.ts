@@ -18,9 +18,7 @@ export type EnquiryNotification = {
   }[]; // Include student details if submitting on behalf
 };
 
-export const notifyOfficeEmail = async (
-  enquirer: EnquiryNotification
-): Promise<void> => {
+export const notifyOfficeEmail = async (enquirer: EnquiryNotification): Promise<void> => {
   const officeEmail = 'jim@tempomobile.co.uk'; // Replace with your office email
   const subjectToOffice = `New Enquiry from ${enquirer.first_name} ${enquirer.last_name}`;
   const messageToOffice = `
@@ -53,7 +51,11 @@ Please follow up with the enquirer as soon as possible.
 
   try {
     // Send a copy to the office
-    await sendMailtrapEmail({ to: officeEmail, subject: subjectToOffice, message: messageToOffice });
+    await sendMailtrapEmail({
+      to: officeEmail,
+      subject: subjectToOffice,
+      message: messageToOffice,
+    });
   } catch (emailErr) {
     console.error(`Error sending email to the office:`, emailErr);
     throw emailErr;

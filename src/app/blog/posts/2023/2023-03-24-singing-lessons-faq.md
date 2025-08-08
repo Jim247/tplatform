@@ -1,7 +1,7 @@
 ---
-title: "Singing Lessons FAQ: Everything You Need to Know"
+title: 'Singing Lessons FAQ: Everything You Need to Know'
 date: 2023-03-24T00:00:00.000Z
-excerpt: "Get answers to all your questions about singing lessons, from teacher qualifications to lesson frequency and resources."
+excerpt: 'Get answers to all your questions about singing lessons, from teacher qualifications to lesson frequency and resources.'
 ---
 
 ### Frequently Asked Questions

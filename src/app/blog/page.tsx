@@ -1,5 +1,5 @@
 import { getAllPosts } from '@/lib/blog';
-import Link from 'next/link'
+import Link from 'next/link';
 import formatUkDate from '@/utils/FormatUkDate';
 
 export default function BlogPage() {
@@ -12,7 +12,7 @@ export default function BlogPage() {
         <p className="text-gray-400">No blog posts found.</p>
       ) : (
         <div className="space-y-8">
-          {posts.map(post => (
+          {posts.map((post) => (
             <article key={post.slug} className="border-b border-gray-700 pb-6">
               <Link href={`/blog/${post.slug}`}>
                 <h2 className="text-2xl font-bold text-amber-300 hover:text-amber-400 mb-2">
@@ -20,12 +20,10 @@ export default function BlogPage() {
                 </h2>
               </Link>
               <div className="text-sm text-gray-400 mb-3">
-          {formatUkDate(post.date)} {post.author && `• ${post.author}`}             
-           </div>
-              {post.excerpt && (
-                <p className="text-gray-200 mb-4">{post.excerpt}</p>
-              )}
-              <Link 
+                {formatUkDate(post.date)} {post.author && `• ${post.author}`}
+              </div>
+              {post.excerpt && <p className="text-gray-200 mb-4">{post.excerpt}</p>}
+              <Link
                 href={`/blog/${post.slug}`}
                 className="text-amber-300 hover:text-amber-400 font-medium"
               >

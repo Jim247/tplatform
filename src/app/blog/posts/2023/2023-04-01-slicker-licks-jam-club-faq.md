@@ -1,7 +1,7 @@
 ---
-title: "Slicker Licks Jam Club: Frequently Asked Questions"
+title: 'Slicker Licks Jam Club: Frequently Asked Questions'
 date: 2023-04-01T00:00:00.000Z
-excerpt: "Discover everything you need to know about the Slicker Licks Jam Club, a monthly workshop for guitarists and bass players to improve their skills and unlock creativity."
+excerpt: 'Discover everything you need to know about the Slicker Licks Jam Club, a monthly workshop for guitarists and bass players to improve their skills and unlock creativity.'
 ---
 
 ### Frequently Asked Questions
