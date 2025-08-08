@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import formatUkDate from '@utils/FormatUkDate';
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
-  const post = await getPostWithHtml(params.slug);
+export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = await getPostWithHtml(slug);
 
   if (!post) {
     notFound();
