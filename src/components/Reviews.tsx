@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState, useEffect } from 'react';
-import { FaGoogle } from 'react-icons/fa';
 
 export interface ReviewProps {
   title?: string;
@@ -12,10 +12,6 @@ export interface ReviewProps {
   icon: string;
   reviewLink?: string;
 }
-
-const iconMap = {
-  google: FaGoogle,
-} as const;
 
 interface Props {
   title?: string;
@@ -33,7 +29,6 @@ export default function Reviews({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
-  // const CHAR_LIMIT = 180; // Removed duplicate declaration
 
   // Update activeIdx on scroll
   useEffect(() => {
@@ -82,8 +77,7 @@ export default function Reviews({
         style={{ scrollSnapType: 'x mandatory' }}
       >
         {reviews.map((review, idx) => {
-          const { title: reviewTitle, review: reviewText, reviewerName, icon, reviewLink } = review;
-          const IconComponent = iconMap[icon as keyof typeof iconMap];
+          const { title: reviewTitle, review: reviewText, reviewerName, reviewLink } = review;
           const isExpanded = expandedIdx === idx;
           const isLong = reviewText.length > CHAR_LIMIT;
           const displayText =
@@ -91,75 +85,99 @@ export default function Reviews({
           return (
             <div
               key={idx}
-              className={`
-                flex-shrink-0 w-full sm:w-auto sm:flex-1
-              `}
+              className="flex-shrink-0 w-[380px] sm:w-auto sm:flex-1"
               style={{ scrollSnapAlign: 'start' }}
             >
-              <div className="flex flex-col p-6 rounded-xl bg-white border border-gray-200 hover:border-yellow-300 transition-all duration-300 hover:shadow-xl w-full min-h-[320px] relative overflow-hidden group">
-                {/* Review Title */}
-                {reviewTitle && (
-                  <h3 className="text-lg font-semibold text-gray-900 leading-6 pb-4">
-                    {reviewTitle}
-                  </h3>
-                )}
-
-                {/* 5-Star Rating */}
-                <div
-                  className="flex mb-4 transition-transform duration-200"
-                  aria-label="5 star rating"
-                >
-                  {[...Array(5)].map((_, i) => (
-                    <span
-                      key={i}
-                      style={{
-                        filter: 'drop-shadow(0 0.5px 1px rgba(0,0,0,0.12))',
-                        display: 'inline-block',
-                      }}
-                    ></span>
-                  ))}
+              <div className="flex flex-col rounded-xl bg-white border border-gray-200 hover:border-yellow-300 transition-all duration-300 hover:shadow-xl w-full h-[380px] relative overflow-hidden group">
+                {/* 5-Star Rating - At the top */}
+                <div className="flex-shrink-0 mb-4 py-2 px-6 w-full bg-gray-800/90">
+                  <div
+                    className="flex transition-transform duration-200"
+                    aria-label="5 star rating"
+                  >
+                    {[...Array(5)].map((_, i) => (
+                      <span
+                        key={i}
+                        className="text-yellow-400 text-xl"
+                        style={{
+                          filter: 'drop-shadow(0 0.5px 1px rgba(0,0,0,0.12))',
+                          display: 'inline-block',
+                        }}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Review Quote */}
-                {reviewText && (
-                  <blockquote className="flex-auto mb-4">
-                    <p className="text-gray-700 text-lg leading-relaxed">
-                      &quot;{displayText}&quot;
-                    </p>
-                    {isLong && !isExpanded && (
-                      <button
-                        className="text-sm text-yellow-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
-                        onClick={() => setExpandedIdx(idx)}
-                      >
-                        Read more
-                      </button>
-                    )}
-                    {isExpanded && (
-                      <button
-                        className="text-sm text-yellow-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
-                        onClick={() => setExpandedIdx(null)}
-                      >
-                        Show less
-                      </button>
-                    )}
-                  </blockquote>
-                )}
+                {/* Content area with padding */}
+                <div className="flex flex-col flex-1 px-6 pb-6">
+                  {/* Review Title */}
+                  {reviewTitle && (
+                    <h3 className="text-lg font-semibold text-gray-900 leading-6 pb-4 flex-shrink-0">
+                      {reviewTitle}
+                    </h3>
+                  )}
 
-                {/* Name and Icon */}
-                <div className="flex justify-between items-center mt-auto">
-                  <div>
-                    {reviewerName && <p className="font-semibold text-gray-900">{reviewerName}</p>}
-                    <span className="text-sm text-gray-600">via Google My Business</span>
+                  {/* Review Quote - This will take available space */}
+                  {reviewText && (
+                    <blockquote className="flex-1 mb-4 overflow-hidden">
+                      <p className="text-gray-700 text-base leading-relaxed">
+                        &quot;{displayText}&quot;
+                      </p>
+                      {isLong && !isExpanded && (
+                        <button
+                          className="text-sm text-yellow-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
+                          onClick={() => setExpandedIdx(idx)}
+                        >
+                          Read more
+                        </button>
+                      )}
+                      {isExpanded && (
+                        <button
+                          className="text-sm text-yellow-600 hover:text-amber-700 underline mt-2 focus:outline-none transition-colors"
+                          onClick={() => setExpandedIdx(null)}
+                        >
+                          Show less
+                        </button>
+                      )}
+                    </blockquote>
+                  )}
+
+                  {/* Name and Icon - Fixed at bottom */}
+                  <div className="flex justify-between items-center mt-auto flex-shrink-0">
+                    <div>
+                      {reviewerName && (
+                        <p className="font-semibold text-gray-900">{reviewerName}</p>
+                      )}
+                      <span className="text-sm text-gray-600">via Google My Business</span>
+                    </div>
+                    {reviewLink && (
+                      <a
+                        href={reviewLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-600 hover:text-amber-600 transition-colors"
+                      >
+                        <Image src="/google-logo.svg" alt="google logo" width={30} height={30} />
+                      </a>
+                    )}
                   </div>
-                  {reviewLink && (
-                    <a
-                      href={reviewLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-amber-600 transition-colors"
+
+                  {/* Review Link Button */}
+                  {review.reviewLink ? (
+                    <Link href={review.reviewLink} target="_blank" rel="noopener noreferrer">
+                      <button className=" bg-gray-800/90 hover:bg-gray-500 text-white font-semibold px-3 py-3 mt-3 rounded-lg transition-colors duration-200 w-full">
+                        Read Full Review
+                      </button>
+                    </Link>
+                  ) : (
+                    <button
+                      className="mt-4 px-4 py-2 bg-gray-400 text-white rounded cursor-not-allowed"
+                      disabled
                     >
-                      <Image src="/google-logo.svg" alt="google logo" width={30} height={30} />
-                    </a>
+                      No Review Link
+                    </button>
                   )}
                 </div>
               </div>
