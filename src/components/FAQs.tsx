@@ -53,7 +53,7 @@ const FAQs: React.FC<FAQsProps> = ({
         {(title || subtitle || tagline) && (
           <div className="text-center mb-12">
             <div className="flex justify-center mb-6">
-              <div className="bg-yellow-300/10 rounded-xl">
+              <div className="bg-yellow-300/10 rounded-xl p-3">
                 <Icon path={icon} size={3} className="text-yellow-300" />
               </div>
             </div>
