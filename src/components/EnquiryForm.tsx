@@ -277,12 +277,12 @@ const EnquiryForm = () => {
         case 'levelnotes':
           return '4';
         case 'summary':
-          return '2';
+          return '5';
         default:
           return '2';
       }
     }
-    return step > 2 ? String(step + 2) : String(step);
+    return step > 2 ? String(step + 3) : String(step);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -363,17 +363,14 @@ const EnquiryForm = () => {
       <div className="form-header">
         <a href="./" className="flex flex-col items-center gap-3 group">
           <Logo height={100} width={100} />
-          <span className="text-yellow-300 hover:text-yellow-400 transition-colors duration-200 font-medium pb-10">
+          <span className="text-yellow-300 hover:text-yellow-400 transition-colors duration-200 font-medium pb-1">
             Back to Homepage
           </span>
         </a>
-        <h1 className="form-title">
-          Make An Enquiry
-          <br />
-          <span className="block text-base font-normal mt-2 text-gray-300">
-            Step {getStepNumber()} of 5
-          </span>
-        </h1>
+        <br />
+        <span className="block text-base font-normal mt-2 text-gray-300">
+          Step {getStepNumber()} of 5
+        </span>
       </div>
 
       {/* Content Section */}
@@ -488,7 +485,7 @@ const EnquiryForm = () => {
 
               <div className="bg-gray-800/30 border border-gray-700/50 rounded-xl p-10 w-full max-w-screen-xl mx-auto">
                 {/* Name - show for all students, but pre-populate for self-learners */}
-                <div className="form-group">
+                <div className="">
                   <label className="form-label" htmlFor="learner_name">
                     {fields.studentIsMyself ? 'Your Name' : 'Learner Name'}
                   </label>
