@@ -10,6 +10,7 @@ import {
   mdiBrush,
   mdiMicrophone,
   mdiPencil,
+  mdiHelp,
 } from '@mdi/js';
 import FAQs from '@/components/FAQs';
 import ImageBoxes from '@/components/ImageBoxes';
@@ -22,6 +23,7 @@ import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
 import { createInstrumentMetadata } from '@/utils/metadata';
 import { Metadata } from 'next';
+import CTA from '@/components/CTA';
 
 export const metadata: Metadata = createInstrumentMetadata('singing');
 
@@ -52,6 +54,10 @@ export default function Home() {
       </WidgetWrapper>
       <SectionDivider icon={mdiMicrophone} />
       <WidgetWrapper>
+            <CTA 
+              icon={mdiHelp}
+              ctaQuestion='Heard Enough Already?'
+              />
         <ImageBoxes
           boxes={[
             {
@@ -187,6 +193,10 @@ export default function Home() {
         />
       </WidgetWrapper>
       <PricingWidget />
+         <CTA 
+            icon={mdiHelp}
+            ctaQuestion='Time to book?'
+            />
     </>
   );
 }

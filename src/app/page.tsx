@@ -10,6 +10,8 @@ import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
 import { homePageMetadata } from '@/utils/metadata';
 import { Metadata } from 'next';
+import CTA from '@/components/CTA';
+import { mdiHelp } from '@mdi/js';
 
 export const metadata: Metadata = homePageMetadata;
 
@@ -52,6 +54,10 @@ export default function Home() {
         <Reviews reviews={reviewText} />
         <PricingWidget />
       </WidgetWrapper>
+         <CTA 
+            icon={mdiHelp}
+            ctaQuestion='Time to book?'
+            />
     </>
   );
 }

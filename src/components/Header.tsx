@@ -58,9 +58,11 @@ export default function Header() {
           </div>
         </Link>
         {/* Text center */}
+          <Link href="/">
         <div className="flex flex-row justify-center items-center">
           <span className="text-center whitespace-nowrap uppercase">TEMPO TUITION</span>
         </div>
+        </Link>
         {/* Hamburger right */}
         <div className="flex justify-end">
           <button
@@ -89,7 +91,7 @@ export default function Header() {
                 height="28"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#FFE600"
+                stroke="#fde047"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -115,7 +117,7 @@ export default function Header() {
                   <Link
                     href="/"
                     onClick={() => setMenuOpen(false)}
-                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800/30 rounded transition-all duration-200"
                   >
                     Home
                   </Link>
@@ -123,19 +125,23 @@ export default function Header() {
                 <li className="flex flex-col">
                   <button
                     type="button"
-                    className="flex items-center justify-between w-full px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200 focus:outline-none text-left"
+                    className="flex items-center justify-between w-full px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800/30 rounded transition-all duration-200 focus:outline-none text-left"
                     onClick={() => setMobileInstrumentsOpen((open) => !open)}
                     aria-expanded={mobileInstrumentsOpen}
                     aria-controls="mobile-instruments-submenu"
                   >
                     <div className="flex flex-row items-center gap-2 w-full justify-start">
-                      <span>Instruments</span>
+                      <span
+                        className={mobileInstrumentsOpen ? "text-yellow-300" : "text-white"}
+                      >
+                        Instruments
+                      </span>
                       <svg
                         width="16"
                         height="16"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="currentColor"
+                        stroke={mobileInstrumentsOpen ? "#fde047" : "currentColor"} // yellow-300 when open
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -147,7 +153,7 @@ export default function Header() {
                   </button>
                   {/* Mobile instruments dropdown opens inline within the menu */}
                   {mobileInstrumentsOpen && (
-                    <div className="ml-4 mt-2 flex flex-col gap-1">
+                    <div className="ml-2 mt-2 flex flex-col gap-1">
                       {instrumentLinks.map((link) => (
                         <Link
                           key={link.href}
@@ -156,7 +162,7 @@ export default function Header() {
                             setMenuOpen(false);
                             setMobileInstrumentsOpen(false);
                           }}
-                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800/30 rounded transition-all duration-200"
                         >
                           {link.label}
                         </Link>
@@ -168,7 +174,7 @@ export default function Header() {
                   <Link
                     href="/jobs"
                     onClick={() => setMenuOpen(false)}
-                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800/30 rounded transition-all duration-200"
                   >
                     Jobs
                   </Link>
@@ -177,7 +183,7 @@ export default function Header() {
                   <Link
                     href="/book"
                     onClick={() => setMenuOpen(false)}
-                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                    className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800/30 rounded transition-all duration-200"
                   >
                     Book Now
                   </Link>
@@ -223,7 +229,7 @@ ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-e
                       <li key={link.href}>
                         <Link
                           href={link.href}
-                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-700 rounded transition-all duration-200"
+                          className="block px-4 py-2 uppercase font-medium text-white hover:text-yellow-300 hover:bg-gray-800 rounded transition-all duration-200"
                         >
                           {link.label}
                         </Link>
@@ -237,11 +243,13 @@ ${desktopDropdownOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-e
         </nav>
 
         {/* Center logo - absolutely centered with text */}
+        <Link href="/">
         <div className="flex justify-center items-center gap-x-2 select-none">
           <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TEMPO</span>
           <Image src="/logo.svg" alt="Tempo Tuition Logo" width={48} height={48} />
           <span className="uppercase font-bold tracking-wide text-lg md:text-xl">TUITION</span>
         </div>
+        </Link>
 
         {/* Right navigation */}
         <nav className="flex justify-evenly">

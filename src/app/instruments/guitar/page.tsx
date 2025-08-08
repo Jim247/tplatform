@@ -11,6 +11,7 @@ import {
   mdiMicrophone,
   mdiPencil,
   mdiGuitarPickOutline,
+  mdiHelp
 } from '@mdi/js';
 import FAQs from '@/components/FAQs';
 import ImageBoxes from '@/components/ImageBoxes';
@@ -23,6 +24,7 @@ import PricingWidget from '@/components/PricingWidget';
 import ButtonBookNow from '@/components/BookNowButton';
 import { createInstrumentMetadata } from '@/utils/metadata';
 import { Metadata } from 'next';
+import CTA from '@/components/CTA';
 
 export const metadata: Metadata = createInstrumentMetadata('guitar');
 
@@ -51,6 +53,10 @@ export default function Home() {
           iconClassName="text-yellow-300 mb-2"
         />
       </WidgetWrapper>
+      <CTA 
+      icon={mdiHelp}
+      ctaQuestion='Heard Enough Already?'
+      />
       <SectionDivider icon={mdiGuitarPick} />
       <WidgetWrapper>
         <ImageBoxes
@@ -188,6 +194,11 @@ export default function Home() {
         />
       </WidgetWrapper>
       <PricingWidget />
+      <CTA 
+      icon={mdiHelp}
+      ctaQuestion='Time to book?'
+      />
     </>
+    
   );
 }
