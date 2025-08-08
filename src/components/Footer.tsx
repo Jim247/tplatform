@@ -56,7 +56,7 @@ export default function Footer() {
                 href="/privacy"
                 className="hover:text-amber-300 px-4 py-3 flex items-center whitespace-nowrap"
               >
-                  PRIVACY & TERMS
+                PRIVACY & TERMS
               </Link>
             </li>
             <li>

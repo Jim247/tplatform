@@ -32,7 +32,7 @@ export default function Home() {
       <VideoHero videoSrc="/child-guitar-trimmed.mp4">
         <div className="bg-black/40 p-6 rounded-lg flex flex-col items-center">
           <LogoText width={200} height={200} text={'GUITAR LESSONS'} />
-      <ButtonBookNow/>
+          <ButtonBookNow />
         </div>
       </VideoHero>
       <SectionDivider icon={mdiGuitarPick} />
