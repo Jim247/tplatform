@@ -362,7 +362,7 @@ const EnquiryForm = () => {
       {/* Header Section */}
       <div className="form-header">
         <a href="./" className="flex flex-col items-center gap-3 group">
-          <Logo height={100} width={100} />
+          <Logo height={50} width={50} />
           <span className="text-yellow-300 hover:text-yellow-400 transition-colors duration-200 font-medium pb-1">
             Back to Homepage
           </span>
